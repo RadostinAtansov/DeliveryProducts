@@ -1,22 +1,30 @@
 ﻿namespace InkoOrders.Data.Model
 {
+    using System.ComponentModel.DataAnnotations;
+    using static DataValidation;
+
     public class TransactionPayment
     {
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(TransactionPaymentDescriptionLength)]
         public string Descriotion { get; set; }
 
         public DateTime TransactionTime { get; set; }
 
-        //link kym dokumenta???
-        public string LinkDocument { get; set; }
+        [Required]
+        public string LinkDocuments { get; set; }
 
-        public decimal AdvancePayment { get; set; } //avans za koito da se razberem
+        public decimal AdvancePayment { get; set; }
 
+        [MaxLength(CommentLength)]
         public string Comment { get; set; }
 
-        public ICollection<TransportAndTransactionPayments> TransportPayments { get; set; } = new HashSet<TransportAndTransactionPayments>();
+        public ICollection<TransportAndTransactionPayment> Transports { get; set; } = new HashSet<TransportAndTransactionPayment>();
 
-        public ICollection<ClientTransactions> Transactions { get; set; } = new HashSet<ClientTransactions>();
+        public ICollection<ClientsTransaction> Clients { get; set; } = new HashSet<ClientsTransaction>();
+
+        public ICollection<ProductsToDeliveryToOrderToTransactionPaymentToTransport> Products { get; set; } = new HashSet<ProductsToDeliveryToOrderToTransactionPaymentToTransport>();
     }
 }
