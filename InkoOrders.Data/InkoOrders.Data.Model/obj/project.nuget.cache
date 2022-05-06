@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rFTkCESEQs2T7CFb/Q+6J92OFCE3zK9oSi8RE3A2VyQpRvh964LvEDmGvjG83SVgTAdtpcGt7gcLzzs9hmlHJg==",
+  "dgSpecHash": "AeO+yAYWXpzKvaJjPu3CwtgplD8wQXn9ORVDk+onNO6ZpjKs/a3ea7OvB+1bg8Fi5hucq+XA4u006H5hhEe/XA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\radul\\Desktop\\DP\\DeliveryProducts\\InkoOrders.Data\\InkoOrders.Data.Model\\InkoOrders.Data.Model.csproj",
+  "projectFilePath": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\Inko\\InkoOrders.Data\\InkoOrders.Data.Model\\InkoOrders.Data.Model.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

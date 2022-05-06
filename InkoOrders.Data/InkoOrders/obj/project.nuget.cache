@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0MmtLRZpCej4WIU2JlyKKwZki06WHOZ9H+brB7Ul6+zcMe6N/ZfrgPO8swqyOfj0xCjIfxVeHRhQStwxwnFTTg==",
+  "dgSpecHash": "j60wqQgIPDyW8sc3fcXxclubiTcfWVdglQksmENnyQJ5KEAK1eDAPnr/aYhyVzBvpwyWJQUA5ru+p4pxYGG4/Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\radul\\Desktop\\DP\\DeliveryProducts\\InkoOrders.Data\\InkoOrders\\InkoOrders.Data.csproj",
+  "projectFilePath": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\Inko\\InkoOrders.Data\\InkoOrders\\InkoOrders.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\radul\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\radul\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
