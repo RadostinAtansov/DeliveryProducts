@@ -18,6 +18,8 @@ namespace InkoOrders.Data.Model
         [MaxLength(TransportToClient)]
         public string ToClient { get; set; }
 
+        public decimal CustomsPrice { get; set; }  //?? tuka li
+
         public DateTime DatetimeArrive { get; set; }
 
         public ICollection<Document> Documents { get; set; } = new HashSet<Document>();

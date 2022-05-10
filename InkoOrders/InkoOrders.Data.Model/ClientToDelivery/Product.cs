@@ -25,10 +25,6 @@ namespace InkoOrders.Data.Model
         public string Comment { get; set; }
 
         public ICollection<ProductsToDeliveryToOrderToTransactionPaymentToTransport> ProDelOrdTranPayTran { get; set; } = new HashSet<ProductsToDeliveryToOrderToTransactionPaymentToTransport>();
-        //public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
-        //public ICollection<Delivery> Deliveries { get; set; } = new HashSet<Delivery>();
-        //public ICollection<Transport> Transports { get; set; } = new HashSet<Transport>();
-        //public ICollection<TransactionPayment> TransactionPayments { get; set; } = new HashSet<TransactionPayment>();
 
     }
 }

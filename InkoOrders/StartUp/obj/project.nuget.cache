@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "CMcYLqELt4AHobrzNvBwqnFsdUCGeR2K4BJTlrZ8PKe59dwRbEkHpJgPkl3ByU3GA1UlguD4DhfcOsxiWD7quA==",
+  "dgSpecHash": "UMR5P9rTbwfHljKxFI8n+WYYihdO7GUkuLVTbIE7xhRdSGj6kiDVCUZyONj+KbB3Mzoz/hpPvSIV8qnPC4p0+w==",
   "success": false,
-  "projectFilePath": "C:\\Users\\radul\\Desktop\\inko\\InkoOrders\\StartUp\\StartUp.csproj",
+  "projectFilePath": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\StartUp\\StartUp.csproj",
   "expectedPackageFiles": [],
   "logs": [
     {
       "code": "NU1104",
       "level": "Error",
-      "message": "Unable to find project 'C:\\Users\\radul\\Desktop\\inko\\InkoOrders\\InkoOrders\\InkoOrders.Data.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\Users\\radul\\Desktop\\inko\\InkoOrders\\InkoOrders\\InkoOrders.Data.csproj",
+      "message": "Unable to find project 'C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\InkoOrders\\InkoOrders.Data.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\InkoOrders\\InkoOrders.Data.csproj",
       "targetGraphs": [
         "net6.0"
       ]

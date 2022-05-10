@@ -1,5 +1,6 @@
 ﻿namespace InkoOrders.Data.Model
 {
+    using InkoOrders.Data.Model.Accounting;
     using System.ComponentModel.DataAnnotations;
     using static DataValidation;
 
@@ -26,5 +27,7 @@
         public ICollection<ClientsTransaction> Clients { get; set; } = new HashSet<ClientsTransaction>();
 
         public ICollection<ProductsToDeliveryToOrderToTransactionPaymentToTransport> Products { get; set; } = new HashSet<ProductsToDeliveryToOrderToTransactionPaymentToTransport>();
+
+        public ICollection<BankIncomeExpencesUtilitiBills> Utilities { get; set; } = new HashSet<BankIncomeExpencesUtilitiBills>();
     }
 }
