@@ -9,7 +9,7 @@
         public Client Client { get; set; }
 
         public int OrderId { get; set; }
-        public Order Order { get; set; }
+        public RegisterOrderForProduction Order { get; set; }
 
         public int DeliveryId { get; set; }
         public Delivery Delivery { get; set; }

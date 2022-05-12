@@ -13,7 +13,7 @@ namespace InkoOrders.Data
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<DeliveryClient> DeliveryClients { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<RegisterOrderForProduction> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductsToDeliveryToOrderToTransactionPaymentToTransport> ProductsToDeliveryToOrderToTransports { get; set; }
         public DbSet<TransactionPayment> TransactionPayments { get; set; }
