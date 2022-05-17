@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InkoOrders.Data.Model\InkoOrders.Data.Model.csproj" />
+    <ProjectReference Include="..\InkoOrders.Data\InkoOrders.Data.csproj" />
+    <ProjectReference Include="..\InkoOrders.Services.Model\InkoOrders.Services.Model.csproj" />
+    <ProjectReference Include="..\InkoOrders.Services\InkoOrders.Services.csproj" />
+  </ItemGroup>
+
+</Project>

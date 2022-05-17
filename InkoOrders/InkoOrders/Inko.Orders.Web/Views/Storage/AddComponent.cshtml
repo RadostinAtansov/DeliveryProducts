@@ -1,0 +1,47 @@
+﻿@model AddComponentViewModel
+
+@{
+    ViewData["Title"] = "Add Component";
+}
+
+<h1>Add Component To Database</h1>
+
+<form asp-controller="Storage" asp-action="AddComponent" method="post">
+    <div class="row">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="fname" name="fname"><br><br>
+            <label>Price</label>
+            <input type="text" id="price" name="price"><br><br>
+            <label>Quantity</label>
+            <input type="text" id="Quantity" name="Quantity"><br><br>            
+            <label>BuyedTime</label>
+            <input type="text" id="BuyedTime" name="BuyedTime"><br><br>
+            <label>Picture</label>
+            <input type="text" id="Picture" name="Picture"><br><br>
+            <label>PlaceInStorageAndCity</label>
+            <input type="text" id="PlaceInStorageAndCity" name="PlaceInStorageAndCity"><br><br>
+            <label>Comment</label>
+            <input type="text" id="Comment" name="Comment"><br><br>
+
+
+              <input type="submit" value="Submit">
+        </div>
+    </div>
+</form>
+
+     public int Name { get; set; }
+
+        public decimal Price { get; set; }
+
+        public int Quantity { get; set; }
+
+        public DateTime BuyedTime { get; set; }
+
+       // public bool Insignificant { get; set; }
+
+        public string Picture { get; set; }
+
+        public string PlaceInStorageAndCity { get; set; }
+
+        public string Comment { get; set; }
