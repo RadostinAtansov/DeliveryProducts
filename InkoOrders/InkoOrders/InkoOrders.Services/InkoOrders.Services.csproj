@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InkoOrders.Data\InkoOrders.Data.csproj" />
+    <ProjectReference Include="..\InkoOrders.Services.Model\InkoOrders.Services.Model.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -23,7 +23,7 @@ namespace InkoOrders.Data
 
         //Storage
         public DbSet<Component> Components { get; set; }
-        public DbSet<MatereialsInInko> MatereialsInInko { get; set; }
+        public DbSet<MaterialsInInko> MaterialsInInko { get; set; }
         public DbSet<ToolsCreatedAndBuyedByInko> ToolsCreatedAndBoughtByInko { get; set; }
         public DbSet<WareInko> WaresInko { get; set; }
 

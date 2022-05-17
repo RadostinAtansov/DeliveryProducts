@@ -20,11 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InkoOrders.Data.Model\InkoOrders.Data.Model.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\InkoOrders.Data.Model\InkoOrders.Data.Model.csproj" />
   </ItemGroup>
 
 </Project>

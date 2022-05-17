@@ -22,6 +22,136 @@ namespace InkoOrders.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.BankIncomeExpencesUtilitiBills", b =>
+                {
+                    b.Property<int>("IncomeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BankPaymentsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UtilityBillsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpencesId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TransactionPaymentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IncomeId", "BankPaymentsId", "UtilityBillsId", "ExpencesId");
+
+                    b.HasIndex("BankPaymentsId");
+
+                    b.HasIndex("ExpencesId");
+
+                    b.HasIndex("TransactionPaymentId");
+
+                    b.HasIndex("UtilityBillsId");
+
+                    b.ToTable("BankIncomeExpencesUtilitiBills");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.BankPayments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IBAN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PriceAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BankPayments");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.Expences", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("AllExpences")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Expences");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.Income", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("AllIncome")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("FromServices")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("FromStocks")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Income");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.UtilityBills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("CoPerformars")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Customs")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Electricity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Others")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Stocks")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Transport")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Water")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UtilityBills");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -280,43 +410,6 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("Invoices");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<DateTime>("Datetime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Distributor")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<decimal>("OrderPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("OrderTimeout")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("InkoOrders.Data.Model.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -342,7 +435,7 @@ namespace InkoOrders.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int?>("RegisterOrderForProductionId")
                         .HasColumnType("int");
 
                     b.Property<int?>("TransportId")
@@ -360,7 +453,7 @@ namespace InkoOrders.Data.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("RegisterOrderForProductionId");
 
                     b.HasIndex("TransportId");
 
@@ -400,6 +493,63 @@ namespace InkoOrders.Data.Migrations
                     b.HasIndex("TransportId");
 
                     b.ToTable("ProductsToDeliveryToOrderToTransports");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.RegisterOrderForProduction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Distributor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FinishhOrderDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderNameAndCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("OrderPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("OrderTimeout")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderedDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("SendOrderDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WayBill")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.Component", b =>
@@ -444,7 +594,7 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("Components");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Storage.MatereialsInInko", b =>
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -484,7 +634,7 @@ namespace InkoOrders.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MatereialsInInko");
+                    b.ToTable("MaterialsInInko");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolsCreatedAndBuyedByInko", b =>
@@ -617,6 +767,9 @@ namespace InkoOrders.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<decimal>("CustomsPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("DatetimeArrive")
                         .HasColumnType("datetime2");
 
@@ -668,6 +821,45 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("TransportClients");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.BankIncomeExpencesUtilitiBills", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Accounting.BankPayments", "BankPayment")
+                        .WithMany("BankIncomeExpencesUtility")
+                        .HasForeignKey("BankPaymentsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InkoOrders.Data.Model.Accounting.Expences", "Expence")
+                        .WithMany("ExpencesPayments")
+                        .HasForeignKey("ExpencesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InkoOrders.Data.Model.Accounting.Income", "Income")
+                        .WithMany("IncomePayments")
+                        .HasForeignKey("IncomeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InkoOrders.Data.Model.TransactionPayment", null)
+                        .WithMany("Utilities")
+                        .HasForeignKey("TransactionPaymentId");
+
+                    b.HasOne("InkoOrders.Data.Model.Accounting.UtilityBills", "UtilityBill")
+                        .WithMany("UtilityPayments")
+                        .HasForeignKey("UtilityBillsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("BankPayment");
+
+                    b.Navigation("Expence");
+
+                    b.Navigation("Income");
+
+                    b.Navigation("UtilityBill");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Client", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.Invoice", "Invoice")
@@ -687,7 +879,7 @@ namespace InkoOrders.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("InkoOrders.Data.Model.Order", "Order")
+                    b.HasOne("InkoOrders.Data.Model.RegisterOrderForProduction", "Order")
                         .WithMany("Clients")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -751,26 +943,15 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Transport");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Order", b =>
-                {
-                    b.HasOne("InkoOrders.Data.Model.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
             modelBuilder.Entity("InkoOrders.Data.Model.Product", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.Client", null)
                         .WithMany("ProductsClient")
                         .HasForeignKey("ClientId");
 
-                    b.HasOne("InkoOrders.Data.Model.Order", null)
+                    b.HasOne("InkoOrders.Data.Model.RegisterOrderForProduction", null)
                         .WithMany("OrderedProducts")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("RegisterOrderForProductionId");
 
                     b.HasOne("InkoOrders.Data.Model.Transport", null)
                         .WithMany("ProductsOrdered")
@@ -791,7 +972,7 @@ namespace InkoOrders.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("InkoOrders.Data.Model.Order", "Order")
+                    b.HasOne("InkoOrders.Data.Model.RegisterOrderForProduction", "Order")
                         .WithMany("Products")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -866,6 +1047,26 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Transport");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.BankPayments", b =>
+                {
+                    b.Navigation("BankIncomeExpencesUtility");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.Expences", b =>
+                {
+                    b.Navigation("ExpencesPayments");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.Income", b =>
+                {
+                    b.Navigation("IncomePayments");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Accounting.UtilityBills", b =>
+                {
+                    b.Navigation("UtilityPayments");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Client", b =>
                 {
                     b.Navigation("Deliveries");
@@ -893,18 +1094,18 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Clients");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Order", b =>
+            modelBuilder.Entity("InkoOrders.Data.Model.Product", b =>
+                {
+                    b.Navigation("ProDelOrdTranPayTran");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.RegisterOrderForProduction", b =>
                 {
                     b.Navigation("Clients");
 
                     b.Navigation("OrderedProducts");
 
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("InkoOrders.Data.Model.Product", b =>
-                {
-                    b.Navigation("ProDelOrdTranPayTran");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.TransactionPayment", b =>
@@ -914,6 +1115,8 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Products");
 
                     b.Navigation("Transports");
+
+                    b.Navigation("Utilities");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Transport", b =>

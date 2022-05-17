@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkoOrders.Services", "Inko
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkoOrders.Services.Model", "InkoOrders.Services.Model\InkoOrders.Services.Model.csproj", "{7CA43360-F976-4BBC-B799-662B5086F629}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StartUp", "StartUp\StartUp.csproj", "{CCC4E1B3-673B-4640-ABBC-9464C8807AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkoOrders.Data", "InkoOrders.Data\InkoOrders.Data.csproj", "{ED4D4D9C-23A0-4112-BD2F-6FFC5180C5E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkoOrders.Data", "InkoOrders.Data\InkoOrders.Data.csproj", "{ED4D4D9C-23A0-4112-BD2F-6FFC5180C5E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inko.Orders.Web", "Inko.Orders.Web\Inko.Orders.Web.csproj", "{B4160AEF-EB83-4CBE-9C66-4B8FB100F6DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,14 +35,14 @@ Global
 		{7CA43360-F976-4BBC-B799-662B5086F629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CA43360-F976-4BBC-B799-662B5086F629}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CA43360-F976-4BBC-B799-662B5086F629}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCC4E1B3-673B-4640-ABBC-9464C8807AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCC4E1B3-673B-4640-ABBC-9464C8807AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCC4E1B3-673B-4640-ABBC-9464C8807AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCC4E1B3-673B-4640-ABBC-9464C8807AD7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED4D4D9C-23A0-4112-BD2F-6FFC5180C5E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED4D4D9C-23A0-4112-BD2F-6FFC5180C5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED4D4D9C-23A0-4112-BD2F-6FFC5180C5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED4D4D9C-23A0-4112-BD2F-6FFC5180C5E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4160AEF-EB83-4CBE-9C66-4B8FB100F6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4160AEF-EB83-4CBE-9C66-4B8FB100F6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4160AEF-EB83-4CBE-9C66-4B8FB100F6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4160AEF-EB83-4CBE-9C66-4B8FB100F6DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
