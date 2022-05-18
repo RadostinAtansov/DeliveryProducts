@@ -1,5 +1,5 @@
-﻿using Inko.Orders.Web.Models.Storage;
-using InkoOrders.Services;
+﻿using InkoOrders.Services;
+using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,12 +7,29 @@ namespace Inko.Orders.Web.Controllers
 {
     public class StorageController : Controller
     {
-        private readonly IStorageService storage;
+        private readonly IComponentService component;
+        private readonly IMaterialsInkoService material;
 
-        public StorageController(IStorageService storage)
+        public StorageController(IComponentService component, IMaterialsInkoService material)
         {
-            this.storage = storage;
+            this.component = component;
+            this.material = material;
         }
+
+        public IActionResult AddMaterial()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMaterial(AddMaterialsServicesViewModel model)
+        {
+            this.material.AddMaterials(model);
+
+            return View("Views/Home/Index.cshtml");
+        }
+
+        //Make error Page
 
         public IActionResult AddComponent()
         {
@@ -20,10 +37,10 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComponent(ComponentViewModel model)
+        public IActionResult AddComponent(AddComponentServicesViewModel model)
         {
 
-            this.storage.AddComponent(model);
+            this.component.AddComponent(model);
 
 
             return View("Views/Home/Index.cshtml");

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\InkoOrders.Services.Model\\InkoOrders.Services.Model.csproj",
+      "projectUniqueName": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\InkoOrders\\InkoOrders.Services.Model\\InkoOrders.Services.Model.csproj",
       "projectName": "InkoOrders.Services.Model",
-      "projectPath": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\InkoOrders.Services.Model\\InkoOrders.Services.Model.csproj",
+      "projectPath": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\InkoOrders\\InkoOrders.Services.Model\\InkoOrders.Services.Model.csproj",
       "packagesPath": "C:\\Users\\radul\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\InkoOrders.Services.Model\\obj\\",
+      "outputPath": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\InkoOrders\\InkoOrders.Services.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
