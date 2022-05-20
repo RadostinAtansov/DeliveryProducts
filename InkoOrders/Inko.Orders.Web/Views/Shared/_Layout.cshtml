@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Inko.Orders.Web.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" type="text/css" href="~/lib/superfish/css/superfish.css"/>
+    <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.hoverintent/jquery.hoverIntent.js"></script>
+    <script type="text/javascript" src="~/lib/superfish/js/superfish.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("ul.sf-menu").superfish()
+        });
+    </script>
+
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -25,11 +37,65 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Storage" asp-action="AddComponent">Add Component</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Storage" asp-action="AddMaterial">Add Material</a>
+                        </li>*@
+                        <li>
+                            <ul class="sf-menu">
+    <li class="current">
+        <a href="index.php">Storage</a>
+        <ul>
+            <li><a href="index.php?p=profile">All</a></li>
+            <li class="current">
+                <a href="#os">Add ></a>
+                <ul>
+                    <li><a asp-controller="Storage" asp-action="AddComponent">Add component</a></li>
+                    <li><a asp-controller="Storage" asp-action="AddMaterial">Add material</a></li>
+                    <li><a href="macos.php">Mac OS</a></li>
+                    <li><a href="real.php">Real-time OS</a></li>
+                </ul>
+            </li>
+         
+    <li>
+        <a href="#">Programming ></a>
+        <ul>
+            <li><a href="js.php">JavaScript</a></li>
+            <li><a href="php5.php">PHP</a></li>
+            <li><a href="python.php">Python</a></li>
+            <li><a href="c.php">C/C++</a></li>
+            <li><a href="java.php">Java</a></li>
+        </ul>
+    </li>
+    </li>
+ </ul>
+ </li>
+ <li>
+     <a href="#">Galery</a>
+     <ul>
+         <li>
+             <a href="#">OS Screenshots ></a>
+             <ul>
+               <li><a href="windows.php?p=scr">Winsows</a></li> 
+               <li><a href="linux.php?p=scr">Linux</a></li>
+               <li><a href="mac.php?p=scr">MacOS</a></li>
+             </ul>
+         </li>
+         <li>
+             <a href="#">User`s image ></a>
+             <ul>
+               <li><a href="iamge.php?p=scr">admin</a></li> 
+               <li><a href="iamge.php?p=scr">manager</a></li>
+               <li><a href="iamge.php?p=scr">john.doe</a></li>
+             </ul>
+         </li>
+
+     </ul>
+ </li>
+    <li><a href="index.php?p=contacts">Contacts</a></li>
+</ul>
                         </li>
                     </ul>
                 </div>
@@ -51,5 +117,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+	    jQuery(document).ready(function() {
+		    jQuery('ul.sf-menu').superfish();
+        });
+    </script>
 </body>
 </html>

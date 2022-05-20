@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FLG20UATnoEjSHzZtkgF3h4WB7LrS93ozt3pkkvHh+ZOpMR6+DaOd8NMzYg1fx4A82dnprFDqFPldvfOML5Myw==",
+  "dgSpecHash": "/IiGPdSF8wisGRTtIhd0HJ4FWSdiPoQMslPhvD23nmaaaBVwoZW6QovPwHESyKlgrfYJ/LkMOxx/u6p6c1/EkQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\radul\\Desktop\\allBychvarov Repository\\InkoOrders\\InkoOrders\\Inko.Orders.Web\\Inko.Orders.Web.csproj",
+  "projectFilePath": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\Inko.Orders.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\radul\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\radul\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
