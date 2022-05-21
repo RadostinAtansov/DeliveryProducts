@@ -3,29 +3,24 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "provider": "cdnjs",
-      "library": "superfish@1.7.10",
-      "destination": "wwwroot/lib/superfish/"
-    },
-    {
-      "provider": "cdnjs",
       "library": "jquery@3.6.0",
       "destination": "wwwroot/lib/jquery/"
     },
     {
-      "provider": "cdnjs",
-      "library": "jquery.hoverintent@1.10.2",
-      "destination": "wwwroot/lib/jquery.hoverintent/"
-    },
-    {
-      "provider": "cdnjs",
       "library": "superfish@1.7.10",
       "destination": "wwwroot/lib/superfish/"
     },
     {
-      "provider": "cdnjs",
       "library": "jquery.hoverintent@1.10.2",
       "destination": "wwwroot/lib/jquery.hoverintent/"
+    },
+    {
+      "library": "fancybox@3.5.7",
+      "destination": "wwwroot/lib/fancybox/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/jqueryui/"
     }
   ]
 }

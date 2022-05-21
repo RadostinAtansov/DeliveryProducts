@@ -6,6 +6,21 @@
 
 <h1>Add Component To Database</h1>
 
+
+
+@section scripts
+{
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+}
+
 <form method="post">
     <div class="row">
         <div class="form-group">
@@ -16,7 +31,7 @@
             <label>Quantity</label>
             <input type="text" id="Quantity" name="Quantity" placeholder="component quantity..."><br><br>            
             <label>BuyedTime</label>
-            <input type="text" id="BuyedTime" name="BuyedTime" placeholder="dd/mm/yyyy hh:mm:ss"><br><br>
+            <input type="text" id="BuyedTime" name="BuyedTime" id="datepicker" placeholder="dd/mm/yyyy hh:mm:ss"><br><br>
             <label>Picture</label>
             <input type="text" id="Picture" name="Picture" placeholder="URL"><br><br>
             <label>PlaceInStorageAndCity</label>
