@@ -12,8 +12,9 @@ namespace InkoOrders.Data.Model.Storage
         [MaxLength(StorageName)]
         public string Name { get; set; }
 
-        [Required]
-        public bool BuyedOrCreated { get; set; }
+        public bool Created { get; set; }
+
+        public bool Buyed { get; set; }
 
         public string BoughtFrom { get; set; }
 

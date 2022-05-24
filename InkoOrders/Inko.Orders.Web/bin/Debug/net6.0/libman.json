@@ -21,6 +21,10 @@
     {
       "library": "jqueryui@1.12.1",
       "destination": "wwwroot/jqueryui/"
+    },
+    {
+      "library": "jqwidgets@14.0.0",
+      "destination": "wwwroot/lib/jqwidgets/"
     }
   ]
 }
