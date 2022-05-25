@@ -4,6 +4,6 @@ namespace InkoOrders.Services.IStorageServices
 {
     public interface IMaterialsInkoService
     {
-        void AddMaterials(AddMaterialsServicesViewModel model);
+        void AddMaterials(AddMaterialsServiceViewModel model);
     }
 }

@@ -14,7 +14,7 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
-        public void AddComponent(AddComponentServicesViewModel component)
+        public void AddComponent(AddComponentServiceViewModel component)
         {
             if (string.IsNullOrEmpty(component.Name))
             {

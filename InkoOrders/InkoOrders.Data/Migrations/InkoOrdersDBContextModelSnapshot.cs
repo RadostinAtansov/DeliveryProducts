@@ -638,7 +638,7 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("MaterialsInInko");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolsCreatedAndBuyedByInko", b =>
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolBoughtByInko", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -646,17 +646,60 @@ namespace InkoOrders.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("Bought")
+                        .HasColumnType("bit");
+
                     b.Property<string>("BoughtFrom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("BuyedOrCreated")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("Insignificant")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceInStorageAndCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeBought")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TooldBoughtByInko");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolCreatedByInko", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("Created")
+                        .HasColumnType("bit");
 
                     b.Property<string>("CreatedFrom")
                         .IsRequired()
@@ -681,15 +724,12 @@ namespace InkoOrders.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("TimeBought")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("TimeWhenCreated")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ToolsCreatedAndBoughtByInko");
+                    b.ToTable("ToolCreatedByInko");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.WareInko", b =>

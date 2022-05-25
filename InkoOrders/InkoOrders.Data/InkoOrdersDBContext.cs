@@ -24,7 +24,8 @@ namespace InkoOrders.Data
         //Storage
         public DbSet<Component> Components { get; set; }
         public DbSet<MaterialsInInko> MaterialsInInko { get; set; }
-        public DbSet<ToolsCreatedAndBuyedByInko> ToolsCreatedAndBoughtByInko { get; set; }
+        public DbSet<ToolCreatedByInko> ToolCreatedByInko { get; set; }
+        public DbSet<ToolBoughtByInko> TooldBoughtByInko { get; set; }
         public DbSet<WareInko> WaresInko { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

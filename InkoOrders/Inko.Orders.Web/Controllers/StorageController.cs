@@ -1,4 +1,5 @@
-﻿using InkoOrders.Services;
+﻿using Inko.Orders.Web.Models.Storage;
+using InkoOrders.Services;
 using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,15 @@ namespace Inko.Orders.Web.Controllers
     {
         private readonly IComponentService component;
         private readonly IMaterialsInkoService material;
+        private readonly IBoughtByInkoService tool;
 
-        public StorageController(IComponentService component, IMaterialsInkoService material)
+        public StorageController(IComponentService component, 
+            IMaterialsInkoService material, 
+            IBoughtByInkoService tool)
         {
             this.component = component;
             this.material = material;
+            this.tool = tool;
         }
 
         public IActionResult AddMaterial()
@@ -22,7 +27,7 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMaterial(AddMaterialsServicesViewModel model)
+        public IActionResult AddMaterial(AddMaterialsServiceViewModel model)
         {
             this.material.AddMaterials(model);
 
@@ -37,11 +42,25 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComponent(AddComponentServicesViewModel model)
+        public IActionResult AddComponent(AddComponentServiceViewModel model)
         {
 
             this.component.AddComponent(model);
 
+
+            return View("Views/Home/Index.cshtml");
+        }
+
+        public IActionResult AddBoughtTool() 
+        { 
+            return View();
+        }
+ 
+        [HttpPost]
+        public IActionResult AddBoughtTool(AddBoughtByInkoSeviceViewModel model)
+        {
+
+            this.tool.AddTool(model);
 
             return View("Views/Home/Index.cshtml");
         }

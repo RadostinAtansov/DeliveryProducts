@@ -1,0 +1,32 @@
+﻿@model AddBoughtToolViewModel
+
+@{
+    ViewData["Title"] = "Add Bought Tool";
+}
+
+<h1>Add Bought Tool</h1>
+
+<form method="post">
+    <div class="row">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name" name="name" placeholder="component name..." ><br><br>
+            <label>BoughtFrom</label>
+            <input type="text" id="BoughtFrom" name="BoughtFrom" placeholder="tool is bought from..."><br><br>
+            <label>Quantity</label>
+            <input type="text" id="Quantity" name="Quantity" placeholder="component quantity..."><br><br>
+            <label>Picture</label>
+            <input type="text" id="Picture" name="Picture" placeholder="URL"><br><br>
+            <label>PlaceInStorageAndCity</label>
+            <input type="text" id="PlaceInStorageAndCity" name="PlaceInStorageAndCity"><br><br>
+            <label>TimeBought</label>
+            <input type="text" id="TimeBought" name="TimeBought"><br><br>
+            <label>Comment</label><br><br>
+            <textarea type="text" id="Comment" name="Comment" placeholder="Write some specifics..."></textarea><br><br>
+
+            <input checked="checked" type="checkbox" id="Insignificant" name="Insignificant" value="true"/>
+            <label for="Insignificant">In this Material Significant?</label><br><br>
+        </div>
+    </div>
+    <button type="submit" value="submit">Submit</button>
+</form>

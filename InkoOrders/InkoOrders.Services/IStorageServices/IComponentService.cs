@@ -4,6 +4,6 @@ namespace InkoOrders.Services.IStorageServices
 {
     public interface IComponentService
     {
-        void AddComponent(AddComponentServicesViewModel component);
+        void AddComponent(AddComponentServiceViewModel component);
     }
 }
