@@ -10,15 +10,18 @@ namespace Inko.Orders.Web.Controllers
     {
         private readonly IComponentService component;
         private readonly IMaterialsInkoService material;
-        private readonly IBoughtByInkoService tool;
+        private readonly IBoughtByInkoService toolBought;
+        private readonly ICreatedByInkoService toolCreated;
 
         public StorageController(IComponentService component, 
             IMaterialsInkoService material, 
-            IBoughtByInkoService tool)
+            IBoughtByInkoService toolBought,
+            ICreatedByInkoService toolCreated)
         {
             this.component = component;
             this.material = material;
-            this.tool = tool;
+            this.toolBought = toolBought;
+            this.toolCreated = toolCreated;
         }
 
         public IActionResult AddMaterial()
@@ -60,9 +63,22 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult AddBoughtTool(AddBoughtByInkoSeviceViewModel model)
         {
 
-            this.tool.AddTool(model);
+            this.toolBought.AddTool(model);
 
             return View("Views/Home/Index.cshtml");
         }
+
+        public IActionResult AddCreatedTool()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCreatedTool(AddCreatedByInkoServiceViewModel model)
+        {
+            this.toolCreated.AddCreated(model);
+            return View("Views/Home/Index.cshtml");
+        }
+
     }
 }

@@ -13,6 +13,7 @@ builder.Services.AddDbContext<InkoOrdersDBContext>();
 builder.Services.AddTransient<IComponentService, ComponentService>();
 builder.Services.AddTransient<IMaterialsInkoService, MaterialsInkoService>();
 builder.Services.AddTransient<IBoughtByInkoService, BoughtByInkoSevice>();
+builder.Services.AddTransient<ICreatedByInkoService, CreatedByInkoService>();
 
 var app = builder.Build();
 
