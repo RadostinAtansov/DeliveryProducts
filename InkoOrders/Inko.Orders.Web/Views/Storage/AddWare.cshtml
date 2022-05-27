@@ -1,0 +1,35 @@
+﻿@model AddWareInkoViewModel
+
+@{
+    ViewData["Title"] = "Add Ware";
+}
+
+<h1>Add Ware To Storage</h1>
+
+<form method="post">
+    <div class="row">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name" name="name" placeholder="component name..." ><br><br>
+            <label>Price</label>
+            <input type="text" id="price" name="price" placeholder="component price..."><br><br>
+            <label>Quantity</label>
+            <input type="text" id="Quantity" name="Quantity" placeholder="component quantity..."><br><br>
+            <label>Picture</label>
+            <input type="text" id="Picture" name="Picture" placeholder="URL"><br><br>
+            <label>PlaceInStorageAndCity</label>
+            <input type="text" id="PlaceInStorageAndCity" name="PlaceInStorageAndCity"><br><br>
+             <label>TimeActiveAndHowOld</label>
+            <input type="text" id="TimeActiveAndHowOld" name="TimeActiveAndHowOld" placeholder="Write some specifics..."><br><br>
+            <label>Comment</label><br><br>
+            <textarea type="text" id="Comment" name="Comment" placeholder="Write some specifics..."></textarea><br><br>
+
+            <input checked="checked" type="checkbox" id="Insignificant" name="Insignificant" value="true"/>
+            <label for="Insignificant1">In this Material significant?</label><br><br>
+
+             <input checked="checked" type="checkbox" id="ActiveOrOld" name="ActiveOrOld" value="true"/>
+            <label for="ActiveOrOld">Is Active Or Old (chech[Active]/uncheck[Old])</label><br><br>
+        </div>
+    </div>
+    <button type="submit" value="submit">Submit</button>
+</form>
