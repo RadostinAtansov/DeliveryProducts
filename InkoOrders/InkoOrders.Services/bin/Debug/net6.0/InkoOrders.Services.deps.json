@@ -473,6 +473,9 @@
         }
       },
       "InkoOrders.Services.Model/1.0.0": {
+        "dependencies": {
+          "InkoOrders.Data.Model": "1.0.0"
+        },
         "runtime": {
           "InkoOrders.Services.Model.dll": {}
         }

@@ -1,0 +1,9 @@
+﻿using InkoOrders.Services.Model.Storage;
+
+namespace InkoOrders.Services.IStorageServices
+{
+    public interface IProviderOrder
+    {
+        void AddProviderOrder(AddProviderOrderViewModel model);
+    }
+}

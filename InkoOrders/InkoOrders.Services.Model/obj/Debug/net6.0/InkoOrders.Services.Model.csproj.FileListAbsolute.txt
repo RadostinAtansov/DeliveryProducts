@@ -34,3 +34,6 @@ C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\obj
 C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\obj\Debug\net6.0\refint\InkoOrders.Services.Model.dll
 C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\obj\Debug\net6.0\InkoOrders.Services.Model.pdb
 C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\obj\Debug\net6.0\ref\InkoOrders.Services.Model.dll
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\bin\Debug\net6.0\InkoOrders.Data.Model.dll
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\bin\Debug\net6.0\InkoOrders.Data.Model.pdb
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Services.Model\obj\Debug\net6.0\InkoOrders.Services.Model.csproj.CopyComplete

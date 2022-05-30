@@ -115,7 +115,7 @@ namespace InkoOrders.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Income");
+                    b.ToTable("Incomes");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Accounting.UtilityBills", b =>
@@ -327,7 +327,7 @@ namespace InkoOrders.Data.Migrations
 
                     b.HasIndex("TransportId");
 
-                    b.ToTable("Document");
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Invoice", b =>
@@ -549,7 +549,7 @@ namespace InkoOrders.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("RegisterOrderForProductions");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.Component", b =>
@@ -636,6 +636,60 @@ namespace InkoOrders.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MaterialsInInko");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ProviderOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Arrived")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ArrivedQuantityAndProductsFromOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ChangeStatusChangeDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HowManyProductsOrderedByPosition")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProviderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProviderOrders");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolBoughtByInko", b =>

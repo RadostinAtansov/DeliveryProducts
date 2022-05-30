@@ -623,6 +623,9 @@
       "InkoOrders.Services.Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "InkoOrders.Data.Model": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/InkoOrders.Services.Model.dll": {}
         },

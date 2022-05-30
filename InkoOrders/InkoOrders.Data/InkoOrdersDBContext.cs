@@ -1,4 +1,5 @@
 ﻿using InkoOrders.Data.Model;
+using InkoOrders.Data.Model.Accounting;
 using InkoOrders.Data.Model.Storage;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +13,11 @@ namespace InkoOrders.Data
         public DbSet<ClientsTransaction> ClientTransactions { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<DeliveryClient> DeliveryClients { get; set; }
+        public DbSet<Document> Documents { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<RegisterOrderForProduction> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductsToDeliveryToOrderToTransactionPaymentToTransport> ProductsToDeliveryToOrderToTransports { get; set; }
+        public DbSet<RegisterOrderForProduction> RegisterOrderForProductions { get; set; }
         public DbSet<TransactionPayment> TransactionPayments { get; set; }
         public DbSet<Transport> Transports { get; set; }
         public DbSet<TransportAndTransactionPayment> TransportAndTransactionPayments { get; set; }
@@ -27,6 +29,14 @@ namespace InkoOrders.Data
         public DbSet<ToolCreatedByInko> ToolCreatedByInko { get; set; }
         public DbSet<ToolBoughtByInko> TooldBoughtByInko { get; set; }
         public DbSet<WareInko> WaresInko { get; set; }
+        public DbSet<ProviderOrder> ProviderOrders { get; set; }
+
+        //Accounting
+        public DbSet<BankIncomeExpencesUtilitiBills> BankIncomeExpencesUtilitiBills { get; set; }
+        public DbSet<BankPayments> BankPayments { get; set; }
+        public DbSet<Expences> Expences { get; set; }
+        public DbSet<Income> Incomes { get; set; }
+        public DbSet<UtilityBills> UtilityBills { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

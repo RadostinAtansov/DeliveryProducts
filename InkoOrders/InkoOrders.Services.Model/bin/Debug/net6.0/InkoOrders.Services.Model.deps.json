@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "InkoOrders.Services.Model/1.0.0": {
+        "dependencies": {
+          "InkoOrders.Data.Model": "1.0.0"
+        },
         "runtime": {
           "InkoOrders.Services.Model.dll": {}
+        }
+      },
+      "InkoOrders.Data.Model/1.0.0": {
+        "runtime": {
+          "InkoOrders.Data.Model.dll": {}
         }
       }
     }
   },
   "libraries": {
     "InkoOrders.Services.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "InkoOrders.Data.Model/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
