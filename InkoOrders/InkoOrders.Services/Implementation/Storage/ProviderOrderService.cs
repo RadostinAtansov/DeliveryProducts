@@ -37,7 +37,7 @@ namespace InkoOrders.Services.Implementation.Storage
                URL = model.URL
             };
 
-           // data.ProductsToDeliveryToOrderToTransports.Add(order);
+            data.ProviderOrders.Add(order);
             data.SaveChanges();
         }
     }
