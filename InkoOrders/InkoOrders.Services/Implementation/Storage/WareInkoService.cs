@@ -21,7 +21,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 throw new ArgumentException("Name can`t be null or empty");
             }
 
-            var ware = new WareInko()
+            var ware = new WareInko() 
             {
                 Name = model.Name,
                 Quantity = model.Quantity,
@@ -29,10 +29,32 @@ namespace InkoOrders.Services.Implementation.Storage
                 ActiveOrOld = model.ActiveOrOld,
                 Insignificant = model.Insignificant,
                 Comment = model.Comment,
+                Picture = model.Picture,
+                PlaceInStorageAndCity = model.PlaceInStorageAndCity,
             };
 
             data.WaresInko.Add(ware);
             data.SaveChanges();
+        }
+
+        public ICollection<ListAllWareServiceViewModel> ListAll()
+        {
+            var allWares = data.WaresInko
+                .Select(w => new ListAllWareServiceViewModel
+                {
+                    Name = w.Name,
+                    Quantity= w.Quantity,
+                    ActiveOrOld= w.ActiveOrOld,
+                    TimeActiveAndHowOld= w.TimeActiveAndHowOld,
+                    Insignificant= w.Insignificant,
+                    Comment = w.Comment,
+                    Picture = w.Picture,
+                    PlaceInStorageAndCity = w.PlaceInStorageAndCity,
+                    
+                })
+                .ToList();
+
+            return allWares;
         }
     }
 }

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "pT1hRaqFelF/f7q5Ij4jwdvui4eSGCnIJv1Q/481bsFrkH8gFchDk/QfbQxfzuVoyc79NTt64I+rcpMnOS0+Uw==",
+  "dgSpecHash": "5AfshC0Fs9lMvXYidtPX6DeVmpB6eKPNRsvAmSyzc5GRWvsX8Gz8srx1zYmfDjUQpiXoOZJrsdA85LpZvd0OmA==",
   "success": true,
   "projectFilePath": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\InkoOrders.Services.Model\\InkoOrders.Services.Model.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\radul\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\radul\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\radul\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
