@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InkoOrders.Data.Model.Storage
 {
@@ -28,7 +30,7 @@ namespace InkoOrders.Data.Model.Storage
         public string PlaceInStorageAndCity { get; set; }
 
         [Required]
-        public IFormFile Picture { get; set; }
+        public string Picture { get; set; }
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Inko.Orders.Web.Models.Storage;
 using InkoOrders.Data;
+using InkoOrders.Data.Model.Storage;
 using InkoOrders.Services;
 using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
@@ -15,13 +16,15 @@ namespace Inko.Orders.Web.Controllers
         private readonly ICreatedByInkoService toolCreated;
         private readonly IWareInkoService ware;
         private readonly InkoOrdersDBContext data;
+        public IWebHostEnvironment WebHostEnvironment;
 
         public StorageController(IComponentService component, 
             IMaterialsInkoService material,
             IBoughtByInkoService toolBought,
             ICreatedByInkoService toolCreated,
             IWareInkoService ware, 
-            InkoOrdersDBContext data)
+            InkoOrdersDBContext data,
+            IWebHostEnvironment webHostEnvironment)
         {
             this.component = component;
             this.material = material;
@@ -29,6 +32,7 @@ namespace Inko.Orders.Web.Controllers
             this.toolCreated = toolCreated;
             this.ware = ware;
             this.data = data;
+            this.WebHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult AddMaterial()
@@ -44,7 +48,7 @@ namespace Inko.Orders.Web.Controllers
             return View("Views/Home/Index.cshtml");
         }
 
-        //Make error Page
+        //Make error Page----------------
 
         public IActionResult AddComponent()
         {
@@ -95,9 +99,25 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddWare(AddWareServiceViewModel model)
         {
-           //HttpPostedFileBase
-            this.ware.AddWare(model);
+            string stringFile = UploadFile(model);
+               
+            this.ware.AddWare(model, stringFile);
             return View("Views/Home/Index.cshtml");
+        }
+
+
+        private string UploadFile(AddWareServiceViewModel model)
+        {
+            string fileName = null;
+            if (model.Picture != null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
+                fileName = Guid.NewGuid().ToString() + "-" + model.Picture.FileName;
+                string filePath = Path.Combine(uploadDir, fileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.Picture.CopyTo(fileStream);
+            }
+            return fileName;
         }
 
         public IActionResult ShowAllWare()

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZTalHruTz8Wox4jufTFLVNvmortaJpE1LI6QH77e1Zo=",
+  "Hash": "4pwZd68eYyPiQfGmljHvid/l4COTY9GeVrcSlpBC2uY=",
   "Source": "Inko.Orders.Web",
   "BasePath": "_content/Inko.Orders.Web",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Inko.Orders.Web.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\css\\picture.css",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "css/picture.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\picture.css"
+    },
+    {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\css\\site.css",
       "SourceId": "Inko.Orders.Web",
       "SourceType": "Discovered",
@@ -83,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\336e3b73-31ed-47d1-bf4c-d39730b2ed87-snimkaCV.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/336e3b73-31ed-47d1-bf4c-d39730b2ed87-snimkaCV.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\336e3b73-31ed-47d1-bf4c-d39730b2ed87-snimkaCV.jpg"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\jqueryui\\images\\ui-icons_444444_256x240.png",

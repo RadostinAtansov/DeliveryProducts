@@ -1,4 +1,8 @@
-﻿namespace InkoOrders.Services.Model.Storage
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace InkoOrders.Services.Model.Storage
 {
     public class AddWareServiceViewModel
     {
@@ -10,7 +14,7 @@
 
         public int Quantity { get; set; }
 
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
 
         public string PlaceInStorageAndCity { get; set; }
 

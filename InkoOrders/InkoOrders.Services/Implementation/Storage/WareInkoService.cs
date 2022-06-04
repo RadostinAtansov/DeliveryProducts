@@ -1,7 +1,9 @@
 ﻿using InkoOrders.Data;
+using InkoOrders.Data.Model;
 using InkoOrders.Data.Model.Storage;
 using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
+using Microsoft.AspNetCore.Hosting;
 
 namespace InkoOrders.Services.Implementation.Storage
 {
@@ -14,7 +16,7 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
-        public void AddWare(AddWareServiceViewModel model)
+        public void AddWare(AddWareServiceViewModel model, string path)
         {
             if (string.IsNullOrEmpty(model.Name))
             {
@@ -29,7 +31,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 ActiveOrOld = model.ActiveOrOld,
                 Insignificant = model.Insignificant,
                 Comment = model.Comment,
-                Picture = model.Picture,
+                Picture = path,
                 PlaceInStorageAndCity = model.PlaceInStorageAndCity,
             };
 
@@ -56,5 +58,12 @@ namespace InkoOrders.Services.Implementation.Storage
 
             return allWares;
         }
+    }
+}
+
+namespace InkoOrders.Services
+{
+    class IWebHostEnvironment
+    {
     }
 }

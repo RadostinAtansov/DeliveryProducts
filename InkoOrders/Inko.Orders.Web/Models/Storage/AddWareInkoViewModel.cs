@@ -1,4 +1,7 @@
-﻿namespace Inko.Orders.Web.Models.Storage
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Inko.Orders.Web.Models.Storage
 {
     public class AddWareInkoViewModel
     {
@@ -16,6 +19,6 @@
 
         public string PlaceInStorageAndCity { get; set; }
 
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
     }
 }

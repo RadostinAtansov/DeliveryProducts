@@ -1,0 +1,54 @@
+﻿@model ICollection<AllWareViewModel>
+
+@{
+    ViewData["Title"] = "View Whole Storage";
+}
+@section scripts
+{
+    <link rel="stylesheet" href="/css/picture.css"/>
+     <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
+      <div id="caption"></div>
+    </div>
+    <script src="/js/site.js"></script>
+}
+
+<h1>View Whole Storage</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-info">
+      <th scope="col">No:</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">TimeActiveAndHowOld</th>
+      <th scope="col">ActiveOrOld</th>
+      <th scope="col">Insignificant</th>
+      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Picture</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var item in Model)
+  {
+      <tr>
+        <th scope="row">1</th>
+        <td>@item.Name</td>
+        <td>@item.Quantity</td>
+        <td>@item.TimeActiveAndHowOld</td>
+        <td>@item.ActiveOrOld</td>
+        <td>@item.Insignificant</td>
+        <td>@item.PlaceInStorageAndCity</td>
+        <td>@item.Comment</td>
+        <td>
+            <img id="myImg" src="~/Images/@item.Picture" alt="WareInInko" style="width:80%;max-width:80px">
+        </td>
+      </tr>
+  }
+
+  </tbody>
+
+</table>
