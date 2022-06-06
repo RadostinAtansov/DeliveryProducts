@@ -60,8 +60,6 @@ namespace Inko.Orders.Web.Controllers
         {
 
             this.component.AddComponent(model);
-
-
             return View("Views/Home/Index.cshtml");
         }
 

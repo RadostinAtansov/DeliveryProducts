@@ -1,18 +1,11 @@
 ﻿@model ICollection<AllWareViewModel>
 
 @{
-    ViewData["Title"] = "View Whole Storage";
+    ViewData["Title"] = "View All Ware";
 }
 @section scripts
 {
-    <link rel="stylesheet" href="/css/picture.css"/>
-     <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="img01">
-      <div id="caption"></div>
-    </div>
-    <script src="/js/site.js"></script>
+
 }
 
 <h1>View Whole Storage</h1>
@@ -35,7 +28,7 @@
   @foreach (var item in Model)
   {
       <tr>
-        <th scope="row">1</th>
+        <th scope="row"></th>
         <td>@item.Name</td>
         <td>@item.Quantity</td>
         <td>@item.TimeActiveAndHowOld</td>
@@ -44,11 +37,12 @@
         <td>@item.PlaceInStorageAndCity</td>
         <td>@item.Comment</td>
         <td>
-            <img id="myImg" src="~/Images/@item.Picture" alt="WareInInko" style="width:80%;max-width:80px">
+            <a href="~/Images/@item.Picture">
+                <img src="~/Images/@item.Picture" width="80" height="80">
+            </a>
         </td>
       </tr>
   }
-
   </tbody>
 
 </table>

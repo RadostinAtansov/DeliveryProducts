@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4pwZd68eYyPiQfGmljHvid/l4COTY9GeVrcSlpBC2uY=",
+  "Hash": "JqDVGcrnVjkQKkDTstwrOWmO40wGdnMBLXP5KHwGe1A=",
   "Source": "Inko.Orders.Web",
   "BasePath": "_content/Inko.Orders.Web",
   "Mode": "Default",
@@ -117,6 +117,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\336e3b73-31ed-47d1-bf4c-d39730b2ed87-snimkaCV.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\c7a95f3a-8e6e-457a-a1a9-526378f17d3b-download.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/c7a95f3a-8e6e-457a-a1a9-526378f17d3b-download.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\c7a95f3a-8e6e-457a-a1a9-526378f17d3b-download.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\f68017a1-75a7-4188-809a-6652ad1f011b-kombinirani-klesi-165-mm-image_5d652c58aaeeb_800x800.jpeg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/f68017a1-75a7-4188-809a-6652ad1f011b-kombinirani-klesi-165-mm-image_5d652c58aaeeb_800x800.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\f68017a1-75a7-4188-809a-6652ad1f011b-kombinirani-klesi-165-mm-image_5d652c58aaeeb_800x800.jpeg"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\jqueryui\\images\\ui-icons_444444_256x240.png",

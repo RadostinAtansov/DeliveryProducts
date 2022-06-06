@@ -2,7 +2,7 @@
 {
     public class AddComponentViewModel
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public decimal Price { get; set; }
 
@@ -12,7 +12,7 @@
 
         public bool Insignificant { get; set; }
 
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
 
         public string PlaceInStorageAndCity { get; set; }
 
