@@ -15,7 +15,7 @@ namespace InkoOrders.Services.Implementation.Storage
         }
 
 
-        public void AddTool(AddBoughtByInkoSeviceViewModel tool)
+        public void AddTool(AddBoughtByInkoSeviceViewModel tool, string path)
         {
             if (string.IsNullOrEmpty(tool.Name))
             {
@@ -28,7 +28,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 Bought = true,
                 BoughtFrom = tool.BoughtFrom,
                 Comment = tool.Comment,
-                Picture = tool.Picture,
+                Picture = path,
                 PlaceInStorageAndCity = tool.PlaceInStorageAndCity,
                 Insignificant = tool.Insignificant,
                 Quantity = tool.Quantity,

@@ -39,31 +39,24 @@ namespace InkoOrders.Services.Implementation.Storage
             data.SaveChanges();
         }
 
-        public ICollection<ListAllWareServiceViewModel> ListAll()
-        {
-            var allWares = data.WaresInko
-                .Select(w => new ListAllWareServiceViewModel
-                {
-                    Name = w.Name,
-                    Quantity= w.Quantity,
-                    ActiveOrOld= w.ActiveOrOld,
-                    TimeActiveAndHowOld= w.TimeActiveAndHowOld,
-                    Insignificant= w.Insignificant,
-                    Comment = w.Comment,
-                    Picture = w.Picture,
-                    PlaceInStorageAndCity = w.PlaceInStorageAndCity,
+        //public ICollection<ListAllWareServiceViewModel> ListAll()
+        //{
+        //    var allWares = data.WaresInko
+        //        .Select(w => new ListAllWareServiceViewModel
+        //        {
+        //            Name = w.Name,
+        //            Quantity= w.Quantity,
+        //            ActiveOrOld= w.ActiveOrOld,
+        //            TimeActiveAndHowOld= w.TimeActiveAndHowOld,
+        //            Insignificant= w.Insignificant,
+        //            Comment = w.Comment,
+        //            Picture = w.Picture,
+        //            PlaceInStorageAndCity = w.PlaceInStorageAndCity,
                     
-                })
-                .ToList();
+        //        })
+        //        .ToList();
 
-            return allWares;
-        }
-    }
-}
-
-namespace InkoOrders.Services
-{
-    class IWebHostEnvironment
-    {
+        //    return allWares;
+        //}
     }
 }

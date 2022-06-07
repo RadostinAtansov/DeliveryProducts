@@ -15,7 +15,7 @@ namespace InkoOrders.Services.Implementation
             this.data = data;
         }
 
-        public void AddMaterials(AddMaterialsServiceViewModel material)
+        public void AddMaterials(AddMaterialsServiceViewModel material, string path)
         {
             if (string.IsNullOrEmpty(material.Name))
             {
@@ -27,7 +27,7 @@ namespace InkoOrders.Services.Implementation
                 Name = material.Name,
                 Price = material.Price,
                 TimeInInko = DateTime.Now,
-                Picture = material.Picture,
+                Picture = path,
                 Comment = material.Comment,
                 Quаntity = material.Quаntity,
                 Insignificant = material.Insignificant,

@@ -14,7 +14,7 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
-        public void AddCreated(AddCreatedByInkoServiceViewModel model)
+        public void AddCreated(AddCreatedByInkoServiceViewModel model, string path)
         {
             if (string.IsNullOrEmpty(model.Name))
             {
@@ -25,7 +25,7 @@ namespace InkoOrders.Services.Implementation.Storage
             {
                 Name = model.Name,
                 Created = true,
-                Picture = model.Picture,
+                Picture = path,
                 PlaceInStorageAndCity = model.PlaceInStorageAndCity,
                 Comment = model.Comment,
                 CreatedFrom = model.CreatedFrom,

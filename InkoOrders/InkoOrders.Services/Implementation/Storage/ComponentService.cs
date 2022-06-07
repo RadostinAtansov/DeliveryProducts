@@ -14,7 +14,7 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
-        public void AddComponent(AddComponentServiceViewModel component)
+        public void AddComponent(AddComponentServiceViewModel component, string path)
         {
             if (string.IsNullOrEmpty(component.Name))
             {
@@ -29,7 +29,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 Insignificant = component.Insignificant,
                 Price = component.Price,
                 Quantity = component.Quantity,
-                Picture = component.Picture,
+                Picture = path,
                 Comment = component.Comment,
             };
 

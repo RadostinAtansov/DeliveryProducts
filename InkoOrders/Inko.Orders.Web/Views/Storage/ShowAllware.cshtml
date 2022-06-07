@@ -1,14 +1,12 @@
-﻿@model ICollection<AllWareViewModel>
+﻿@model ICollection<ShowAllWareViewModel>
 
 @{
     ViewData["Title"] = "View All Ware";
-}
-@section scripts
-{
 
+    int count = 0;
 }
 
-<h1>View Whole Storage</h1>
+<h1>All Ware</h1>
 
 <table class="table table-hover">
   <thead>
@@ -27,8 +25,9 @@
   <tbody>
   @foreach (var item in Model)
   {
+      count++;
       <tr>
-        <th scope="row"></th>
+        <th scope="row">@count</th>
         <td>@item.Name</td>
         <td>@item.Quantity</td>
         <td>@item.TimeActiveAndHowOld</td>

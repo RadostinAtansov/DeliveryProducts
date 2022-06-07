@@ -4,6 +4,6 @@ namespace InkoOrders.Services.IStorageServices
 {
     public interface IBoughtByInkoService
     {
-        void AddTool(AddBoughtByInkoSeviceViewModel model);
+        void AddTool(AddBoughtByInkoSeviceViewModel model, string path);
     }
 }

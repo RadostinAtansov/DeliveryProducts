@@ -43,7 +43,9 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddMaterial(AddMaterialsServiceViewModel model)
         {
-            this.material.AddMaterials(model);
+            string stringFile = UploadFile(model.Picture);
+
+            this.material.AddMaterials(model, stringFile);
 
             return View("Views/Home/Index.cshtml");
         }
@@ -58,8 +60,9 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddComponent(AddComponentServiceViewModel model)
         {
+            string stringFile = UploadFile(model.Picture);
 
-            this.component.AddComponent(model);
+            this.component.AddComponent(model, stringFile);
             return View("Views/Home/Index.cshtml");
         }
 
@@ -71,8 +74,9 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddBoughtTool(AddBoughtByInkoSeviceViewModel model)
         {
+            string stringFile = UploadFile(model.Picture);
 
-            this.toolBought.AddTool(model);
+            this.toolBought.AddTool(model, stringFile);
 
             return View("Views/Home/Index.cshtml");
         }
@@ -85,7 +89,10 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddCreatedTool(AddCreatedByInkoServiceViewModel model)
         {
-            this.toolCreated.AddCreated(model);
+            string stringFile = UploadFile(model.Picture);
+
+            this.toolCreated.AddCreated(model, stringFile);
+
             return View("Views/Home/Index.cshtml");
         }
 
@@ -97,31 +104,18 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddWare(AddWareServiceViewModel model)
         {
-            string stringFile = UploadFile(model);
+            string stringFile = UploadFile(model.Picture);
                
             this.ware.AddWare(model, stringFile);
+
             return View("Views/Home/Index.cshtml");
-        }
-
-
-        private string UploadFile(AddWareServiceViewModel model)
-        {
-            string fileName = null;
-            if (model.Picture != null)
-            {
-                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "-" + model.Picture.FileName;
-                string filePath = Path.Combine(uploadDir, fileName);
-                using var fileStream = new FileStream(filePath, FileMode.Create);
-                model.Picture.CopyTo(fileStream);
-            }
-            return fileName;
         }
 
         public IActionResult ShowAllWare()
         {
+
             var allWares = data.WaresInko
-                .Select(w => new AllWareViewModel
+                .Select(w => new ShowAllWareViewModel
                 {
                     Name = w.Name,
                     Quantity = w.Quantity,
@@ -135,6 +129,57 @@ namespace Inko.Orders.Web.Controllers
                 .ToList();
 
             return View(allWares);
+        }
+
+        public IActionResult ShowAllMaterials()
+        {
+            var allMaterials = data.MaterialsInInko
+                .Select(m => new ShowAllMaterialViewModel
+                {
+                    Name = m.Name,
+                    Quаntity = m.Quаntity,
+                    Comment = m.Comment,
+                    PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                    Insignificant = m.Insignificant,
+                    Picture = m.Picture,
+                    Price = m.Price,
+                    TimeInInko = m.TimeInInko,
+                })
+                .ToList();
+
+            return View(allMaterials);
+        }
+
+        public IActionResult ShowAllComponents()
+        {
+            var allComponents = data.Components
+                .Select(c => new ShowAllComponentsViewModel
+                {
+                    Name = c.Name,
+                    Quantity = c.Quantity,
+                    Picture = c.Picture,
+                    Price = c.Price,
+                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    Insignificant = c.Insignificant,
+                    Comment = c.Comment,
+                    BuyedTime = c.BuyedTime,
+                })
+                .ToList();
+            return View(allComponents);
+        }
+
+        private string UploadFile(IFormFile model)
+        {
+            string fileName = null;
+            if (model != null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
+                fileName = Guid.NewGuid().ToString() + "-" + model.FileName;
+                string filePath = Path.Combine(uploadDir, fileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.CopyTo(fileStream);
+            }
+            return fileName;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace InkoOrders.Services.Model.Storage
+﻿using Microsoft.AspNetCore.Http;
+
+namespace InkoOrders.Services.Model.Storage
 {
     public class AddComponentServiceViewModel
     {
@@ -12,7 +14,7 @@
 
         public bool Insignificant { get; set; }
 
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
 
         public string PlaceInStorageAndCity { get; set; }
 

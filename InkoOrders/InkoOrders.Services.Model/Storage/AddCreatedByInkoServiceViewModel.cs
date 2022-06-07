@@ -1,4 +1,6 @@
-﻿namespace InkoOrders.Services.Model.Storage
+﻿using Microsoft.AspNetCore.Http;
+
+namespace InkoOrders.Services.Model.Storage
 {
     public class AddCreatedByInkoServiceViewModel
     {
@@ -10,7 +12,7 @@
 
         public int Quantity { get; set; }
 
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
 
         public DateTime TimeWhenCreated { get; set; }
 
