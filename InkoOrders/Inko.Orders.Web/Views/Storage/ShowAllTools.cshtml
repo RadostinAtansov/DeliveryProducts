@@ -1,0 +1,90 @@
+﻿@model ShowAllToolsViewModel
+
+@{
+    ViewData["Title"] = "All Tools";
+    int count = 0;
+    int count2 = 0;
+}
+
+<h1 style="color: red">All Tools in Inko</h1><br/>
+
+
+<h1>Bought</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col">No:</th>
+            <th class="col">Name</th>
+            <th class="col">Bought</th>
+            <th class="col">BoughtFrom</th>
+            <th class="col">TimeBought</th>
+            <th class="col">Quantity</th>
+            <th class="col">Insignificant</th>
+            <th class="col">PlaceInStorageAndCity</th>
+            <th class="col">Picture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShowAllBoughtToolsViewModel item in Model.BoughtTools)
+        {
+            count++;
+            <tr>
+                <th scope="row">@count</th>
+                <td>@item.Name</td>
+                <td>@item.Bought</td>
+                <td>@item.BoughtFrom</td>
+                <td>@item.TimeBought</td>
+                <td>@item.Quantity</td>
+                <td>@item.Insignificant</td>
+                <td>@item.PlaceInStorageAndCity</td>
+                <td>
+                <a href="~/Images/@item.Picture">
+                    <img src="~/Images/@item.Picture" width="80" height="80">
+                </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h1>Created</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col">No:</th>
+            <th class="col">Name</th>
+            <th class="col">Created</th>
+            <th class="col">CreatedFrom</th>
+            <th class="col">Quantity</th>
+            <th class="col">TimeWhenCreated</th>
+            <th class="col">Insignificant</th>
+            <th class="col">PlaceInStorageAndCity</th>
+            <th class="col">Comment</th>
+            <th class="col">Picture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShowAllCreatedToolsViewModel item in Model.CreatedTools)
+        {
+            count2++;
+            <tr>
+                <th scope="row">@count2</th>
+                <td>@item.Name</td>
+                <td>@item.Created</td>
+                <td>@item.CreatedFrom</td>
+                <td>@item.Quantity</td>
+                <td>@item.TimeWhenCreated</td>
+                <td>@item.Insignificant</td>
+                <td>@item.PlaceInStorageAndCity</td>
+                <td>@item.Comment</td>
+                <td>@item.Picture</td>
+                <td>
+                    <a href="~/Images/@item.Picture">
+                        <img src="~/Images/@item.Picture" width="80" height="80">
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

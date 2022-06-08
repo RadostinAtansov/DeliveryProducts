@@ -1,4 +1,4 @@
-﻿using Inko.Orders.Web.Models.Storage;
+﻿using Inko.Orders.Web.Models.Storage.Show;
 using InkoOrders.Data;
 using InkoOrders.Data.Model.Storage;
 using InkoOrders.Services;
@@ -166,6 +166,54 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .ToList();
             return View(allComponents);
+        }
+
+        public IActionResult ShowAllTools()
+        {
+            ShowAllToolsViewModel vm = new ShowAllToolsViewModel();
+            vm.BoughtTools = GetBought();
+            vm.CreatedTools= GetCreated();
+
+            return View(vm);
+        }
+
+        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated()
+        {
+            var AllCreated = data.ToolCreatedByInko
+            .Select(tc => new ShowAllCreatedToolsViewModel
+            {
+                Name = tc.Name,
+                CreatedFrom = tc.CreatedFrom,
+                Comment = tc.Comment,
+                Picture = tc.Picture,
+                Insignificant = tc.Insignificant,
+                PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                Quantity = tc.Quantity,
+                TimeWhenCreated = tc.TimeWhenCreated,
+            })
+            .ToList();
+
+            return AllCreated;
+        }
+
+        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought()
+        {
+            var AllBought = data.TooldBoughtByInko
+            .Select(tc => new ShowAllBoughtToolsViewModel
+            {
+                Name = tc.Name,
+                Comment = tc.Comment,
+                Picture = tc.Picture,
+                Insignificant = tc.Insignificant,
+                PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                Quantity = tc.Quantity,
+                Bought = tc.Bought,
+                BoughtFrom = tc.BoughtFrom,
+                TimeBought = tc.TimeBought,
+            })
+            .ToList();
+
+            return AllBought;
         }
 
         private string UploadFile(IFormFile model)
