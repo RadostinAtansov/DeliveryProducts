@@ -168,6 +168,76 @@ namespace Inko.Orders.Web.Controllers
             return View(allComponents);
         }
 
+        public IActionResult ShowWholeStorage()
+        {
+
+            ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+
+            sws.Bought = GetBought();
+            sws.Created = GetCreated();
+            sws.Ware = GetWare();
+            sws.Materials = GetMaterials();
+            sws.Components = GetComponents();
+
+            return View(sws);
+        }
+
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents()
+        {
+            var allComponents = data.Components
+                .Select(c => new ShowAllComponentsViewModel
+                {
+                    Name = c.Name,
+                    Quantity = c.Quantity,
+                    Picture = c.Picture,
+                    Price = c.Price,
+                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    Insignificant = c.Insignificant,
+                    Comment = c.Comment,
+                    BuyedTime = c.BuyedTime,
+                })
+                .ToList();
+            return allComponents;
+        }
+
+        private IEnumerable<ShowAllMaterialViewModel> GetMaterials()
+        {
+            var allMaterials = data.MaterialsInInko
+                .Select(m => new ShowAllMaterialViewModel
+                {
+                    Name = m.Name,
+                    Quаntity = m.Quаntity,
+                    Comment = m.Comment,
+                    PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                    Insignificant = m.Insignificant,
+                    Picture = m.Picture,
+                    Price = m.Price,
+                    TimeInInko = m.TimeInInko,
+                })
+                .ToList();
+
+            return allMaterials;
+        }
+
+        private IEnumerable<ShowAllWareViewModel> GetWare()
+        {
+            var allWares = data.WaresInko
+               .Select(w => new ShowAllWareViewModel
+               {
+                   Name = w.Name,
+                   Quantity = w.Quantity,
+                   ActiveOrOld = w.ActiveOrOld,
+                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
+                   Insignificant = w.Insignificant,
+                   Comment = w.Comment,
+                   Picture = w.Picture,
+                   PlaceInStorageAndCity = w.PlaceInStorageAndCity,
+               })
+               .ToList();
+
+            return allWares;
+        }
+
         public IActionResult ShowAllTools()
         {
             ShowAllToolsViewModel vm = new ShowAllToolsViewModel();

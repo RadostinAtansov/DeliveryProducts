@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
 
-        public bool Bought { get; set; }
+        public bool Bought { get; set; } = true;
 
         public string BoughtFrom { get; set; }
 

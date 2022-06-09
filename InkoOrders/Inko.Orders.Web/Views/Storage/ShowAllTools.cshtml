@@ -6,13 +6,13 @@
     int count2 = 0;
 }
 
-<h1 style="color: red">All Tools in Inko</h1><br/>
+<h1 style="color: blue; text-align: center">All Tools in Inko</h1><br/>
 
 
 <h1>Bought</h1>
 <table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="bg-info">
             <th class="col">No:</th>
             <th class="col">Name</th>
             <th class="col">Bought</th>
@@ -51,7 +51,7 @@
 
 <table class="table table-hover">
     <thead>
-        <tr>
+        <tr class="bg-info">
             <th class="col">No:</th>
             <th class="col">Name</th>
             <th class="col">Created</th>
@@ -79,10 +79,10 @@
                 <td>@item.PlaceInStorageAndCity</td>
                 <td>@item.Comment</td>
                 <td>@item.Picture</td>
-                <td>
-                    <a href="~/Images/@item.Picture">
-                        <img src="~/Images/@item.Picture" width="80" height="80">
-                    </a>
+                 <td>
+                <a href="~/Images/@item.Picture">
+                    <img src="~/Images/@item.Picture" width="80" height="80">
+                </a>
                 </td>
             </tr>
         }
