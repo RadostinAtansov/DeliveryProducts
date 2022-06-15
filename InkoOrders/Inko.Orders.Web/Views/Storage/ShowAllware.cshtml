@@ -1,4 +1,4 @@
-﻿@model ICollection<ShowAllWareViewModel>
+﻿@model IEnumerable<ShowAllWareViewModel>
 
 @{
     ViewData["Title"] = "View All Ware";
@@ -7,6 +7,13 @@
 }
 
 <h1 style="text-align: center;">All Ware</h1>
+
+<form asp-controller="Storage" asp-action="ShowAllWare" style="text-align: right">
+    <p>
+        <b>Search by Name:</b> <input type="text" name="search"/>
+        <input type="submit" value="Search" />
+   </p>
+</form><br>
 
 <table class="table table-hover">
   <thead>

@@ -8,6 +8,12 @@
 
 <h1 style="color: blue; text-align: center">All Tools in Inko</h1><br/>
 
+<form asp-controller="Storage" asp-action="ShowAllTools" style="text-align: right">
+    <p>
+        <b>Search by Name:</b> <input type="text" name="search"/>
+        <input type="submit" value="Search" />
+   </p>
+</form><br>
 
 <h1>Bought</h1>
 <table class="table table-hover">
@@ -56,11 +62,10 @@
             <th class="col">Name</th>
             <th class="col">Created</th>
             <th class="col">CreatedFrom</th>
+            <th class="col">TimeBought</th>
             <th class="col">Quantity</th>
-            <th class="col">TimeWhenCreated</th>
             <th class="col">Insignificant</th>
             <th class="col">PlaceInStorageAndCity</th>
-            <th class="col">Comment</th>
             <th class="col">Picture</th>
         </tr>
     </thead>
@@ -73,13 +78,11 @@
                 <td>@item.Name</td>
                 <td>@item.Created</td>
                 <td>@item.CreatedFrom</td>
-                <td>@item.Quantity</td>
                 <td>@item.TimeWhenCreated</td>
+                <td>@item.Quantity</td>
                 <td>@item.Insignificant</td>
                 <td>@item.PlaceInStorageAndCity</td>
-                <td>@item.Comment</td>
-                <td>@item.Picture</td>
-                 <td>
+                <td>
                 <a href="~/Images/@item.Picture">
                     <img src="~/Images/@item.Picture" width="80" height="80">
                 </a>

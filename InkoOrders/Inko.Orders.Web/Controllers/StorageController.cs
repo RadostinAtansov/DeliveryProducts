@@ -50,7 +50,9 @@ namespace Inko.Orders.Web.Controllers
             return View("Views/Home/Index.cshtml");
         }
 
-        //Make error Page----------------
+        //Make error Page----------------------------------------------
+        //Make error Page----------------------------------------------
+        //Make error Page----------------------------------------------
 
         public IActionResult AddComponent()
         {
@@ -131,6 +133,14 @@ namespace Inko.Orders.Web.Controllers
             return View(allWares);
         }
 
+        [HttpPost]
+        public IActionResult ShowAllWare(string search)
+        {
+            var ware = GetWare(search);
+
+            return View(ware);
+        }
+
         public IActionResult ShowAllMaterials()
         {
             var allMaterials = data.MaterialsInInko
@@ -148,6 +158,14 @@ namespace Inko.Orders.Web.Controllers
                 .ToList();
 
             return View(allMaterials);
+        }
+
+        [HttpPost]
+        public IActionResult ShowAllMaterials(string search)
+        {
+            var materials = GetMaterials(search);
+
+            return View(materials);
         }
 
         public IActionResult ShowAllComponents()
@@ -168,129 +186,33 @@ namespace Inko.Orders.Web.Controllers
             return View(allComponents);
         }
 
-        public async Task<IActionResult> ShowWholeStorage(string id)
+        [HttpPost]
+        public IActionResult ShowAllComponents(string search)
         {
+            var components = GetComponents(search);
 
-            ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
-
-
-            sws.Bought = GetBought(searchString);
-            sws.Created = GetCreated(searchString);
-            sws.Ware = GetWare(searchString);
-            sws.Materials = GetMaterials(searchString);
-            sws.Components = GetComponents(searchString);
-
-            return View(sws);
+            return View(components);
         }
 
-        private IEnumerable<ShowAllComponentsViewModel> GetComponents(string searchString)
-        {
-            var allComponents = data.Components
-                .Select(c => new ShowAllComponentsViewModel
-                {
-                    Name = c.Name,
-                    Quantity = c.Quantity,
-                    Picture = c.Picture,
-                    Price = c.Price,
-                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
-                    Insignificant = c.Insignificant,
-                    Comment = c.Comment,
-                    BuyedTime = c.BuyedTime,
-                })
-                .AsEnumerable();
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                allComponents = allComponents.Where(b => b.Name!.Contains(searchString));
-            }
-
-            return allComponents;
-        }
-
-        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string searchString)
-        {
-            var allMaterials = data.MaterialsInInko
-                .Select(m => new ShowAllMaterialViewModel
-                {
-                    Name = m.Name,
-                    Quаntity = m.Quаntity,
-                    Comment = m.Comment,
-                    PlaceInStorageAndCity = m.PlaceInStorageAndCity,
-                    Insignificant = m.Insignificant,
-                    Picture = m.Picture,
-                    Price = m.Price,
-                    TimeInInko = m.TimeInInko,
-                })
-                .AsEnumerable();
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                allMaterials = allMaterials.Where(b => b.Name!.Contains(searchString));
-            }
-
-            return allMaterials;
-        }
-
-        private IEnumerable<ShowAllWareViewModel> GetWare(string searchString)
-        {
-            var allWares = data.WaresInko
-               .Select(w => new ShowAllWareViewModel
-               {
-                   Name = w.Name,
-                   Quantity = w.Quantity,
-                   ActiveOrOld = w.ActiveOrOld,
-                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
-                   Insignificant = w.Insignificant,
-                   Comment = w.Comment,
-                   Picture = w.Picture,
-                   PlaceInStorageAndCity = w.PlaceInStorageAndCity,
-               })
-               .AsEnumerable();
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                allWares = allWares.Where(b => b.Name!.Contains(searchString));
-            }
-
-            return allWares;
-        }
-
-        public IActionResult ShowAllTools(string searchString)
+        public IActionResult ShowAllTools()
         {
             ShowAllToolsViewModel vm = new ShowAllToolsViewModel();
 
-            vm.BoughtTools = GetBought(searchString);
-            vm.CreatedTools= GetCreated(searchString);
-
-            return View(vm);
-        }
-
-        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated(string searchString)
-        {
             var AllCreated = data.ToolCreatedByInko
-            .Select(tc => new ShowAllCreatedToolsViewModel
-            {
-                Name = tc.Name,
-                CreatedFrom = tc.CreatedFrom,
-                Comment = tc.Comment,
-                Picture = tc.Picture,
-                Insignificant = tc.Insignificant,
-                PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
-                Quantity = tc.Quantity,
-                TimeWhenCreated = tc.TimeWhenCreated,
-            })
-             .AsEnumerable();
+                .Select(tc => new ShowAllCreatedToolsViewModel
+                {
+                    Name = tc.Name,
+                    CreatedFrom = tc.CreatedFrom,
+                    Comment = tc.Comment,
+                    Picture = tc.Picture,
+                    Insignificant = tc.Insignificant,
+                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    Quantity = tc.Quantity,
+                    TimeWhenCreated = tc.TimeWhenCreated,
+                })
+                 .AsEnumerable();
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                AllCreated = AllCreated.Where(b => b.Name!.Contains(searchString));
-            }
 
-            return AllCreated;
-        }
-
-        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought(string searchString)
-        {
             var AllBought = data.TooldBoughtByInko
             .Select(tc => new ShowAllBoughtToolsViewModel
             {
@@ -306,9 +228,192 @@ namespace Inko.Orders.Web.Controllers
             })
              .AsEnumerable();
 
-            if (!string.IsNullOrEmpty(searchString))
+            vm.CreatedTools = AllCreated;
+            vm.BoughtTools = AllBought;
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult ShowAllTools(string search)
+        {
+            ShowAllToolsViewModel sws = new ShowAllToolsViewModel();
+
+            var AllCreated = data.ToolCreatedByInko
+                .Where(c => c.Name!.ToLower() == search.ToLower() || c.Name.Contains(search))
+                .Select(tc => new ShowAllCreatedToolsViewModel
+                {
+                    Name = tc.Name,
+                    CreatedFrom = tc.CreatedFrom,
+                    Comment = tc.Comment,
+                    Picture = tc.Picture,
+                    Insignificant = tc.Insignificant,
+                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    Quantity = tc.Quantity,
+                    TimeWhenCreated = tc.TimeWhenCreated,
+                })
+                 .AsEnumerable();
+
+            var AllBought = data.TooldBoughtByInko
+                .Where(c => c.Name!.ToLower() == search.ToLower() || c.Name.Contains(search))
+                .Select(tc => new ShowAllBoughtToolsViewModel
+                {
+                    Name = tc.Name,
+                    Comment = tc.Comment,
+                    Picture = tc.Picture,
+                    Insignificant = tc.Insignificant,
+                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    Quantity = tc.Quantity,
+                    Bought = tc.Bought,
+                    BoughtFrom = tc.BoughtFrom,
+                    TimeBought = tc.TimeBought,
+                })
+                 .AsEnumerable();
+
+            sws.CreatedTools = AllCreated;
+            sws.BoughtTools = AllBought;
+
+            return View(sws);
+        }
+
+        public IActionResult ShowWholeStorage()
+        {
+            var result  = AllInOneStorage();
+            
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult ShowWholeStorage(string search)
+        {
+
+            ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+
+            sws.Bought = GetBought(search);
+            sws.Created = GetCreated(search);
+            sws.Ware = GetWare(search);
+            sws.Materials = GetMaterials(search);
+            sws.Components = GetComponents(search);
+
+            return View(sws);
+        }
+
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents(string search)
+        {
+            var allComponents = data.Components
+                .Select(c => new ShowAllComponentsViewModel
+                {
+                    Name = c.Name,
+                    Quantity = c.Quantity,
+                    Picture = c.Picture,
+                    Price = c.Price,
+                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    Insignificant = c.Insignificant,
+                    Comment = c.Comment,
+                    BuyedTime = c.BuyedTime,
+                })
+                .AsEnumerable();
+
+            if (!string.IsNullOrEmpty(search))
             {
-                AllBought = AllBought.Where(b => b.Name!.Contains(searchString));
+                allComponents = allComponents.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+            }
+
+            return allComponents;
+        }
+
+        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search)
+        {
+            var allMaterials = data.MaterialsInInko
+                .Select(m => new ShowAllMaterialViewModel
+                {
+                    Name = m.Name,
+                    Quаntity = m.Quаntity,
+                    Comment = m.Comment,
+                    PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                    Insignificant = m.Insignificant,
+                    Picture = m.Picture,
+                    Price = m.Price,
+                    TimeInInko = m.TimeInInko,
+                })
+                .AsEnumerable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+            }
+
+            return allMaterials;
+        }
+
+        private IEnumerable<ShowAllWareViewModel> GetWare(string search)
+        {
+            var allWares = data.WaresInko
+               .Select(w => new ShowAllWareViewModel
+               {
+                   Name = w.Name,
+                   Quantity = w.Quantity,
+                   ActiveOrOld = w.ActiveOrOld,
+                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
+                   Insignificant = w.Insignificant,
+                   Comment = w.Comment,
+                   Picture = w.Picture,
+                   PlaceInStorageAndCity = w.PlaceInStorageAndCity,
+               })
+               .AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                allWares = allWares.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+            }
+
+            return allWares;
+        }
+
+        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated(string search)
+        {
+            var AllCreated = data.ToolCreatedByInko
+            .Select(tc => new ShowAllCreatedToolsViewModel
+            {
+                Name = tc.Name,
+                CreatedFrom = tc.CreatedFrom,
+                Comment = tc.Comment,
+                Picture = tc.Picture,
+                Insignificant = tc.Insignificant,
+                PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                Quantity = tc.Quantity,
+                TimeWhenCreated = tc.TimeWhenCreated,
+            })
+             .AsEnumerable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                AllCreated = AllCreated.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+            }
+
+            return AllCreated;
+        }
+
+        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought(string search)
+        {
+            var AllBought = data.TooldBoughtByInko
+            .Select(tc => new ShowAllBoughtToolsViewModel
+            {
+                Name = tc.Name,
+                Comment = tc.Comment,
+                Picture = tc.Picture,
+                Insignificant = tc.Insignificant,
+                PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                Quantity = tc.Quantity,
+                Bought = tc.Bought,
+                BoughtFrom = tc.BoughtFrom,
+                TimeBought = tc.TimeBought,
+            })
+             .AsEnumerable();
+            
+            if (!string.IsNullOrEmpty(search))
+            {
+                AllBought = AllBought.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
             }
 
             return AllBought;
@@ -326,6 +431,98 @@ namespace Inko.Orders.Web.Controllers
                 model.CopyTo(fileStream);
             }
             return fileName;
+        }
+
+        private ShowWholeStorageViewMoedel AllInOneStorage()
+        {
+            ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+
+
+            var allComponents = data.Components
+                .Select(c => new ShowAllComponentsViewModel
+                {
+                    Name = c.Name,
+                    Quantity = c.Quantity,
+                    Picture = c.Picture,
+                    Price = c.Price,
+                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    Insignificant = c.Insignificant,
+                    Comment = c.Comment,
+                    BuyedTime = c.BuyedTime,
+                })
+                .AsEnumerable();
+
+                sws.Components = allComponents;
+            
+                var allMaterials = data.MaterialsInInko
+                    .Select(m => new ShowAllMaterialViewModel
+                    {
+                        Name = m.Name,
+                        Quаntity = m.Quаntity,
+                        Comment = m.Comment,
+                        PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                        Insignificant = m.Insignificant,
+                        Picture = m.Picture,
+                        Price = m.Price,
+                        TimeInInko = m.TimeInInko,
+                    })
+                    .AsEnumerable();
+
+               sws.Materials = allMaterials;
+            
+                var allWares = data.WaresInko
+                   .Select(w => new ShowAllWareViewModel
+                   {
+                       Name = w.Name,
+                       Quantity = w.Quantity,
+                       ActiveOrOld = w.ActiveOrOld,
+                       TimeActiveAndHowOld = w.TimeActiveAndHowOld,
+                       Insignificant = w.Insignificant,
+                       Comment = w.Comment,
+                       Picture = w.Picture,
+                       PlaceInStorageAndCity = w.PlaceInStorageAndCity,
+                   })
+                   .AsEnumerable();
+
+
+
+                sws.Ware = allWares;
+
+                var AllCreated = data.ToolCreatedByInko
+                .Select(tc => new ShowAllCreatedToolsViewModel
+                {
+                    Name = tc.Name,
+                    CreatedFrom = tc.CreatedFrom,
+                    Comment = tc.Comment,
+                    Picture = tc.Picture,
+                    Insignificant = tc.Insignificant,
+                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    Quantity = tc.Quantity,
+                    TimeWhenCreated = tc.TimeWhenCreated,
+                })
+                 .AsEnumerable();
+
+               sws.Created = AllCreated;
+            
+
+                var AllBought = data.TooldBoughtByInko
+                .Select(tc => new ShowAllBoughtToolsViewModel
+                {
+                    Name = tc.Name,
+                    Comment = tc.Comment,
+                    Picture = tc.Picture,
+                    Insignificant = tc.Insignificant,
+                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    Quantity = tc.Quantity,
+                    Bought = tc.Bought,
+                    BoughtFrom = tc.BoughtFrom,
+                    TimeBought = tc.TimeBought,
+                })
+                 .AsEnumerable();
+
+                sws.Bought = AllBought;
+
+            return sws;
         }
     }
 }
