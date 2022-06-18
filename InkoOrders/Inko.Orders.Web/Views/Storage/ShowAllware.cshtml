@@ -15,6 +15,8 @@
    </p>
 </form><br>
 
+@if (Model.Any())
+    {
 <table class="table table-hover">
   <thead>
     <tr class="bg-info">
@@ -29,26 +31,47 @@
       <th scope="col">Picture</th>
     </tr>
   </thead>
-  <tbody>
-  @foreach (var item in Model)
-  {
-      count++;
-      <tr>
-        <th scope="row">@count</th>
-        <td>@item.Name</td>
-        <td>@item.Quantity</td>
-        <td>@item.TimeActiveAndHowOld</td>
-        <td>@item.ActiveOrOld</td>
-        <td>@item.Insignificant</td>
-        <td>@item.PlaceInStorageAndCity</td>
-        <td>@item.Comment</td>
-        <td>
-            <a href="~/Images/@item.Picture">
-                <img src="~/Images/@item.Picture" width="80" height="80">
-            </a>
-        </td>
-      </tr>
-  }
-  </tbody>
-
+    <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@item.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.TimeActiveAndHowOld</td>
+                        <td>@item.ActiveOrOld</td>
+                        <td>@item.Insignificant</td>
+                        <td>@item.PlaceInStorageAndCity</td>
+                        <td>@item.Comment</td>
+                        <td>
+                            <a href="~/Images/@item.Picture">
+                                <img src="~/Images/@item.Picture" width="80" height="80">
+                            </a>
+                        </td>
+                    </tr>
+                }
+            
+    </tbody>
 </table>
+        }
+    else
+    {
+        <table class="table table-hover">
+        <thead>
+            <tr class="bg-info">
+                <th scope="col">No:</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">TimeActiveAndHowOld</th>
+                <th scope="col">ActiveOrOld</th>
+                <th scope="col">Insignificant</th>
+                <th scope="col">PlaceInStorageAndCity</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Picture</th>
+            </tr>
+        </thead>
+        </table>
+        <br> <br >
+        <h1>Element not found try with another name in search bar</h1>
+    }

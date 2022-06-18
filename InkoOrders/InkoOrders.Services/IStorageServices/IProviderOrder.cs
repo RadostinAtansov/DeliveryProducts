@@ -4,6 +4,6 @@ namespace InkoOrders.Services.IStorageServices
 {
     public interface IProviderOrder
     {
-        void AddProviderOrder(AddProviderOrderViewModel model);
+        void AddProviderOrder(AddProviderServiceViewModel model);
     }
 }

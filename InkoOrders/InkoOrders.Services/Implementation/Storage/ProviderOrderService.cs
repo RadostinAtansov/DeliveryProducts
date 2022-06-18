@@ -14,7 +14,7 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
-        public void AddProviderOrder(AddProviderOrderViewModel model)
+        public void AddProviderOrder(AddProviderServiceViewModel model)
         {
             if (string.IsNullOrWhiteSpace(model.ProviderName))
             {

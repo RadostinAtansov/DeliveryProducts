@@ -15,6 +15,7 @@ builder.Services.AddTransient<IMaterialsInkoService, MaterialsInkoService>();
 builder.Services.AddTransient<IBoughtByInkoService, BoughtByInkoSevice>();
 builder.Services.AddTransient<ICreatedByInkoService, CreatedByInkoService>();
 builder.Services.AddTransient<IWareInkoService, WareInkoService>();
+builder.Services.AddTransient<IProviderOrder, ProviderOrderService>();
 
 var app = builder.Build();
 

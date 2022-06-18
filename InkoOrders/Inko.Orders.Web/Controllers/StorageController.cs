@@ -15,6 +15,7 @@ namespace Inko.Orders.Web.Controllers
         private readonly IBoughtByInkoService toolBought;
         private readonly ICreatedByInkoService toolCreated;
         private readonly IWareInkoService ware;
+        private readonly IProviderOrder provider;
         private readonly InkoOrdersDBContext data;
         public IWebHostEnvironment WebHostEnvironment;
 
@@ -22,7 +23,8 @@ namespace Inko.Orders.Web.Controllers
             IMaterialsInkoService material,
             IBoughtByInkoService toolBought,
             ICreatedByInkoService toolCreated,
-            IWareInkoService ware, 
+            IWareInkoService ware,
+            IProviderOrder provider,
             InkoOrdersDBContext data,
             IWebHostEnvironment webHostEnvironment)
         {
@@ -33,10 +35,12 @@ namespace Inko.Orders.Web.Controllers
             this.ware = ware;
             this.data = data;
             this.WebHostEnvironment = webHostEnvironment;
+            this.provider = provider;
         }
 
         public IActionResult AddMaterial()
         {
+
             return View();
         }
 
@@ -53,6 +57,13 @@ namespace Inko.Orders.Web.Controllers
         //Make error Page----------------------------------------------
         //Make error Page----------------------------------------------
         //Make error Page----------------------------------------------
+
+        public IActionResult AddProviderOrder()
+        {
+            return View();
+        }
+
+        //[HttpPost] ??? where?
 
         public IActionResult AddComponent()
         {
@@ -137,6 +148,10 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult ShowAllWare(string search)
         {
             var ware = GetWare(search);
+            //if (ware.Count() == 0)
+            //{
+            //    return View("Views/Storage/NotFoundElement.cshtml");
+            //}
 
             return View(ware);
         }
