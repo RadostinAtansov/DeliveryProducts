@@ -63,7 +63,13 @@ namespace Inko.Orders.Web.Controllers
             return View();
         }
 
-        //[HttpPost] ??? where?
+        [HttpPost]
+        public IActionResult AddProviderOrder(AddProviderServiceViewModel model)
+        {
+            this.provider.AddProviderOrder(model);
+
+            return View("Views/Home/Index.cshtml");
+        }
 
         public IActionResult AddComponent()
         {
