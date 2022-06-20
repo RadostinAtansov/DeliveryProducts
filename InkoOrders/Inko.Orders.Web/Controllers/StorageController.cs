@@ -130,6 +130,29 @@ namespace Inko.Orders.Web.Controllers
             return View("Views/Home/Index.cshtml");
         }
 
+        public IActionResult ShowAllOrders()
+        {
+            var allOrders = data.ProviderOrders
+                .Select(o => new ShowAllOrders
+                {
+                    ProviderName = o.ProviderName,
+                    Identifier = o.Identifier,
+                    Arrived = o.Arrived,
+                    ArrivedQuantityAndProductsFromOrder = o.ArrivedQuantityAndProductsFromOrder,
+                    ChangeStatusChangeDatetime = o.ChangeStatusChangeDatetime,
+                    HowManyProductsOrderedByPosition = o.HowManyProductsOrderedByPosition,
+                    OrderDescription = o.OrderDescription,
+                    OrderedDate = o.OrderedDate,
+                    Price = o.Price,
+                    Quantity = o.Quantity,
+                    Status = o.Status,
+                    URL = o.URL,
+                })
+                .ToList();
+
+            return View(allOrders);
+        }
+
         public IActionResult ShowAllWare()
         {
 
