@@ -217,6 +217,7 @@ namespace Inko.Orders.Web.Controllers
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     Quantity = c.Quantity,
                     Picture = c.Picture,
@@ -228,6 +229,14 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .ToList();
             return View(allComponents);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            this.data.Find(id);
+
+
+            return RedirectToAction(nameof(ShowAllComponents));
         }
 
         [HttpPost]
@@ -347,6 +356,7 @@ namespace Inko.Orders.Web.Controllers
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     Quantity = c.Quantity,
                     Picture = c.Picture,
@@ -485,6 +495,7 @@ namespace Inko.Orders.Web.Controllers
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     Quantity = c.Quantity,
                     Picture = c.Picture,

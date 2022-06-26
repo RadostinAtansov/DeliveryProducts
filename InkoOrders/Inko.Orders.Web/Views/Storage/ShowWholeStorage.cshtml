@@ -1,0 +1,248 @@
+﻿@model ShowWholeStorageViewMoedel
+
+@{
+    ViewData["Title"] = "Whole Storage";
+    int countComponents = 0;
+    int countWare = 0;
+    int countMaterials = 0;
+    int countCreated = 0;
+    int countBought = 0;
+}
+
+<h1 style="color: blue; text-align: center;">Whole Storage</h1><br>
+
+<form asp-controller="Storage" asp-action="ShowWholeStorage" style="text-align: right">
+    <p>
+        <b>Search by Name:</b> <input type="text" name="search"/>
+        <input type="submit" value="Search" />
+   </p>
+</form><br>
+
+<h1>All Components</h1>
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-info">
+      <th scope="col">No:</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">BuyedTime</th>
+      <th scope="col">Insignificant</th>
+      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Picture</th>
+      <th scope="col">Modification</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var item in Model.Components)
+  {
+    countComponents++;
+    <tr>
+        <th scope="row">@countComponents</th>
+        <td>@item.Name</td>
+        <td>@item.Quantity</td>
+        <td>@item.Price</td>
+        <td>@item.BuyedTime</td>
+        <td>@item.Insignificant</td>
+        <td>@item.PlaceInStorageAndCity</td>
+        <td>@item.Comment</td>
+        <td>
+            <a href="~/Images/@item.Picture">
+                <img src="~/Images/@item.Picture" width="80" height="80">
+            </a>
+        </td>
+         <td>
+            <a href="">Details</a><br>
+            <a href="">Delete</a><br>
+            <a href="">Edit</a>
+        </td>
+      </tr>
+  }
+  </tbody>
+
+</table>
+
+      
+<h1>All Ware</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-info">
+      <th scope="col">No:</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">TimeActiveAndHowOld</th>
+      <th scope="col">ActiveOrOld</th>
+      <th scope="col">Insignificant</th>
+      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Picture</th>
+      <th scope="col">Modification</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var item in Model.Ware)
+  {
+      countWare++;
+      <tr>
+        <th scope="row">@countWare</th>
+        <td>@item.Name</td>
+        <td>@item.Quantity</td>
+        <td>@item.TimeActiveAndHowOld</td>
+        <td>@item.ActiveOrOld</td>
+        <td>@item.Insignificant</td>
+        <td>@item.PlaceInStorageAndCity</td>
+        <td>@item.Comment</td>
+        <td>
+            <a href="~/Images/@item.Picture">
+                <img src="~/Images/@item.Picture" width="80" height="80">
+            </a>
+        </td>
+         <td>
+            <a href="">Details</a><br>
+            <a href="">Delete</a><br>
+            <a href="">Edit</a>
+        </td>
+      </tr>
+  }
+  </tbody>
+</table>
+
+
+
+<h1>Bought</h1>
+<table class="table table-hover">
+    <thead>
+        <tr class="bg-info">
+            <th class="col">No:</th>
+            <th class="col">Name</th>
+            <th class="col">Bought</th>
+            <th class="col">BoughtFrom</th>
+            <th class="col">TimeBought</th>
+            <th class="col">Quantity</th>
+            <th class="col">Insignificant</th>
+            <th class="col">PlaceInStorageAndCity</th>
+            <th class="col">Picture</th>
+            <th scope="col">Modification</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShowAllBoughtToolsViewModel item in Model.Bought)
+        {
+            countBought++;
+            <tr>
+                <th scope="row">@countBought</th>
+                <td>@item.Name</td>
+                <td>@item.Bought</td>
+                <td>@item.BoughtFrom</td>
+                <td>@item.TimeBought</td>
+                <td>@item.Quantity</td>
+                <td>@item.Insignificant</td>
+                <td>@item.PlaceInStorageAndCity</td>
+                <td>
+                <a href="~/Images/@item.Picture">
+                    <img src="~/Images/@item.Picture" width="80" height="80">
+                </a>
+                </td>
+                 <td>
+                    <a href="">Details</a><br>
+                    <a href="">Delete</a><br>
+                    <a href="">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h1>Created</h1>
+<table class="table table-hover">
+    <thead>
+        <tr class="bg-info">
+            <th class="col">No:</th>
+            <th class="col">Name</th>
+            <th class="col">Created</th>
+            <th class="col">CreatedFrom</th>
+            <th class="col">Quantity</th>
+            <th class="col">TimeWhenCreated</th>
+            <th class="col">Insignificant</th>
+            <th class="col">PlaceInStorageAndCity</th>
+            <th class="col">Comment</th>
+            <th class="col">Picture</th>
+            <th scope="col">Modification</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShowAllCreatedToolsViewModel item in Model.Created)
+        {
+            countCreated++;
+            <tr>
+                <th scope="row">@countCreated</th>
+                <td>@item.Name</td>
+                <td>@item.Created</td>
+                <td>@item.CreatedFrom</td>
+                <td>@item.Quantity</td>
+                <td>@item.TimeWhenCreated</td>
+                <td>@item.Insignificant</td>
+                <td>@item.PlaceInStorageAndCity</td>
+                <td>@item.Comment</td>
+                <td>
+                    <a href="~/Images/@item.Picture">
+                        <img src="~/Images/@item.Picture" width="80" height="80">
+                    </a>
+                </td>
+                 <td>
+                    <a href="">Details</a><br>
+                    <a href="">Delete</a><br>
+                    <a href="">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                <h1>All Materials</h1>
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-info">
+      <th scope="col">No:</th>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">TimeInInko</th>
+      <th scope="col">Insignificant</th>
+      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Picture</th>
+    <th scope="col">Modification</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var item in Model.Materials)
+  {
+      countMaterials++;
+      <tr>
+        <th scope="row">@countMaterials</th>
+        <td>@item.Name</td>
+        <td>@item.Quаntity</td>
+        <td>@item.Price</td>
+        <td>@item.TimeInInko</td>
+        <td>@item.Insignificant</td>
+        <td>@item.PlaceInStorageAndCity</td>
+        <td>@item.Comment</td>
+        <td>
+            <a href="~/Images/@item.Picture">
+                <img src="~/Images/@item.Picture" width="80" height="80">
+            </a>
+        </td>
+         <td>
+            <a href="">Details</a><br>
+            <a href="">Delete</a><br>
+            <a href="">Edit</a>
+        </td>
+      </tr>
+  }
+</tbody>

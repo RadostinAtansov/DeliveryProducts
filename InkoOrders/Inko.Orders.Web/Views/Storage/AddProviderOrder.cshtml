@@ -1,0 +1,85 @@
+﻿@model AddProviderOrderViewModel
+
+@{
+    ViewData["Title"] = "AddProviderOrder";
+}
+
+<h1>AddProviderOrder</h1>
+
+<h4>AddProviderOrderViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProviderOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Identifier" class="control-label"></label>
+                <input asp-for="Identifier" class="form-control" />
+                <span asp-validation-for="Identifier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProviderName" class="control-label"></label>
+                <input asp-for="ProviderName" class="form-control" />
+                <span asp-validation-for="ProviderName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDescription" class="control-label"></label>
+                <input asp-for="OrderDescription" class="form-control" />
+                <span asp-validation-for="OrderDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="URL" class="control-label"></label>
+                <input asp-for="URL" class="form-control" />
+                <span asp-validation-for="URL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderedDate" class="control-label"></label>
+                <input asp-for="OrderedDate" class="form-control" />
+                <span asp-validation-for="OrderedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HowManyProductsOrderedByPosition" class="control-label"></label>
+                <input asp-for="HowManyProductsOrderedByPosition" class="form-control" />
+                <span asp-validation-for="HowManyProductsOrderedByPosition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Arrived" class="control-label"></label>
+                <input asp-for="Arrived" class="form-control" />
+                <span asp-validation-for="Arrived" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrivedQuantityAndProductsFromOrder" class="control-label"></label>
+                <input asp-for="ArrivedQuantityAndProductsFromOrder" class="form-control" />
+                <span asp-validation-for="ArrivedQuantityAndProductsFromOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChangeStatusChangeDatetime" class="control-label"></label>
+                <input asp-for="ChangeStatusChangeDatetime" class="form-control" />
+                <span asp-validation-for="ChangeStatusChangeDatetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
