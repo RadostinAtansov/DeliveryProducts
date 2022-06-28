@@ -135,6 +135,7 @@ namespace Inko.Orders.Web.Controllers
             var allOrders = data.ProviderOrders
                 .Select(o => new ShowAllOrders
                 {
+                    Id = o.Id,
                     ProviderName = o.ProviderName,
                     Identifier = o.Identifier,
                     Arrived = o.Arrived,
@@ -155,10 +156,10 @@ namespace Inko.Orders.Web.Controllers
 
         public IActionResult ShowAllWare()
         {
-
             var allWares = data.WaresInko
                 .Select(w => new ShowAllWareViewModel
                 {
+                    Id = w.Id,
                     Name = w.Name,
                     Quantity = w.Quantity,
                     ActiveOrOld = w.ActiveOrOld,
@@ -177,10 +178,6 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult ShowAllWare(string search)
         {
             var ware = GetWare(search);
-            //if (ware.Count() == 0)
-            //{
-            //    return View("Views/Storage/NotFoundElement.cshtml");
-            //}
 
             return View(ware);
         }
@@ -190,6 +187,7 @@ namespace Inko.Orders.Web.Controllers
             var allMaterials = data.MaterialsInInko
                 .Select(m => new ShowAllMaterialViewModel
                 {
+                    Id = m.Id,
                     Name = m.Name,
                     Quаntity = m.Quаntity,
                     Comment = m.Comment,
@@ -231,12 +229,67 @@ namespace Inko.Orders.Web.Controllers
             return View(allComponents);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult DeleteComponent(int id)
         {
-            this.data.Find(id);
+            var removeThis = this.data.Components.Find(id);
 
+            this.data.Components.Remove(removeThis);
+            this.data.SaveChanges();
 
             return RedirectToAction(nameof(ShowAllComponents));
+        }
+
+        public IActionResult DeleteMaterial(int id)
+        {
+            var removeThis = this.data.MaterialsInInko.Find(id);
+
+            this.data.MaterialsInInko.Remove(removeThis);
+            this.data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllMaterials));
+        }
+
+        public IActionResult DeleteProvidersOrder(int id)
+        {
+            var removeThis = this.data.ProviderOrders.Find(id);
+
+            this.data.ProviderOrders.Remove(removeThis);
+            this.data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllOrders));
+        }
+
+        public IActionResult DeleteCreatedTool(int id)
+        {
+
+            var removeThis = this.data.ToolCreatedByInko.Find(id);
+
+            this.data.ToolCreatedByInko.Remove(removeThis);
+            this.data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllTools));
+        }
+
+        public IActionResult DeleteBoughtTool(int id)
+        {
+
+            var removeThis = this.data.TooldBoughtByInko.Find(id);
+
+            this.data.TooldBoughtByInko.Remove(removeThis);
+            this.data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllTools));
+        }
+
+        public IActionResult DeleteWare(int id)
+        {
+
+            var removeThis = this.data.WaresInko.Find(id);
+
+            this.data.WaresInko.Remove(removeThis);
+            this.data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllWare));
         }
 
         [HttpPost]
@@ -254,6 +307,7 @@ namespace Inko.Orders.Web.Controllers
             var AllCreated = data.ToolCreatedByInko
                 .Select(tc => new ShowAllCreatedToolsViewModel
                 {
+                    Id = tc.Id,
                     Name = tc.Name,
                     CreatedFrom = tc.CreatedFrom,
                     Comment = tc.Comment,
@@ -269,6 +323,7 @@ namespace Inko.Orders.Web.Controllers
             var AllBought = data.TooldBoughtByInko
             .Select(tc => new ShowAllBoughtToolsViewModel
             {
+                Id = tc.Id,
                 Name = tc.Name,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
@@ -381,6 +436,7 @@ namespace Inko.Orders.Web.Controllers
             var allMaterials = data.MaterialsInInko
                 .Select(m => new ShowAllMaterialViewModel
                 {
+                    Id = m.Id,
                     Name = m.Name,
                     Quаntity = m.Quаntity,
                     Comment = m.Comment,
@@ -512,6 +568,7 @@ namespace Inko.Orders.Web.Controllers
                 var allMaterials = data.MaterialsInInko
                     .Select(m => new ShowAllMaterialViewModel
                     {
+                        Id = m.Id,
                         Name = m.Name,
                         Quаntity = m.Quаntity,
                         Comment = m.Comment,
@@ -528,6 +585,7 @@ namespace Inko.Orders.Web.Controllers
                 var allWares = data.WaresInko
                    .Select(w => new ShowAllWareViewModel
                    {
+                       Id= w.Id,
                        Name = w.Name,
                        Quantity = w.Quantity,
                        ActiveOrOld = w.ActiveOrOld,
@@ -546,6 +604,7 @@ namespace Inko.Orders.Web.Controllers
                 var AllCreated = data.ToolCreatedByInko
                 .Select(tc => new ShowAllCreatedToolsViewModel
                 {
+                    Id = tc.Id,
                     Name = tc.Name,
                     CreatedFrom = tc.CreatedFrom,
                     Comment = tc.Comment,
@@ -563,6 +622,7 @@ namespace Inko.Orders.Web.Controllers
                 var AllBought = data.TooldBoughtByInko
                 .Select(tc => new ShowAllBoughtToolsViewModel
                 {
+                    Id = tc.Id,
                     Name = tc.Name,
                     Comment = tc.Comment,
                     Picture = tc.Picture,

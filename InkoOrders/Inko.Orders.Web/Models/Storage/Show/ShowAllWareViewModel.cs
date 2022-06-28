@@ -2,6 +2,8 @@
 {
     public class ShowAllWareViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public bool ActiveOrOld { get; set; }

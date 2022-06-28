@@ -4,6 +4,8 @@ namespace Inko.Orders.Web.Models.Storage.Show
 {
     public class ShowAllOrders
     {
+        public int Id { get; set; }
+
         public string Identifier { get; set; }
 
         public string ProviderName { get; set; }

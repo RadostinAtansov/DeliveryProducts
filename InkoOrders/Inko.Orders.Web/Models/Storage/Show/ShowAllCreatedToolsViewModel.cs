@@ -2,6 +2,8 @@
 {
     public class ShowAllCreatedToolsViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public bool Created { get; set; } = true;

@@ -2,6 +2,8 @@
 {
     public class AddBoughtToolViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public bool Buyed { get; set; } = true;

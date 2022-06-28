@@ -51,7 +51,7 @@
                 </td>
                  <td>
                     <a href="">Details</a><br>
-                    <a href="">Delete</a><br>
+                    <a asp-controller="Storage" asp-action="DeleteBoughtTool" asp-route-id="@item.Id">Delete</a><br>
                     <a href="">Edit</a>
                  </td>
             </tr>
@@ -96,7 +96,7 @@
                 </td>
                  <td>
                     <a href="">Details</a><br>
-                    <a href="">Delete</a><br>
+                    <a asp-controller="Storage" asp-action="DeleteCreatedTool" asp-route-id="@item.Id">Delete</a><br>
                     <a href="">Edit</a>
                 </td>
             </tr>
