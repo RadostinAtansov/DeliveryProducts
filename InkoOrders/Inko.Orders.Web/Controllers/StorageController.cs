@@ -5,7 +5,7 @@ using InkoOrders.Services;
 using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
 using Microsoft.AspNetCore.Mvc;
-
+//.
 namespace Inko.Orders.Web.Controllers
 {
     public class StorageController : Controller
