@@ -30,6 +30,7 @@ namespace InkoOrders.Data
         public DbSet<ToolBoughtByInko> TooldBoughtByInko { get; set; }
         public DbSet<WareInko> WaresInko { get; set; }
         public DbSet<ProviderOrder> ProviderOrders { get; set; }
+        public DbSet<InvoicesStorageComponent> InvoicesStorageComponents { get; set; }
 
         //Accounting
         public DbSet<BankIncomeExpencesUtilitiBills> BankIncomeExpencesUtilitiBills { get; set; }

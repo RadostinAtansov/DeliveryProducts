@@ -51,16 +51,21 @@
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Insignificant" /> @Html.DisplayNameFor(model => model.Insignificant)
                 </label>
-            </div>
+            </div><br>
             <div class="form-group">
                 <input type="submit" value="Add To Storage" class="btn btn-primary" />
-            </div>
+            </div><br>
         </form>
+            <div class="form-group">
+                <form asp-action="AddInvoiceToComponent">
+                <button class="btn btn-danger"> Add Invoice Before Add To Storage</button>
+                </form>
+            </div>
     </div>
-</div>
+</div><br>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="">Back</a>
 </div>
 
 @section Scripts {

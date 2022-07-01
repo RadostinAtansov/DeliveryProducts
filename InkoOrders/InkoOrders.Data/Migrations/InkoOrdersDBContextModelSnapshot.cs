@@ -595,6 +595,46 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("Components");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageComponent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BoughtCompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Qantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeWhenBoughtOnInvoice")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.ToTable("InvoicesStorageComponents");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
                 {
                     b.Property<int>("Id")
@@ -1112,6 +1152,17 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Transport");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageComponent", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Storage.Component", "Component")
+                        .WithMany("InvoiceComponents")
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Component");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.TransportAndTransactionPayment", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.TransactionPayment", "TransactionPayment")
@@ -1209,6 +1260,11 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("OrderedProducts");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.Component", b =>
+                {
+                    b.Navigation("InvoiceComponents");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.TransactionPayment", b =>

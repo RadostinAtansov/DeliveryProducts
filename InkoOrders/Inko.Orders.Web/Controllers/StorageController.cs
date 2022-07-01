@@ -5,7 +5,7 @@ using InkoOrders.Services;
 using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
 using Microsoft.AspNetCore.Mvc;
-//.
+
 namespace Inko.Orders.Web.Controllers
 {
     public class StorageController : Controller
@@ -42,6 +42,21 @@ namespace Inko.Orders.Web.Controllers
         {
 
             return View();
+        }
+
+        public IActionResult AddInvoiceToComponent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddInvoiceToComponent(AddInvoiceComponentServiceViewModel model)
+        {
+            string stringFile = UploadFile(model.Picture);
+
+            this.component.AddInvoiceComponent(model, stringFile);
+
+            return View("Views/Home/Index.cshtml");
         }
 
         [HttpPost]

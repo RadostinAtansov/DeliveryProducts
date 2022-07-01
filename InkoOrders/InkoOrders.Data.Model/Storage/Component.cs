@@ -30,5 +30,7 @@ namespace InkoOrders.Data.Model.Storage
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }
+
+        public ICollection<InvoicesStorageComponent> InvoiceComponents { get; set; } = new HashSet<InvoicesStorageComponent>();
     }
 }

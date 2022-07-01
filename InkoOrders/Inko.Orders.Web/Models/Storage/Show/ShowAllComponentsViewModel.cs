@@ -1,4 +1,6 @@
-﻿namespace Inko.Orders.Web.Models.Storage.Show
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Inko.Orders.Web.Models.Storage.Show
 {
     public class ShowAllComponentsViewModel
     {
@@ -14,6 +16,7 @@
 
         public bool Insignificant { get; set; }
 
+        [NotMapped]
         public string Picture { get; set; }
 
         public string PlaceInStorageAndCity { get; set; }

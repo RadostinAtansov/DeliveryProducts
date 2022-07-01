@@ -36,5 +36,25 @@ namespace InkoOrders.Services.Implementation.Storage
             data.Components.Add(addC);
             data.SaveChanges();
         }
+
+        public void AddInvoiceComponent(AddInvoiceComponentServiceViewModel model, string path)
+        {
+            var component = data.Components.Find(model.Id);
+
+            var invoice = new InvoicesStorageComponent
+            {
+                ProductName = model.ProductName,
+                BoughtCompanyName = model.BoughtCompanyName,
+                Qantity = model.Qantity,
+                TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
+                Comment = model.Comment,
+                Picture = path,
+            };
+
+            component.Quantity += model.Qantity;
+
+            component.InvoiceComponents.Add(invoice);
+            data.SaveChanges();
+        }
     }
 }
