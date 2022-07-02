@@ -49,7 +49,7 @@
             </a>
         </td>
             <td>
-                <a href="">Details</a><br>
+                <a asp-controller="Storage" asp-action="ShowAllInvoiceComponents" asp-route-id="@item.Id">Details</a><br>
                 <a asp-controller="Storage" asp-action="DeleteComponent" asp-route-id="@item.Id">Delete</a><br>
                 <a href="">Edit</a><br>
                 <a asp-action="AddInvoiceToComponent" asp-route-id="@item.Id">

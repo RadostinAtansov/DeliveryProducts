@@ -169,6 +169,24 @@ namespace Inko.Orders.Web.Controllers
             return View(allOrders);
         }
 
+        public IActionResult ShowAllInvoiceComponents(int id)
+        {
+            var allInvoices = data.InvoicesStorageComponents
+                .Where(x => x.ComponentId == id)
+                .Select(x => new ShowAllInvoiceForComponentViewModel
+                {
+                     BoughtFrom = x.BoughtCompanyName,
+                     ProductName = x.ProductName,
+                     TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
+                     Quantity = x.Qantity,
+                     Picture = x.Picture,
+                     Comment = x.Comment
+                })
+                .ToList();
+
+            return View(allInvoices);
+        }
+
         public IActionResult ShowAllWare()
         {
             var allWares = data.WaresInko

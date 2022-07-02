@@ -16,7 +16,6 @@ namespace Inko.Orders.Web.Models.Storage.Show
 
         public bool Insignificant { get; set; }
 
-        [NotMapped]
         public string Picture { get; set; }
 
         public string PlaceInStorageAndCity { get; set; }

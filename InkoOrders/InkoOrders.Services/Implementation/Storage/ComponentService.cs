@@ -55,6 +55,7 @@ namespace InkoOrders.Services.Implementation.Storage
 
             component.InvoiceComponents.Add(invoice);
             data.SaveChanges();
+
         }
     }
 }
