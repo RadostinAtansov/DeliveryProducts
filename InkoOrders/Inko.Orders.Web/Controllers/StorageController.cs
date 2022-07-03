@@ -268,6 +268,14 @@ namespace Inko.Orders.Web.Controllers
         {
             var removeThis = this.data.Components.Find(id);
 
+            var componentInvoices = data.InvoicesStorageComponents
+                .Where(x => x.ComponentId == id)
+                .ToList();
+
+
+            data.InvoicesStorageComponents.RemoveRange(componentInvoices);
+            data.SaveChanges();
+
             this.data.Components.Remove(removeThis);
             this.data.SaveChanges();
 
