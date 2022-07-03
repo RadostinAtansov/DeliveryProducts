@@ -25,7 +25,8 @@ namespace InkoOrders.Services.Implementation.Storage
             {
                 Name = component.Name,
                 BuyedTime = component.BuyedTime,
-                PlaceInStorageAndCity = component.PlaceInStorageAndCity,
+                PlaceInStorage = component.PlaceInStorage,
+                City = component.City,
                 Insignificant = component.Insignificant,
                 Price = component.Price,
                 Quantity = component.Quantity,

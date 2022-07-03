@@ -8,6 +8,10 @@
 
 <h1 style="text-align: center;">All Components</h1>
 
+@section Scripts {
+    <script src="~/js/ConfirmDeleteScript.js"></script>
+}
+
 <form asp-controller="Storage" asp-action="ShowAllComponents" style="text-align: right">
     <p>
         <b>Search by Name:</b> <input type="text" name="search"/>
@@ -24,7 +28,8 @@
       <th scope="col">Price</th>
       <th scope="col">BuyedTime</th>
       <th scope="col">Insignificant</th>
-      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">PlaceInStorage</th>
+      <th scope="col">City</th>
       <th scope="col">Comment</th>
       <th scope="col">Picture</th>
       <th scope="col">Modification</th>
@@ -41,7 +46,8 @@
         <td>@item.Price</td>
         <td>@item.BuyedTime</td>
         <td>@item.Insignificant</td>
-        <td>@item.PlaceInStorageAndCity</td>
+        <td>@item.PlaceInStorage</td>
+        <td>@item.City</td>
         <td>@item.Comment</td>
         <td>
             <a href="~/Images/@item.Picture">
@@ -49,9 +55,26 @@
             </a>
         </td>
             <td>
-                <a asp-controller="Storage" asp-action="ShowAllInvoiceComponents" asp-route-id="@item.Id">Details</a><br>
-                <a asp-controller="Storage" asp-action="DeleteComponent" asp-route-id="@item.Id">Delete</a><br>
-                <a href="">Edit</a><br>
+                
+            <a asp-controller="Storage" asp-action="ShowAllInvoiceComponents" asp-route-id="@item.Id">
+                <button class="btn btn-info">Details</button>
+            </a><br>
+
+            <div asp-controller="Storage" asp-action="DeleteComponent" asp-route-id="@item.Id">
+
+                <span id="confirmDeleteSpan_@item.Id" style="display:none">
+                    <span><b>Are you sure you want to delete this?</b></span>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                    <a href="#" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                </span>
+
+                <span id="deleteSpan_@item.Id">
+                    <a href="#" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                </span>
+
+            </div>
+
+            <a href="">Edit</a><br>
                 <a asp-action="AddInvoiceToComponent" asp-route-id="@item.Id">
                     <button class="btn btn-danger"> Add Invoice</button>
                 </a>
@@ -59,5 +82,3 @@
       </tr>
   }
   </tbody>
-
-</table>

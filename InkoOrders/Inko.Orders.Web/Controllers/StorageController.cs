@@ -6,6 +6,7 @@ using InkoOrders.Services.IStorageServices;
 using InkoOrders.Services.Model.Storage;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Inko.Orders.Web.Controllers
 {
     public class StorageController : Controller
@@ -253,7 +254,8 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = c.Quantity,
                     Picture = c.Picture,
                     Price = c.Price,
-                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    City = c.City,
+                    PlaceInStorage = c.PlaceInStorage,
                     Insignificant = c.Insignificant,
                     Comment = c.Comment,
                     BuyedTime = c.BuyedTime,
@@ -449,7 +451,8 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = c.Quantity,
                     Picture = c.Picture,
                     Price = c.Price,
-                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    PlaceInStorage = c.PlaceInStorage,
+                    City = c.City,
                     Insignificant = c.Insignificant,
                     Comment = c.Comment,
                     BuyedTime = c.BuyedTime,
@@ -589,7 +592,8 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = c.Quantity,
                     Picture = c.Picture,
                     Price = c.Price,
-                    PlaceInStorageAndCity = c.PlaceInStorageAndCity,
+                    PlaceInStorage = c.PlaceInStorage,
+                    City = c.City,
                     Insignificant = c.Insignificant,
                     Comment = c.Comment,
                     BuyedTime = c.BuyedTime,

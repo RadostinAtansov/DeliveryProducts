@@ -15,8 +15,7 @@ namespace InkoOrders.Data.Model.Storage
         [Required]
         public decimal Price { get; set; }
 
-        [Required]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         [Required]
         public DateTime BuyedTime { get; set; }
@@ -26,7 +25,10 @@ namespace InkoOrders.Data.Model.Storage
         public string Picture { get; set; }
 
         [Required]
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }
