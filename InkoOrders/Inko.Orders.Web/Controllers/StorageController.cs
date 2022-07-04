@@ -1,4 +1,5 @@
-﻿using Inko.Orders.Web.Models.Storage.Show;
+﻿using Inko.Orders.Web.Models.Storage.Edit;
+using Inko.Orders.Web.Models.Storage.Show;
 using InkoOrders.Data;
 using InkoOrders.Data.Model.Storage;
 using InkoOrders.Services;
@@ -73,6 +74,36 @@ namespace Inko.Orders.Web.Controllers
         //Make error Page----------------------------------------------
         //Make error Page----------------------------------------------
         //Make error Page----------------------------------------------
+
+        public IActionResult EditComponent(int id)
+        {
+
+            var editComponent = data.Components
+                .Select(c => new EditComponentViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    City = c.City,
+                    Picture = c.Picture,
+                    Price = c.Price,
+                    Quantity = c.Quantity,
+                    BuyedTime = c.BuyedTime,
+                    Comment = c.Comment,
+                    PlaceInStorage = c.PlaceInStorage,
+                    Insignificant = c.Insignificant,
+                })
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(editComponent);
+        }
+
+        [HttpPost]
+        public IActionResult EditComponent(EditComponentServiceViewModel model)
+        {
+            this.component.Edit(model);
+
+            return View("Views/Home/Index.cshtml");
+        }
 
         public IActionResult AddProviderOrder()
         {
@@ -149,7 +180,7 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult ShowAllOrders()
         {
             var allOrders = data.ProviderOrders
-                .Select(o => new ShowAllOrders
+                .Select(o => new ShowAllOrdersViewModel
                 {
                     Id = o.Id,
                     ProviderName = o.ProviderName,

@@ -20,7 +20,7 @@
 </form><br>
 
 <table class="table table-hover">
-  <thead>
+  @*<thead>
     <tr class="bg-info">
       <th scope="col">No:</th>
       <th scope="col">Name</th>
@@ -34,10 +34,25 @@
       <th scope="col">Picture</th>
       <th scope="col">Modification</th>
     </tr>
-  </thead>
+  </thead>*@
   <tbody>
   @foreach (var item in Model)
   {
+    <thead>
+        <tr class="bg-info">
+          <th scope="col">No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">BuyedTime</th>
+          <th scope="col">Insignificant</th>
+          <th scope="col">PlaceInStorage</th>
+          <th scope="col">City</th>
+          <th scope="col">Comment</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Modification</th>
+        </tr>
+  </thead>
       count++;
       <tr>
         <th scope="row">@count</th>
@@ -74,9 +89,11 @@
 
             </form>
 
-            <a href="">Edit</a><br>
+            <a asp-controller="Storage" asp-action="EditComponent" asp-route-id="@item.Id">
+                <button class="btn btn-primary">Edit</button>
+            </a><br>
                 <a asp-action="AddInvoiceToComponent" asp-route-id="@item.Id">
-                    <button class="btn btn-danger"> Add Invoice</button>
+                    <button class="btn btn-warning"> Add Invoice</button>
                 </a>
             </td>
       </tr>

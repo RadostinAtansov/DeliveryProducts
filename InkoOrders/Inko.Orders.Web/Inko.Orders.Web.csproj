@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\InkoOrders.Data.Model\InkoOrders.Data.Model.csproj" />
     <ProjectReference Include="..\InkoOrders.Data\InkoOrders.Data.csproj" />
-    <ProjectReference Include="..\InkoOrders.Services.Model\InkoOrders.Services.Model.csproj" />
     <ProjectReference Include="..\InkoOrders.Services\InkoOrders.Services.csproj" />
   </ItemGroup>
 

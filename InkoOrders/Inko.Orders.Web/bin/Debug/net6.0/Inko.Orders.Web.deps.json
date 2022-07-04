@@ -11,7 +11,6 @@
           "InkoOrders.Data": "1.0.0",
           "InkoOrders.Data.Model": "1.0.0",
           "InkoOrders.Services": "1.0.0",
-          "InkoOrders.Services.Model": "1.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.6"
         },
         "runtime": {
