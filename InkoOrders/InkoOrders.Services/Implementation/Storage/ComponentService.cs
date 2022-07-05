@@ -77,43 +77,5 @@ namespace InkoOrders.Services.Implementation.Storage
             data.SaveChanges();
         }
 
-        public EditComponentServiceViewModel Edit(int id)
-        {
-            var editComponent = data.Components
-                .Select(c => new EditComponentServiceViewModel
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    City = c.City,
-                    Picture = c.Picture,
-                    Price = c.Price,
-                    Quantity = c.Quantity,
-                    BuyedTime = c.BuyedTime,
-                    Comment = c.Comment,
-                    PlaceInStorage = c.PlaceInStorage,
-                    Insignificant = c.Insignificant,
-                })
-                .FirstOrDefault(x => x.Id == id);
-
-            return editComponent;
-        }
-
-        public ICollection<ShowAllInvoiceServiceComponentViewModel> ShowInvoiceComponent(int id)
-        {
-            var allInvoices = data.InvoicesStorageComponents
-                .Where(x => x.ComponentId == id)
-                .Select(x => new ShowAllInvoiceServiceComponentViewModel
-                {
-                    BoughtFrom = x.BoughtCompanyName,
-                    ProductName = x.ProductName,
-                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
-                    Quantity = x.Qantity,
-                    Picture = x.Picture,
-                    Comment = x.Comment
-                })
-                .ToList();
-
-            return allInvoices;
-        }
     }
 }

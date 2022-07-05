@@ -61,6 +61,21 @@ namespace Inko.Orders.Web.Controllers
             return View("Views/Home/Index.cshtml");
         }
 
+        public IActionResult AddInvoiceToMaterial()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddInvoiceToMaterial(AddInvoiceMaterialServiceViewModel model)
+        {
+            string stringFile = UploadFile(model.Picture);
+
+            this.material.AddInvoiceToMaterial(model, stringFile);
+
+            return View("Views/Home/Index.cshtml");
+        }
+
         [HttpPost]
         public IActionResult AddMaterial(AddMaterialsServiceViewModel model)
         {
@@ -79,7 +94,7 @@ namespace Inko.Orders.Web.Controllers
         {
 
             var editComponent = data.Components
-                .Select(c => new EditComponentViewModel
+                .Select(c => new EditComponentServiceViewModel
                 {
                     Id = c.Id,
                     Name = c.Name,
@@ -101,6 +116,37 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult EditComponent(EditComponentServiceViewModel model)
         {
             this.component.Edit(model);
+
+            return View("Views/Home/Index.cshtml");
+        }
+
+
+        public IActionResult EditMaterial(int id)
+        {
+
+            var editComponent = data.MaterialsInInko
+                .Select(c => new EditMaterialServiceViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    City = c.City,
+                    Picture = c.Picture,
+                    Price = c.Price,
+                    Quantity = c.Quantity,
+                    Comment = c.Comment,
+                    PlaceInStorage = c.PlaceInStorage,
+                    Insignificant = c.Insignificant,
+                    
+                })
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(editComponent);
+        }
+
+        [HttpPost]
+        public IActionResult EditMaterial(EditMaterialServiceViewModel model)
+        {
+            this.material.Edit(model);
 
             return View("Views/Home/Index.cshtml");
         }
@@ -207,12 +253,32 @@ namespace Inko.Orders.Web.Controllers
                 .Where(x => x.ComponentId == id)
                 .Select(x => new ShowAllInvoiceForComponentViewModel
                 {
-                     BoughtFrom = x.BoughtCompanyName,
-                     ProductName = x.ProductName,
-                     TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
-                     Quantity = x.Qantity,
-                     Picture = x.Picture,
-                     Comment = x.Comment
+                    Id = x.Id,
+                    BoughtFrom = x.BoughtCompanyName,
+                    ProductName = x.ProductName,
+                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
+                    Quantity = x.Qantity,
+                    Picture = x.Picture,
+                    Comment = x.Comment
+                })
+                .ToList();
+
+            return View(allInvoices);
+        }
+
+        public IActionResult ShowAllInvoiceMaterials(int id)
+        {
+            var allInvoices = data.InvoicesStorageMaterial
+                .Where(x => x.MaterialId == id)
+                .Select(x => new ShowAllInvoicesMaterialsViewModel
+                {
+                    Id = x.Id,
+                    BoughtFrom = x.BoughtCompanyName,
+                    ProductName = x.ProductName,
+                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
+                    Quantity = x.Qantity,
+                    Picture = x.Picture,
+                    Comment = x.Comment
                 })
                 .ToList();
 
@@ -254,9 +320,10 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    Quаntity = m.Quаntity,
+                    Quаntity = m.Quantity,
                     Comment = m.Comment,
-                    PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                    PlaceInStorage = m.PlaceInStorage,
+                    City = m.City,
                     Insignificant = m.Insignificant,
                     Picture = m.Picture,
                     Price = m.Price,
@@ -293,6 +360,27 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .ToList();
             return View(allComponents);
+        }
+
+        public IActionResult DeleteInvoiceComponent(int id)
+        {
+            var invoice = data.InvoicesStorageComponents.Find(id);
+
+            this.data.InvoicesStorageComponents.Remove(invoice);
+            data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllComponents));
+        }
+
+
+        public IActionResult DeleteInvoiceMaterial(int id)
+        {
+            var invoice = data.InvoicesStorageMaterial.Find(id);
+
+            this.data.InvoicesStorageMaterial.Remove(invoice);
+            data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllMaterials));
         }
 
         public IActionResult DeleteComponent(int id)
@@ -513,9 +601,10 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    Quаntity = m.Quаntity,
+                    Quаntity = m.Quantity,
                     Comment = m.Comment,
-                    PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                    PlaceInStorage = m.PlaceInStorage,
+                    City = m.City,
                     Insignificant = m.Insignificant,
                     Picture = m.Picture,
                     Price = m.Price,
@@ -646,9 +735,10 @@ namespace Inko.Orders.Web.Controllers
                     {
                         Id = m.Id,
                         Name = m.Name,
-                        Quаntity = m.Quаntity,
+                        Quаntity = m.Quantity,
                         Comment = m.Comment,
-                        PlaceInStorageAndCity = m.PlaceInStorageAndCity,
+                        PlaceInStorage = m.PlaceInStorage,
+                        City = m.City,
                         Insignificant = m.Insignificant,
                         Picture = m.Picture,
                         Price = m.Price,

@@ -24,7 +24,8 @@
       <th scope="col">Price</th>
       <th scope="col">TimeInInko</th>
       <th scope="col">Insignificant</th>
-      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">PlaceInStoragey</th>
+      <th scope="col">City</th>
       <th scope="col">Comment</th>
       <th scope="col">Picture</th>
       <th scope="col">Modification</th>
@@ -41,17 +42,39 @@
         <td>@item.Price</td>
         <td>@item.TimeInInko</td>
         <td>@item.Insignificant</td>
-        <td>@item.PlaceInStorageAndCity</td>
+        <td>@item.PlaceInStorage</td>
+        <td>@item.City</td>
         <td>@item.Comment</td>
         <td>
             <a href="~/Images/@item.Picture">
                 <img src="~/Images/@item.Picture" width="80" height="80">
             </a>
         </td>
-            <td>
-                <a href="">Details</a><br>
-                <a asp-controller="Storage" asp-action="DeleteMaterial" asp-route-id="@item.Id">Delete</a><br>
-                <a href="">Edit</a>
+             <td>
+                <a asp-controller="Storage" asp-action="ShowAllInvoiceMaterials" asp-route-id="@item.Id">
+                    <button class="btn btn-info">Details</button>
+                </a><br>
+
+                <form asp-action="DeleteMaterial" asp-route-id="@item.Id">
+
+                    <span id="confirmDeleteSpan_@item.Id" style="display:none">
+                        <span><b>Are you sure you want to delete this?</b></span>
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                    </span>
+
+                    <span id="deleteSpan_@item.Id">
+                        <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                    </span>
+
+                </form>
+
+                <a asp-controller="Storage" asp-action="EditMaterial" asp-route-id="@item.Id">
+                    <button class="btn btn-primary">Edit</button>
+                </a><br>
+                <a asp-action="AddInvoiceToMaterial" asp-route-id="@item.Id">
+                    <button class="btn btn-warning"> Add Invoice</button>
+                </a>
             </td>
       </tr>
   }

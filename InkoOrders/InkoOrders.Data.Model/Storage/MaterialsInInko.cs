@@ -12,8 +12,7 @@ namespace InkoOrders.Data.Model.Storage
         [MaxLength(StorageName)]
         public string Name { get; set; }
 
-        [Required]
-        public int Quаntity { get; set; }
+        public int? Quantity { get; set; }
 
         [Required]
         public decimal Price { get; set; }
@@ -21,7 +20,10 @@ namespace InkoOrders.Data.Model.Storage
         public string Picture { get; set; }
 
         [Required]
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [Required]
         public DateTime TimeInInko { get; set; }
@@ -30,5 +32,7 @@ namespace InkoOrders.Data.Model.Storage
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }
+
+        public ICollection<InvoicesStorageMaterial> InvoicesMaterial { get; set; } = new HashSet<InvoicesStorageMaterial>();
     }
 }

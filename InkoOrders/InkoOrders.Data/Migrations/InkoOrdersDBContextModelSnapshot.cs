@@ -639,6 +639,46 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("InvoicesStorageComponents");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BoughtCompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Qantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeWhenBoughtOnInvoice")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("InvoicesStorageMaterial");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
                 {
                     b.Property<int>("Id")
@@ -646,6 +686,10 @@ namespace InkoOrders.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -664,14 +708,14 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PlaceInStorageAndCity")
+                    b.Property<string>("PlaceInStorage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quаntity")
+                    b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TimeInInko")
@@ -1167,6 +1211,17 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Component");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageMaterial", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Storage.MaterialsInInko", "Material")
+                        .WithMany("InvoicesMaterial")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.TransportAndTransactionPayment", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.TransactionPayment", "TransactionPayment")
@@ -1269,6 +1324,11 @@ namespace InkoOrders.Data.Migrations
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.Component", b =>
                 {
                     b.Navigation("InvoiceComponents");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
+                {
+                    b.Navigation("InvoicesMaterial");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.TransactionPayment", b =>

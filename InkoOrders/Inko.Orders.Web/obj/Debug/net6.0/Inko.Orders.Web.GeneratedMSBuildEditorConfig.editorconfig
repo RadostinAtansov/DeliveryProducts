@@ -47,6 +47,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9Db21wb25lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceToMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9NYXRlcmlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddMaterial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRNYXRlcmlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -63,6 +67,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0Q29tcG9uZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/EditMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0TWF0ZXJpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/NotFoundElement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxOb3RGb3VuZEVsZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -73,6 +81,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceComponents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZUNvbXBvbmVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceMaterials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZU1hdGVyaWFscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllMaterials.cshtml]
