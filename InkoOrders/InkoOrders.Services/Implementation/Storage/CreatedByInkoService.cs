@@ -24,9 +24,11 @@ namespace InkoOrders.Services.Implementation.Storage
             var created = new ToolCreatedByInko()
             {
                 Name = model.Name,
+                Designation = model.Designation,
                 Created = true,
                 Picture = path,
-                PlaceInStorageAndCity = model.PlaceInStorageAndCity,
+                PlaceInStorage = model.PlaceInStorage,
+                City = model.City,
                 Comment = model.Comment,
                 CreatedFrom = model.CreatedFrom,
                 Insignificant = model.Insignificant,
@@ -35,6 +37,24 @@ namespace InkoOrders.Services.Implementation.Storage
             };
 
             data.ToolCreatedByInko.Add(created);
+            data.SaveChanges();
+        }
+
+        public void Edit(EditToolCreatedServiceViewModel model)
+        {
+            var toolcreated = data.ToolCreatedByInko
+                .Find(model.Id);
+
+            toolcreated.Name = model.Name;
+            toolcreated.TimeWhenCreated = model.TimeWhenCreated;
+            toolcreated.Designation = model.Designation;
+            toolcreated.City = model.City;
+            toolcreated.PlaceInStorage = model.PlaceInStorage;
+            toolcreated.Quantity = model.Quantity;
+            toolcreated.Insignificant = model.Insignificant;
+            toolcreated.Picture = model.Picture;
+            toolcreated.Comment = model.Comment;
+
             data.SaveChanges();
         }
     }

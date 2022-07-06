@@ -724,6 +724,46 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("InvoicesStorageToolBoughtByInkos");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageToolCreatedByInko", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BoughtCompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeWhenBoughtOnInvoice")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ToolCreatedByInkoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ToolCreatedByInkoId");
+
+                    b.ToTable("InvoicesStorageToolCreatedByInko");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageWare", b =>
                 {
                     b.Property<int>("Id")
@@ -932,6 +972,10 @@ namespace InkoOrders.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -941,6 +985,10 @@ namespace InkoOrders.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("CreatedFrom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Designation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -956,7 +1004,7 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PlaceInStorageAndCity")
+                    b.Property<string>("PlaceInStorage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -1338,6 +1386,17 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("ToolBoughtByInko");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageToolCreatedByInko", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Storage.ToolCreatedByInko", "ToolCreatedByInko")
+                        .WithMany("InvoicesToolsCreatedByInko")
+                        .HasForeignKey("ToolCreatedByInkoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ToolCreatedByInko");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageWare", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.Storage.WareInko", "Ware")
@@ -1461,6 +1520,11 @@ namespace InkoOrders.Data.Migrations
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolBoughtByInko", b =>
                 {
                     b.Navigation("InvoicesToolsBoughtByInko");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolCreatedByInko", b =>
+                {
+                    b.Navigation("InvoicesToolsCreatedByInko");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.WareInko", b =>

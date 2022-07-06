@@ -211,7 +211,7 @@ namespace Inko.Orders.Web.Controllers
             return View("Views/Home/Index.cshtml");
         }
 
-        public IActionResult EditInvoiceToolBought(int id)
+        public IActionResult EditToolBought(int id)
         {
 
             var editComponent = data.TooldBoughtByInko
@@ -234,9 +234,41 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditInvoiceToolBought(EditToolBoughtServiceViewModel model)
+        public IActionResult EditToolBought(EditToolBoughtServiceViewModel model)
         {
             this.toolBought.Edit(model);
+
+            return View("Views/Home/Index.cshtml");
+        }
+
+        public IActionResult EditToolCreated(int id)
+        {
+
+            var editComponent = data.ToolCreatedByInko
+                .Select(c => new EditToolCreatedServiceViewModel
+                {
+                    Id = c.Id,
+                    CreatedFrom = c.CreatedFrom,
+                    TimeWhenCreated = c.TimeWhenCreated,
+                    Name = c.Name,
+                    City = c.City,
+                    Designation = c.Designation,
+                    Picture = c.Picture,
+                    Quantity = c.Quantity,
+                    Comment = c.Comment,
+                    PlaceInStorage = c.PlaceInStorage,
+                    Insignificant = c.Insignificant,
+
+                })
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(editComponent);
+        }
+
+        [HttpPost]
+        public IActionResult EditToolCreated(EditToolCreatedServiceViewModel model)
+        {
+            this.toolCreated.Edit(model);
 
             return View("Views/Home/Index.cshtml");
         }
@@ -627,7 +659,8 @@ namespace Inko.Orders.Web.Controllers
                     Comment = tc.Comment,
                     Picture = tc.Picture,
                     Insignificant = tc.Insignificant,
-                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    PlaceInStorage = tc.PlaceInStorage,
+                    City = tc.City,
                     Quantity = tc.Quantity,
                     TimeWhenCreated = tc.TimeWhenCreated,
                 })
@@ -672,7 +705,8 @@ namespace Inko.Orders.Web.Controllers
                     Comment = tc.Comment,
                     Picture = tc.Picture,
                     Insignificant = tc.Insignificant,
-                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    PlaceInStorage = tc.PlaceInStorage,
+                    City = tc.City,
                     Quantity = tc.Quantity,
                     TimeWhenCreated = tc.TimeWhenCreated,
                 })
@@ -811,7 +845,8 @@ namespace Inko.Orders.Web.Controllers
                 Comment = tc.Comment,
                 Picture = tc.Picture,
                 Insignificant = tc.Insignificant,
-                PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                PlaceInStorage = tc.PlaceInStorage,
+                City = tc.City,
                 Quantity = tc.Quantity,
                 TimeWhenCreated = tc.TimeWhenCreated,
             })
@@ -936,7 +971,8 @@ namespace Inko.Orders.Web.Controllers
                     Comment = tc.Comment,
                     Picture = tc.Picture,
                     Insignificant = tc.Insignificant,
-                    PlaceInStorageAndCity = tc.PlaceInStorageAndCity,
+                    PlaceInStorage = tc.PlaceInStorage,
+                    City = tc.City,
                     Quantity = tc.Quantity,
                     TimeWhenCreated = tc.TimeWhenCreated,
                 })

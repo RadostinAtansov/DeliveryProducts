@@ -4,6 +4,8 @@
     {
         public string Name { get; set; }
 
+        public string Designation { get; set; }
+
         public bool Created { get; set; }
 
         public string CreatedFrom { get; set; }
@@ -16,7 +18,9 @@
 
         public bool Insignificant { get; set; }
 
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        public string City { get; set; }
 
         public string Comment { get; set; }
     }

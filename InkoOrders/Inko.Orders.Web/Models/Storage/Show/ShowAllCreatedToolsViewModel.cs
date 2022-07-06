@@ -18,7 +18,9 @@
 
         public bool Insignificant { get; set; }
 
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        public string City { get; set; }
 
         public string Comment { get; set; }
     }

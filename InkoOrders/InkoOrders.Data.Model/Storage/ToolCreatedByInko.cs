@@ -13,6 +13,8 @@ namespace InkoOrders.Data.Model.Storage
         [MaxLength(StorageName)]
         public string Name { get; set; }
 
+        public string Designation { get; set; }
+
         public bool Created { get; set; }
 
         public string CreatedFrom { get; set; }
@@ -20,6 +22,7 @@ namespace InkoOrders.Data.Model.Storage
         [Required]
         public int Quantity { get; set; }
 
+        [Required]
         public string Picture { get; set; }
 
         public DateTime TimeWhenCreated { get; set; }
@@ -27,7 +30,10 @@ namespace InkoOrders.Data.Model.Storage
         public bool Insignificant { get; set; }
 
         [Required]
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }
