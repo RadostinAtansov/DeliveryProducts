@@ -22,41 +22,68 @@
     <tr class="bg-info">
       <th scope="col">No:</th>
       <th scope="col">Name</th>
+      <th scope="col">Designation</th>
       <th scope="col">Quantity</th>
       <th scope="col">TimeActiveAndHowOld</th>
       <th scope="col">ActiveOrOld</th>
       <th scope="col">Insignificant</th>
-      <th scope="col">PlaceInStorageAndCity</th>
+      <th scope="col">PlaceInStorage</th>
+      <th scope="col">City</th>
       <th scope="col">Comment</th>
       <th scope="col">Picture</th>
       <th scope="col">Modification</th>
     </tr>
   </thead>
     <tbody>
-                @foreach (var item in Model)
-                {
-                    count++;
-                    <tr>
-                        <th scope="row">@count</th>
-                        <td>@item.Name</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.TimeActiveAndHowOld</td>
-                        <td>@item.ActiveOrOld</td>
-                        <td>@item.Insignificant</td>
-                        <td>@item.PlaceInStorageAndCity</td>
-                        <td>@item.Comment</td>
-                        <td>
-                            <a href="~/Images/@item.Picture">
-                                <img src="~/Images/@item.Picture" width="80" height="80">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="">Details</a><br>
-                            <a asp-controller="Storage" asp-action="DeleteWare" asp-route-id="@item.Id">Delete</a><br>
-                            <a href="">Edit</a>
-                        </td>
-                    </tr>
-                }
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <th scope="row">@count</th>
+                <td>@item.Name</td>
+                <td>@item.Designation</td>
+                <td>@item.Quantity</td>
+                <td>@item.TimeActiveAndHowOld</td>
+                <td>@item.ActiveOrOld</td>
+                <td>@item.Insignificant</td>
+                <td>@item.PlaceInStorage</td>
+                <td>@item.City</td>
+                <td>@item.Comment</td>
+                <td>
+                    <a href="~/Images/@item.Picture">
+                        <img src="~/Images/@item.Picture" width="80" height="80">
+                    </a>
+                </td>
+                <td>
+                    
+                    <a asp-controller="Storage" asp-action="ShowAllInvoiceWares" asp-route-id="@item.Id">
+                        <button class="btn btn-info">Details</button>
+                    </a><br>
+
+                    <form asp-action="DeleteWare" asp-route-id="@item.Id">
+
+                        <span id="confirmDeleteSpan_@item.Id" style="display:none">
+                            <span><b>Are you sure you want to delete this?</b></span>
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                        </span>
+
+                        <span id="deleteSpan_@item.Id">
+                            <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                        </span>
+
+                    </form>
+
+                    <a asp-controller="Storage" asp-action="EditWare" asp-route-id="@item.Id">
+                        <button class="btn btn-primary">Edit</button>
+                    </a><br>
+                    <a asp-action="AddInvoiceToWare" asp-route-id="@item.Id">
+                        <button class="btn btn-warning"> Add Invoice</button>
+                    </a>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
         }
@@ -67,11 +94,13 @@
             <tr class="bg-info">
                 <th scope="col">No:</th>
                 <th scope="col">Name</th>
+                <th scope="col">Designation</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">TimeActiveAndHowOld</th>
                 <th scope="col">ActiveOrOld</th>
                 <th scope="col">Insignificant</th>
-                <th scope="col">PlaceInStorageAndCity</th>
+                <th scope="col">PlaceInStorage</th>
+                <th scope="col">City</th>
                 <th scope="col">Comment</th>
                 <th scope="col">Picture</th>
             </tr>

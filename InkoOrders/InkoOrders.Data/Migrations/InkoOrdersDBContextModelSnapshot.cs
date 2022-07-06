@@ -572,6 +572,10 @@ namespace InkoOrders.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
 
@@ -592,6 +596,7 @@ namespace InkoOrders.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("Quantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -676,7 +681,87 @@ namespace InkoOrders.Data.Migrations
 
                     b.HasIndex("MaterialId");
 
-                    b.ToTable("InvoicesStorageMaterial");
+                    b.ToTable("InvoicesStorageMaterials");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageToolBoughtByInko", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BoughtCompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeWhenBoughtOnInvoice")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ToolBoughtByInkoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ToolBoughtByInkoId");
+
+                    b.ToTable("InvoicesStorageToolBoughtByInkos");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageWare", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BoughtCompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Qantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeWhenBoughtOnInvoice")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WareInkoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WareInkoId");
+
+                    b.ToTable("InvoicesStorageWares");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
@@ -695,6 +780,10 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -795,10 +884,18 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -812,7 +909,7 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PlaceInStorageAndCity")
+                    b.Property<string>("PlaceInStorage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -885,10 +982,18 @@ namespace InkoOrders.Data.Migrations
                     b.Property<bool>("ActiveOrOld")
                         .HasColumnType("bit");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -902,7 +1007,7 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PlaceInStorageAndCity")
+                    b.Property<string>("PlaceInStorage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -1222,6 +1327,28 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Material");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageToolBoughtByInko", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Storage.ToolBoughtByInko", "ToolBoughtByInko")
+                        .WithMany("InvoicesToolsBoughtByInko")
+                        .HasForeignKey("ToolBoughtByInkoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ToolBoughtByInko");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageWare", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Storage.WareInko", "Ware")
+                        .WithMany("InvoicesWares")
+                        .HasForeignKey("WareInkoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Ware");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.TransportAndTransactionPayment", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.TransactionPayment", "TransactionPayment")
@@ -1329,6 +1456,16 @@ namespace InkoOrders.Data.Migrations
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
                 {
                     b.Navigation("InvoicesMaterial");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolBoughtByInko", b =>
+                {
+                    b.Navigation("InvoicesToolsBoughtByInko");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.WareInko", b =>
+                {
+                    b.Navigation("InvoicesWares");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.TransactionPayment", b =>

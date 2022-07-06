@@ -8,6 +8,8 @@ namespace InkoOrders.Services.Model.Storage
     {
         public string Name { get; set; }
 
+        public string Designation { get; set; }
+
         public bool ActiveOrOld { get; set; }
 
         public DateTime TimeActiveAndHowOld { get; set; }
@@ -16,7 +18,9 @@ namespace InkoOrders.Services.Model.Storage
 
         public IFormFile Picture { get; set; }
 
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        public string City { get; set; }
 
         public bool Insignificant { get; set; }
 

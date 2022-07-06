@@ -16,6 +16,26 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
+        public void AddInvoiceToWare(AddInvoiceWareServiceViewModel model, string path)
+        {
+            var material = data.WaresInko.Find(model.Id);
+
+            var invoice = new InvoicesStorageWare
+            {
+                ProductName = model.ProductName,
+                BoughtCompanyName = model.BoughtCompanyName,
+                Qantity = model.Qantity,
+                TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
+                Comment = model.Comment,
+                Picture = path,
+            };
+
+            material.Quantity += model.Qantity;
+
+            material.InvoicesWares.Add(invoice);
+            data.SaveChanges();
+        }
+
         public void AddWare(AddWareServiceViewModel model, string path)
         {
             if (string.IsNullOrEmpty(model.Name))
@@ -26,37 +46,39 @@ namespace InkoOrders.Services.Implementation.Storage
             var ware = new WareInko() 
             {
                 Name = model.Name,
+                Designation = model.Designation,
                 Quantity = model.Quantity,
                 TimeActiveAndHowOld = model.TimeActiveAndHowOld,
                 ActiveOrOld = model.ActiveOrOld,
                 Insignificant = model.Insignificant,
                 Comment = model.Comment,
                 Picture = path,
-                PlaceInStorageAndCity = model.PlaceInStorageAndCity,
+                PlaceInStorage = model.PlaceInStorage,
+                City = model.City,
             };
 
             data.WaresInko.Add(ware);
             data.SaveChanges();
         }
 
-        //public ICollection<ListAllWareServiceViewModel> ListAll()
-        //{
-        //    var allWares = data.WaresInko
-        //        .Select(w => new ListAllWareServiceViewModel
-        //        {
-        //            Name = w.Name,
-        //            Quantity= w.Quantity,
-        //            ActiveOrOld= w.ActiveOrOld,
-        //            TimeActiveAndHowOld= w.TimeActiveAndHowOld,
-        //            Insignificant= w.Insignificant,
-        //            Comment = w.Comment,
-        //            Picture = w.Picture,
-        //            PlaceInStorageAndCity = w.PlaceInStorageAndCity,
-                    
-        //        })
-        //        .ToList();
+        public void Edit(EditWareServiceViewModel model)
+        {
+            var ware = data.WaresInko
+                 .Find(model.Id);
 
-        //    return allWares;
-        //}
+            ware.Name = model.Name;
+            ware.Designation = model.Designation;
+            ware.City = model.City;
+            ware.PlaceInStorage = model.PlaceInStorage;
+            //ware.Price = model.Price;
+            //ware.BuyedTime = model.BuyedTime;
+            ware.Quantity = model.Quantity;
+            ware.Insignificant = model.Insignificant;
+            ware.Picture = model.Picture;
+            ware.Comment = model.Comment;
+
+            data.SaveChanges();
+        }
+
     }
 }

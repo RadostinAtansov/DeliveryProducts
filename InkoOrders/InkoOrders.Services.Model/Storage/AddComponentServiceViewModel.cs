@@ -10,6 +10,8 @@ namespace InkoOrders.Services.Model.Storage
 
         public int Quantity { get; set; }
 
+        public string Designation { get; set; }
+
         public DateTime BuyedTime { get; set; }
 
         public bool Insignificant { get; set; }

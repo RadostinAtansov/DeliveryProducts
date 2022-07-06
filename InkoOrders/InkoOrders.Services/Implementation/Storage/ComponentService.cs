@@ -27,6 +27,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 BuyedTime = component.BuyedTime,
                 PlaceInStorage = component.PlaceInStorage,
                 City = component.City,
+                Designation = component.Designation,
                 Insignificant = component.Insignificant,
                 Price = component.Price,
                 Quantity = component.Quantity,
@@ -65,6 +66,7 @@ namespace InkoOrders.Services.Implementation.Storage
                  .Find(model.Id);
 
             component.Name = model.Name;
+            component.Designation = model.Designation;
             component.City = model.City;
             component.PlaceInStorage = model.PlaceInStorage;
             component.Price = model.Price;

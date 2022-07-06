@@ -19,6 +19,9 @@ namespace InkoOrders.Data.Model.Storage
         public bool ActiveOrOld { get; set; }
 
         [Required]
+        public string Designation { get; set; }
+
+        [Required]
         public DateTime TimeActiveAndHowOld { get; set; }
 
         [Required]
@@ -27,12 +30,17 @@ namespace InkoOrders.Data.Model.Storage
         public bool Insignificant { get; set; }
 
         [Required]
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [Required]
         public string Picture { get; set; }
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }
+
+        public ICollection<InvoicesStorageWare> InvoicesWares { get; set; } = new HashSet<InvoicesStorageWare>();
     }
 }

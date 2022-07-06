@@ -4,7 +4,9 @@
     {
         public string Name { get; set; }
 
-        public int? Quаntity { get; set; }
+        public string Designation { get; set; }
+
+        public int? Quantity { get; set; }
 
         public decimal Price { get; set; }
 

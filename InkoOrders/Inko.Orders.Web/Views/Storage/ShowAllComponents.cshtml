@@ -20,10 +20,11 @@
 </form><br>
 
 <table class="table table-hover">
-  @*<thead>
+  <thead>
     <tr class="bg-info">
       <th scope="col">No:</th>
       <th scope="col">Name</th>
+      <th scope="col">Designation</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
       <th scope="col">BuyedTime</th>
@@ -34,29 +35,15 @@
       <th scope="col">Picture</th>
       <th scope="col">Modification</th>
     </tr>
-  </thead>*@
+  </thead>
   <tbody>
   @foreach (var item in Model)
   {
-    <thead>
-        <tr class="bg-info">
-          <th scope="col">No</th>
-          <th scope="col">Name</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Price</th>
-          <th scope="col">BuyedTime</th>
-          <th scope="col">Insignificant</th>
-          <th scope="col">PlaceInStorage</th>
-          <th scope="col">City</th>
-          <th scope="col">Comment</th>
-          <th scope="col">Picture</th>
-          <th scope="col">Modification</th>
-        </tr>
-  </thead>
       count++;
       <tr>
         <th scope="row">@count</th>
         <td>@item.Name</td>
+        <td>@item.Designation</td>
         <td>@item.Quantity</td>
         <td>@item.Price</td>
         <td>@item.BuyedTime</td>

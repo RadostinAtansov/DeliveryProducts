@@ -45,6 +45,7 @@ namespace InkoOrders.Services.Implementation
             var mtr = new MaterialsInInko()
             {
                 Name = material.Name,
+                Designation = material.Designation,
                 Price = material.Price,
                 TimeInInko = DateTime.Now,
                 Picture = path,
@@ -66,6 +67,7 @@ namespace InkoOrders.Services.Implementation
 
             material.Name = model.Name;
             material.City = model.City;
+            material.Designation = model.Designation;
             material.PlaceInStorage = model.PlaceInStorage;
             material.Price = model.Price;
             material.Quantity = model.Quantity;

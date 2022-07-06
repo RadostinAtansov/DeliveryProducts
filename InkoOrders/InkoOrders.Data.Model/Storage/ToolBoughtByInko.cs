@@ -12,6 +12,8 @@ namespace InkoOrders.Data.Model.Storage
         [MaxLength(StorageName)]
         public string Name { get; set; }
 
+        public string Designation { get; set; }
+
         public bool Bought { get; set; }
 
         public string BoughtFrom { get; set; }
@@ -26,9 +28,14 @@ namespace InkoOrders.Data.Model.Storage
         public bool Insignificant { get; set; }
 
         [Required]
-        public string PlaceInStorageAndCity { get; set; }
+        public string PlaceInStorage { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [MaxLength(CommentLength)]
         public string Comment { get; set; }
+
+        public ICollection<InvoicesStorageToolBoughtByInko> InvoicesToolsBoughtByInko { get; set; } = new HashSet<InvoicesStorageToolBoughtByInko>();
     }
 }

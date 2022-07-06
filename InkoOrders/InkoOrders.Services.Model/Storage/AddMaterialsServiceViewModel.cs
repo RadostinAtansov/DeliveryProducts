@@ -6,6 +6,8 @@ namespace InkoOrders.Services.Model.Storage
     {
         public string Name { get; set; }
 
+        public string Designation { get; set; }
+
         public int Quаntity { get; set; }
 
         public decimal Price { get; set; }

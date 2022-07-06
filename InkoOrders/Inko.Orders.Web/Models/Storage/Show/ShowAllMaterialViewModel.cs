@@ -8,6 +8,8 @@
 
         public int? Quаntity { get; set; }
 
+        public string Designation { get; set; }
+
         public decimal Price { get; set; }
 
         public string Picture { get; set; }

@@ -15,6 +15,9 @@ namespace InkoOrders.Data.Model.Storage
         public int? Quantity { get; set; }
 
         [Required]
+        public string Designation { get; set; }
+
+        [Required]
         public decimal Price { get; set; }
 
         public string Picture { get; set; }

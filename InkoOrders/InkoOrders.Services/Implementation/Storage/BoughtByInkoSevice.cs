@@ -14,6 +14,25 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
+        public void AddInvoiceToToolBought(AddInvoiceToolBoughtServiceViewModel model, string path)
+        {
+            var toolBought = data.TooldBoughtByInko.Find(model.Id);
+
+            var invoice = new InvoicesStorageToolBoughtByInko
+            {
+                ProductName = model.ProductName,
+                BoughtCompanyName = model.BoughtCompanyName,
+                Quantity = model.Quantity,
+                TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
+                Comment = model.Comment,
+                Picture = path,
+            };
+
+            toolBought.Quantity += model.Quantity;
+
+            toolBought.InvoicesToolsBoughtByInko.Add(invoice);
+            data.SaveChanges();
+        }
 
         public void AddTool(AddBoughtByInkoSeviceViewModel tool, string path)
         {
@@ -26,16 +45,35 @@ namespace InkoOrders.Services.Implementation.Storage
             {
                 Name = tool.Name,
                 Bought = true,
+                Designation = tool.Designation,
                 BoughtFrom = tool.BoughtFrom,
                 Comment = tool.Comment,
                 Picture = path,
-                PlaceInStorageAndCity = tool.PlaceInStorageAndCity,
+                PlaceInStorage = tool.PlaceInStorage,
+                City = tool.City,
                 Insignificant = tool.Insignificant,
                 Quantity = tool.Quantity,
                 TimeBought = tool.TimeBought
             };
 
             data.TooldBoughtByInko.Add(tul);
+            data.SaveChanges();
+        }
+
+        public void Edit(EditToolBoughtServiceViewModel model)
+        {
+            var toolBought = data.TooldBoughtByInko
+                 .Find(model.Id);
+
+            toolBought.Name = model.Name;
+            toolBought.Designation = model.Designation;
+            toolBought.City = model.City;
+            toolBought.PlaceInStorage = model.PlaceInStorage;
+            toolBought.Quantity = model.Quantity;
+            toolBought.Insignificant = model.Insignificant;
+            toolBought.Picture = model.Picture;
+            toolBought.Comment = model.Comment;
+
             data.SaveChanges();
         }
     }
