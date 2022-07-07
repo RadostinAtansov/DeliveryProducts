@@ -764,6 +764,7 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = c.Id,
                     Name = c.Name,
+                    Designation = c.Name,
                     Quantity = c.Quantity,
                     Picture = c.Picture,
                     Price = c.Price,
@@ -777,7 +778,7 @@ namespace Inko.Orders.Web.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                allComponents = allComponents.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+                allComponents = allComponents.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
             }
 
             return allComponents;
@@ -790,6 +791,7 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = m.Id,
                     Name = m.Name,
+                    Designation = m.Designation,
                     Quаntity = m.Quantity,
                     Comment = m.Comment,
                     PlaceInStorage = m.PlaceInStorage,
@@ -803,7 +805,7 @@ namespace Inko.Orders.Web.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+                allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) ||   b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
             }
 
             return allMaterials;
@@ -829,7 +831,7 @@ namespace Inko.Orders.Web.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                allWares = allWares.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+                allWares = allWares.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
             }
 
             return allWares;
@@ -841,6 +843,7 @@ namespace Inko.Orders.Web.Controllers
             .Select(tc => new ShowAllCreatedToolsViewModel
             {
                 Name = tc.Name,
+                Designation = tc.Designation,
                 CreatedFrom = tc.CreatedFrom,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
@@ -854,7 +857,7 @@ namespace Inko.Orders.Web.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                AllCreated = AllCreated.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+                AllCreated = AllCreated.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
             }
 
             return AllCreated;
@@ -866,6 +869,7 @@ namespace Inko.Orders.Web.Controllers
             .Select(tc => new ShowAllBoughtToolsViewModel
             {
                 Name = tc.Name,
+                Designation = tc.Designation,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
                 Insignificant = tc.Insignificant,
@@ -880,7 +884,7 @@ namespace Inko.Orders.Web.Controllers
             
             if (!string.IsNullOrEmpty(search))
             {
-                AllBought = AllBought.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search));
+                AllBought = AllBought.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
             }
 
             return AllBought;
