@@ -42,22 +42,40 @@
       count++;
       <tr>
         <th scope="row">@count</th>
-        <td>@item.Identifier</td>
         <td>@item.ProviderName</td>
+        <td><b>@item.Identifier</b></td>
         <td>@item.OrderDescription</td>
-        <td>@item.Quantity</td>
-        <td>@item.URL</td>
-        <td>@item.OrderedDate</td>
+        <td><b>@item.Quantity</b></td>
+        <td><a href="@item.URL">ClickToSeeLinkDetailsHere</a></td>
+        <td><b>@item.OrderedDate</b></td>
         <td>@item.HowManyProductsOrderedByPosition</td>
-        <td>@item.Arrived</td>
+        <td><b>@item.Arrived</b></td>
         <td>@item.Price</td>
-        <td>@item.ArrivedQuantityAndProductsFromOrder</td>
+        <td><b>@item.ArrivedQuantityAndProductsFromOrder</b></td>
         <td>@item.Status</td>
-        <td>@item.ChangeStatusChangeDatetime</td>
-        <td>
-            <a href="">Details</a><br>
-            <a asp-controller="Storage" asp-action="DeleteProvidersOrder" asp-route-id="@item.Id">Delete</a><br>
-            <a href="">Edit</a>
+        <td><b>@item.ChangeStatusChangeDatetime</b></td>
+        <td>         
+            <a asp-controller="Storage" asp-action="ShowAllInvoiceMaterials" asp-route-id="@item.Id">
+                <button class="btn btn-info">Details</button>
+            </a><br>
+
+            <form asp-action="DeleteMaterial" asp-route-id="@item.Id">
+
+                <span id="confirmDeleteSpan_@item.Id" style="display:none">
+                    <span><b>Are you sure you want to delete this?</b></span>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                    <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                </span>
+
+                <span id="deleteSpan_@item.Id">
+                    <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                </span>
+
+            </form>
+
+            <a asp-controller="Storage" asp-action="EditMaterial" asp-route-id="@item.Id">
+                <button class="btn btn-primary">Edit</button>
+            </a><br>
         </td>
 
         @*<td>*@

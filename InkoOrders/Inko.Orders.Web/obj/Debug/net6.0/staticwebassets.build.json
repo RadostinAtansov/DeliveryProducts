@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/sZMU55z4y7tH1xCJSFxcUzF3B+3YrKQmvrNrtOgtrc=",
+  "Hash": "Pk6e8332bfGoXdEWt7686KpM9JZPsGWCMm6szoN3Ry0=",
   "Source": "Inko.Orders.Web",
   "BasePath": "_content/Inko.Orders.Web",
   "Mode": "Default",
@@ -304,6 +304,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\1a16f611-d066-4e62-81ba-dedb26ff1298-snimkaCV.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\2021-honda-nsx-1.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/2021-honda-nsx-1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\2021-honda-nsx-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\21f3c6f4-4383-474e-b0bb-3b57f09fdfa5-2021-honda-nsx-1.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/21f3c6f4-4383-474e-b0bb-3b57f09fdfa5-2021-honda-nsx-1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\21f3c6f4-4383-474e-b0bb-3b57f09fdfa5-2021-honda-nsx-1.jpg"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\2215b6d8-a040-4f80-9701-1cc84287cdca-helikopter.jpg",
@@ -884,6 +918,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\c8b893d5-394c-47f0-9314-ee7c94a346b0-chip.jpg"
     },
     {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\chip.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/chip.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\chip.jpg"
+    },
+    {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\d2a7f452-f7ec-4e24-9359-2e3d510e2906-2021-honda-nsx-1.jpg",
       "SourceId": "Inko.Orders.Web",
       "SourceType": "Discovered",
@@ -933,6 +984,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\d832834d-3ea2-4ca1-80a9-795ed0e73839-chip.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\download (1).jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/download (1).jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\download (1).jpg"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\e1126524-2d02-4e17-b075-d65449ae3d28-download.jpg",
