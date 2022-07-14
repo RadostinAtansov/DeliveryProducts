@@ -21,6 +21,14 @@ namespace InkoOrders.Services.Implementation.Storage
                 throw new ArgumentException("Name can`t be null or empty");
             }
 
+            var componentCheck = data.Components
+                    .FirstOrDefault(x => x.Name == component.Name);
+
+            if (componentCheck != null)
+            {
+                throw new ArgumentException("Can`t add same component!");
+            }
+
             var addC = new Component()
             {
                 Name = component.Name,
@@ -42,6 +50,11 @@ namespace InkoOrders.Services.Implementation.Storage
         public void AddInvoiceComponent(AddInvoiceComponentServiceViewModel model, string path)
         {
             var component = data.Components.Find(model.Id);
+
+            if (component == null)
+            {
+                throw new NullReferenceException("Can`t add Invoice to component that not exist!");
+            }
 
             var invoice = new InvoicesStorageComponent
             {

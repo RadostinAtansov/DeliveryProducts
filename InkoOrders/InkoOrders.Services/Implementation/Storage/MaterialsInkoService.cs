@@ -19,6 +19,11 @@ namespace InkoOrders.Services.Implementation
         {
             var material = data.MaterialsInInko.Find(model.Id);
 
+            if (material == null)
+            {
+                throw new NullReferenceException("Can`t add Invoice to material that not exist!");
+            }
+
             var invoice = new InvoicesStorageMaterial
             {
                 ProductName = model.ProductName,
@@ -40,6 +45,14 @@ namespace InkoOrders.Services.Implementation
             if (string.IsNullOrEmpty(material.Name))
             {
                 throw new ArgumentException("Name can`t be empty");
+            }
+
+            var materialCheck = data.Components
+                   .FirstOrDefault(x => x.Name == material.Name);
+
+            if (materialCheck != null)
+            {
+                throw new ArgumentException("Can`t add same material!");
             }
 
             var mtr = new MaterialsInInko()

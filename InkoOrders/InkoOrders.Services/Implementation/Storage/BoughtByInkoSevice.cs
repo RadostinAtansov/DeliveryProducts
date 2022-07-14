@@ -18,6 +18,11 @@ namespace InkoOrders.Services.Implementation.Storage
         {
             var toolBought = data.TooldBoughtByInko.Find(model.Id);
 
+            if (toolBought == null)
+            {
+                throw new NullReferenceException("Can`t add Invoice to tool that not exist!");
+            }
+
             var invoice = new InvoicesStorageToolBoughtByInko
             {
                 ProductName = model.ProductName,
@@ -39,6 +44,14 @@ namespace InkoOrders.Services.Implementation.Storage
             if (string.IsNullOrEmpty(tool.Name))
             {
                 throw new ArgumentException("Name can`t be empty");
+            }
+
+            var toolCheck = data.TooldBoughtByInko
+                .FirstOrDefault(x => x.Name == tool.Name);
+
+            if (toolCheck != null)
+            {
+                throw new ArgumentException("Can`t add same tool!");
             }
 
             var tul = new ToolBoughtByInko()

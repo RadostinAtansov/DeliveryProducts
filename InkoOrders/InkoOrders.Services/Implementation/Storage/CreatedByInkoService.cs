@@ -21,6 +21,14 @@ namespace InkoOrders.Services.Implementation.Storage
                 throw new ArgumentException("Name can`n be null or empty");
             }
 
+            var toolCheck = data.Components
+                   .FirstOrDefault(x => x.Name == model.Name);
+
+            if (toolCheck != null)
+            {
+                throw new ArgumentException("Can`t add same tool!");
+            }
+
             var created = new ToolCreatedByInko()
             {
                 Name = model.Name,

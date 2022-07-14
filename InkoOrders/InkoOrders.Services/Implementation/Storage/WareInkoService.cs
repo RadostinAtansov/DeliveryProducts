@@ -18,7 +18,12 @@ namespace InkoOrders.Services.Implementation.Storage
 
         public void AddInvoiceToWare(AddInvoiceWareServiceViewModel model, string path)
         {
-            var material = data.WaresInko.Find(model.Id);
+            var ware = data.WaresInko.Find(model.Id);
+
+            if (ware == null)
+            {
+                throw new NullReferenceException("Can`t add Invoice to ware that not exist!");
+            }
 
             var invoice = new InvoicesStorageWare
             {
@@ -30,9 +35,9 @@ namespace InkoOrders.Services.Implementation.Storage
                 Picture = path,
             };
 
-            material.Quantity += model.Qantity;
+            ware.Quantity += model.Qantity;
 
-            material.InvoicesWares.Add(invoice);
+            ware.InvoicesWares.Add(invoice);
             data.SaveChanges();
         }
 
@@ -41,6 +46,14 @@ namespace InkoOrders.Services.Implementation.Storage
             if (string.IsNullOrEmpty(model.Name))
             {
                 throw new ArgumentException("Name can`t be null or empty");
+            }
+
+            var wareCheck = data.Components
+                   .FirstOrDefault(x => x.Name == model.Name);
+
+            if (wareCheck != null)
+            {
+                throw new ArgumentException("Can`t add same ware!");
             }
 
             var ware = new WareInko() 
@@ -70,8 +83,6 @@ namespace InkoOrders.Services.Implementation.Storage
             ware.Designation = model.Designation;
             ware.City = model.City;
             ware.PlaceInStorage = model.PlaceInStorage;
-            //ware.Price = model.Price;
-            //ware.BuyedTime = model.BuyedTime;
             ware.Quantity = model.Quantity;
             ware.Insignificant = model.Insignificant;
             ware.Picture = model.Picture;
