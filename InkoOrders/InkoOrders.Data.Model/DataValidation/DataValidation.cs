@@ -10,7 +10,8 @@
         public const int AddressNameClientLength = 100;
 
         //All comments
-        public const int CommentLength = 1000;
+        public const int CommentMaxLength = 1000;
+        public const int CommentMinLength = 3;
 
         public const int NameDeliveryLength = 80;
 
@@ -23,7 +24,8 @@
 
         public const int OrderDistributorName = 100;
 
-        public const int ProductName = 100;
+        public const int ProductNameMaxLength = 100;
+        public const int ProductNameMinLength = 3;
 
         public const int TransactionPaymentDescriptionLength = 1000;
 
@@ -31,6 +33,34 @@
         public const int TransportToClient = 100;
 
         //Storage
-        public const int StorageName = 100;
+        public const int StorageNameMaxLength = 100;
+        public const int StorageNameMinLength = 5;
+
+        public const int StorageDesignationMaxLenght = 1000;
+        public const int StorageDesignationMinLenght = 5;
+
+        public const int StorageQuantityMaxLenght = int.MaxValue;
+        public const int StorageQuantityMinLenght = 1;
+
+        public const int StoragePlaceInStorageMaxLenght = 10;
+        public const int StoragePlaceInStorageMinLenght = 1000;
+
+        public const int StorageCityMaxLenght = 100;
+        public const int StorageCityMinLenght = 2;
+
+        public const int StoragePriceMinLenght = 0;
+        public const int StoragePriceMaxLenght = int.MaxValue;
+
+        public const int StorageIdentifierMinLenght = 5;
+        public const int StorageIdentifierMaxLenght = 1000;
+
+        public const int StorageOrderDesciptionMinLenght = 5;
+        public const int StorageOrderDesciptionMaxLenght = 1000;
+
+        public const int StorageBoughtFromMinLenght = 3;
+        public const int StorageBoughtFromMaxLenght = 100;
+
+        public const int StorageCreatedFromMinLenght = 3;
+        public const int StorageCreatedFromMaxLenght = 100;
     }
 }
