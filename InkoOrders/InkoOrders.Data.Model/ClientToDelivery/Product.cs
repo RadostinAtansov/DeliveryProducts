@@ -9,7 +9,7 @@ namespace InkoOrders.Data.Model
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(ProductName)]
+        [StringLength(ProductNameMaxLength, MinimumLength = ProductNameMinLength)]
         public string Name { get; set; }
 
         [Url(ErrorMessage = "Please enter valid URL")]
@@ -21,7 +21,7 @@ namespace InkoOrders.Data.Model
         [Required]
         public string Designation { get; set; }
 
-        [MaxLength(CommentLength)]
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
 
         public ICollection<ProductsToDeliveryToOrderToTransactionPaymentToTransport> ProDelOrdTranPayTran { get; set; } = new HashSet<ProductsToDeliveryToOrderToTransactionPaymentToTransport>();

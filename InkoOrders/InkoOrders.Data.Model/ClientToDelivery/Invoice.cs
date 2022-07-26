@@ -60,7 +60,7 @@ namespace InkoOrders.Data.Model
         [Required]
         public string DistributorTelephone { get; set; }
 
-        [MaxLength(CommentLength)]
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
 
         public ICollection<Client> Clients { get; set; } = new HashSet<Client>();

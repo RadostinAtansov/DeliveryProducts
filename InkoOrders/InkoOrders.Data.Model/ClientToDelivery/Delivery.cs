@@ -21,7 +21,7 @@ namespace InkoOrders.Data.Model
         [Required]
         public decimal EndPrice { get; set; }
 
-        [MaxLength(CommentLength)]
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
 
         [Required]

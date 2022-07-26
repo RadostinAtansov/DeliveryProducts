@@ -41,7 +41,8 @@ namespace InkoOrders.Data.Model
         [Required]
         public string TaxRegistryNumber { get; set; }
 
-        [MaxLength(CommentLength)]
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
+
         public string Comment { get; set; }
 
         public List<Product> ProductsClient { get; set; }

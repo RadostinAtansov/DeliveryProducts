@@ -51,8 +51,8 @@ namespace InkoOrders.Data.Model.Storage
         public decimal? Price { get; set; }
 
         [Required]
-        [Range(1, int.MaxValue)]
-        public int ArrivedQuantityAndProductsFromOrder { get; set; }
+        [StringLength(3, MinimumLength = 1000)]
+        public string ArrivedQuantityAndProductsFromOrder { get; set; }
 
         public OrderStatusProvider Status { get; set; }
 

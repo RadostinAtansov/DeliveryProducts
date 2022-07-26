@@ -45,7 +45,7 @@ namespace InkoOrders.Data.Model
         public decimal OrderPrice { get; set; }
 
 
-        [MaxLength(CommentLength)]
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
 
         public ICollection<Product> OrderedProducts { get; set; } = new HashSet<Product>();

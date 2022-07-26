@@ -19,7 +19,7 @@
 
         public decimal AdvancePayment { get; set; }
 
-        [MaxLength(CommentLength)]
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
 
         public ICollection<TransportAndTransactionPayment> Transports { get; set; } = new HashSet<TransportAndTransactionPayment>();
