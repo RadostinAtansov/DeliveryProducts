@@ -40,7 +40,7 @@
   @foreach (var item in Model.Components)
   {
     countComponents++;
-    <tr>
+         <tr>
         <th scope="row">@countComponents</th>
         <td>@item.Name</td>
         <td>@item.Designation</td>
@@ -59,28 +59,28 @@
             <td>
                 
             <a asp-controller="Storage" asp-action="ShowAllInvoiceComponents" asp-route-id="@item.Id">
-                <button class="btn btn-info">Details</button>
+               Details
             </a><br>
 
             <form asp-action="DeleteComponent" asp-route-id="@item.Id">
 
                 <span id="confirmDeleteSpan_@item.Id" style="display:none">
                     <span><b>Are you sure you want to delete this?</b></span>
-                    <button type="submit" class="btn btn-danger">Yes</button>
-                    <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                    <button type="submit">Yes</button>
+                    <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
                 </span>
 
                 <span id="deleteSpan_@item.Id">
-                    <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                    <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
                 </span>
 
             </form>
 
             <a asp-controller="Storage" asp-action="EditComponent" asp-route-id="@item.Id">
-                <button class="btn btn-primary">Edit</button>
+                Edit
             </a><br>
                 <a asp-action="AddInvoiceToComponent" asp-route-id="@item.Id">
-                    <button class="btn btn-warning"> Add Invoice</button>
+                    Add Invoice
                 </a>
             </td>
       </tr>
@@ -130,29 +130,27 @@
             </a>
         </td>
          <td>    
-            <a asp-controller="Storage" asp-action="ShowAllInvoiceWares" asp-route-id="@item.Id">
-                <button class="btn btn-info">Details</button>
-            </a><br>
+            <a asp-controller="Storage" asp-action="ShowAllInvoiceWares" asp-route-id="@item.Id">Details</a><br>
 
             <form asp-action="DeleteWare" asp-route-id="@item.Id">
 
                 <span id="confirmDeleteSpan_@item.Id" style="display:none">
                     <span><b>Are you sure you want to delete this?</b></span>
-                    <button type="submit" class="btn btn-danger">Yes</button>
-                    <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                    <button type="submit">Yes</button>
+                    <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
                 </span>
 
                 <span id="deleteSpan_@item.Id">
-                    <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                    <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
                 </span>
 
             </form>
 
             <a asp-controller="Storage" asp-action="EditWare" asp-route-id="@item.Id">
-                <button class="btn btn-primary">Edit</button>
+                 Edit
             </a><br>
             <a asp-action="AddInvoiceToWare" asp-route-id="@item.Id">
-                <button class="btn btn-warning"> Add Invoice</button>
+                 Add Invoice
             </a>
 
         </td>
@@ -204,28 +202,26 @@
                 </td>
                  <td>
                     <a asp-controller="Storage" asp-action="ShowAllInvoiceToolBought" asp-route-id="@item.Id">
-                        <button class="btn btn-info">Details</button>
+                        Details
                     </a><br>
 
                     <form asp-action="DeleteInvoiceToolBought" asp-route-id="@item.Id">
 
                         <span id="confirmDeleteSpan_@item.Id" style="display:none">
                             <span><b>Are you sure you want to delete this?</b></span>
-                            <button type="submit" class="btn btn-danger">Yes</button>
-                            <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                            <button type="submit">Yes</button>
+                            <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
                         </span>
 
                         <span id="deleteSpan_@item.Id">
-                            <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                            <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
                         </span>
 
                     </form>
 
-                    <a asp-controller="Storage" asp-action="EditToolBought" asp-route-id="@item.Id">
-                        <button class="btn btn-primary">Edit</button>
-                    </a><br>
+                    <a asp-controller="Storage" asp-action="EditToolBought" asp-route-id="@item.Id">Edit</a><br>
                     <a asp-action="AddInvoiceToToolBought" asp-route-id="@item.Id">
-                        <button class="btn btn-warning"> Add Invoice</button>
+                        Add Invoice
                     </a>
                  </td>
             </tr>
@@ -279,18 +275,18 @@
 
                         <span id="confirmDeleteSpan_@item.Id" style="display:none">
                             <span><b>Are you sure you want to delete this?</b></span>
-                            <button type="submit" class="btn btn-danger">Yes</button>
-                            <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                            <button type="submit">Yes</button>
+                            <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
                         </span>
 
                         <span id="deleteSpan_@item.Id">
-                            <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                            <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
                         </span>
 
                     </form>
 
                     <a asp-controller="Storage" asp-action="EditToolCreated" asp-route-id="@item.Id">
-                        <button class="btn btn-primary">Edit</button>
+                        Edit
                     </a><br>
                  </td>
             </tr>
@@ -339,28 +335,28 @@
         </td>
          <td>
                 <a asp-controller="Storage" asp-action="ShowAllInvoiceMaterials" asp-route-id="@item.Id">
-                    <button class="btn btn-info">Details</button>
+                    Details
                 </a><br>
 
                 <form asp-action="DeleteMaterial" asp-route-id="@item.Id">
 
                     <span id="confirmDeleteSpan_@item.Id" style="display:none">
                         <span><b>Are you sure you want to delete this?</b></span>
-                        <button type="submit" class="btn btn-danger">Yes</button>
-                        <a href="javascript:void(0)" class="btn btn-primary" onclick="confirmDelete('@item.Id', false)">No</a>
+                        <button type="submit">Yes</button>
+                        <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
                     </span>
 
                     <span id="deleteSpan_@item.Id">
-                        <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                        <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
                     </span>
 
                 </form>
 
                 <a asp-controller="Storage" asp-action="EditMaterial" asp-route-id="@item.Id">
-                    <button class="btn btn-primary">Edit</button>
+                    Edit
                 </a><br>
                 <a asp-action="AddInvoiceToMaterial" asp-route-id="@item.Id">
-                    <button class="btn btn-warning"> Add Invoice</button>
+                    Add Invoice
                 </a>
             </td>
       </tr>

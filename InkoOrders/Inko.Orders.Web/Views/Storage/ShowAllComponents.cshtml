@@ -59,7 +59,7 @@
             <td>
                 
             <a asp-controller="Storage" asp-action="ShowAllInvoiceComponents" asp-route-id="@item.Id">
-                <button class="btn btn-info">Details</button>
+                <button>Details</button>
             </a><br>
 
             <form asp-action="DeleteComponent" asp-route-id="@item.Id">
@@ -71,16 +71,16 @@
                 </span>
 
                 <span id="deleteSpan_@item.Id">
-                    <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                    <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
                 </span>
 
             </form>
 
             <a asp-controller="Storage" asp-action="EditComponent" asp-route-id="@item.Id">
-                <button class="btn btn-primary">Edit</button>
+                <button>Edit</button>
             </a><br>
                 <a asp-action="AddInvoiceToComponent" asp-route-id="@item.Id">
-                    <button class="btn btn-warning"> Add Invoice</button>
+                    <button> Add Invoice</button>
                 </a>
             </td>
       </tr>
