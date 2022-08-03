@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using InkoOrders.Data.Model.Storage;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inko.Orders.Web.Models.Storage.Show
 {
@@ -25,5 +26,8 @@ namespace Inko.Orders.Web.Models.Storage.Show
         public string City { get; set; }
 
         public string Comment { get; set; }
+
+        public StorageSortingByFiveCriteria StorageSortingByFiveCriteria { get; set; }
+
     }
 }
