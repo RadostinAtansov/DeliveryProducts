@@ -1,0 +1,12 @@
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\bin\Release\net6.0\InkoOrders.Data.Model.deps.json
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\bin\Release\net6.0\InkoOrders.Data.Model.dll
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\bin\Release\net6.0\InkoOrders.Data.Model.pdb
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.csproj.AssemblyReference.cache
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.AssemblyInfoInputs.cache
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.AssemblyInfo.cs
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.csproj.CoreCompileInputs.cache
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.dll
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\refint\InkoOrders.Data.Model.dll
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\InkoOrders.Data.Model.pdb
+C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\InkoOrders.Data.Model\obj\Release\net6.0\ref\InkoOrders.Data.Model.dll

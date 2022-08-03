@@ -1,0 +1,148 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Inko.Orders.Web
+build_property.RootNamespace = Inko.Orders.Web
+build_property.ProjectDir = C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\Inko.Orders.Web\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\radul\Desktop\DeliveryProducts\InkoOrders\Inko.Orders.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddBoughtTool.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRCb3VnaHRUb29sLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddComponent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRDb21wb25lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddCreatedTool.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRDcmVhdGVkVG9vbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceToComponent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9Db21wb25lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceToMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9NYXRlcmlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceToToolBought.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9Ub29sQm91Z2h0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceToWare.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9XYXJlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRNYXRlcmlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddProviderOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRQcm92aWRlck9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddWare.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRXYXJlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/EditComponent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0Q29tcG9uZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/EditInvoiceToolBought.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0SW52b2ljZVRvb2xCb3VnaHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/EditMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0TWF0ZXJpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/EditToolCreated.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0VG9vbENyZWF0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/EditWare.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0V2FyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/NotFoundElement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxOb3RGb3VuZEVsZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllComponents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsQ29tcG9uZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceComponents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZUNvbXBvbmVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceMaterials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZU1hdGVyaWFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceToolBought.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZVRvb2xCb3VnaHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceWares.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZVdhcmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllMaterials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsTWF0ZXJpYWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsT3JkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllTools.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsVG9vbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllware.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsd2FyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowWholeStorage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93V2hvbGVTdG9yYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-633arzha42

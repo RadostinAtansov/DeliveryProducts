@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "superfish@1.7.10",
+      "destination": "wwwroot/lib/superfish/"
+    },
+    {
+      "library": "jquery.hoverintent@1.10.2",
+      "destination": "wwwroot/lib/jquery.hoverintent/"
+    },
+    {
+      "library": "fancybox@3.5.7",
+      "destination": "wwwroot/lib/fancybox/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/jqueryui/"
+    },
+    {
+      "library": "jqwidgets@14.0.0",
+      "destination": "wwwroot/lib/jqwidgets/"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ShowAllInvoicesToolBoughtViewModel>
+
+@{
+    ViewData["Title"] = "ShowAllInvoiceToolBought";
+    int count = 0;
+}
+
+<h1>ShowAllInvoiceToolBought</h1>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr class="bg-info">
+            <th scope="col">No:</th>
+            <th scope="col">BoughtFrom</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">ProductName</th>
+            <th class="col">TimeWhenBought</th>
+            <th class="col">Comment</th>
+            <th class="col">Picture</th>
+            <th class="col">Modification</th>
+        </tr>
+    </thead>
+<tbody>
+@foreach (var item in Model)
+{
+    count++;
+<tr>
+    <td>@count</td>
+    <td>@item.BoughtCompanyName</td>
+    <td>@item.Quantity</td>
+    <td>@item.ProductName</td>
+    <td>@item.TimeWhenBoughtOnInvoice</td>
+    <td>@item.Comment</td>
+    <td>
+        <a href="~/Images/@item.Picture">
+            <img src="~/Images/@item.Picture" width="80" height="80"/>
+        </a>
+    </td>
+    <td>
+        <a asp-controller="Storage" asp-action="DeleteInvoiceToolBought" asp-route-id="@item.Id">
+            <button class="btn btn-danger">Remove</button>
+        </a>
+    </td>
+</tr>
+}
+    </tbody>
+</table>
