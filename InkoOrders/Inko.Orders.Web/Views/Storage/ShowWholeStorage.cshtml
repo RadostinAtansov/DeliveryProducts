@@ -12,10 +12,22 @@
 <h1 style="color: blue; text-align: center;">Whole Storage</h1><br>
 
 <form asp-controller="Storage" asp-action="ShowWholeStorage" style="text-align: right">
-    <p>
+   <div class="form-group">
         <b>Search:</b> <input type="text" name="search"/>
-        <input type="submit" value="Search" />
-   </p>
+        <input type="submit" value="Search" /><br />
+            
+        <label asp-for="StorageSortingByFiveCriteria"><b>SortingBy</b></label>
+            <select asp-for="StorageSortingByFiveCriteria">
+                <option value="0" selected>ChooseCriteria</option>
+                <option value="1">Name</option>
+                <option value="2">Designation</option>
+                <option value="3">Quantity</option>
+                <option value="4">Price</option>
+                <option value="5">BuyedTime</option>
+            </select>
+   </div>
+        
+  
 </form><br>
 
 <h1>All Components</h1>

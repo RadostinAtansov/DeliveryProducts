@@ -27,7 +27,5 @@ namespace Inko.Orders.Web.Models.Storage.Show
 
         public string Comment { get; set; }
 
-        public StorageSortingByFiveCriteria StorageSortingByFiveCriteria { get; set; }
-
     }
 }

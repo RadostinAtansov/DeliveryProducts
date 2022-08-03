@@ -3,10 +3,11 @@ namespace InkoOrders.Data.Model.Storage
 {
     public enum StorageSortingByFiveCriteria
     {
-        Name = 0,
-        Designation = 1,
-        Quantity = 2,
-        Price = 3,
-        BuyedTime = 4,
+        ChooseSortingType = 0,
+        Name = 1,
+        Designation = 2,
+        Quantity = 3,
+        Price = 4,
+        BuyedTime = 5,
     }
 }

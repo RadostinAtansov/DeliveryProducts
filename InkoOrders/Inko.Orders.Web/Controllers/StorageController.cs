@@ -638,12 +638,22 @@ namespace Inko.Orders.Web.Controllers
             return RedirectToAction(nameof(ShowAllWare));
         }
 
-        [HttpPost]
-        public IActionResult ShowAllComponents(string search)
-        {
-            var components = GetComponents(search);
+        //[HttpGet]
+        //public IActionResult ShowAllComponents(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria)
 
-            return View(components);
+        //{
+        //    var allComponents = GetComponents(search, StorageSortingByFiveCriteria);
+
+        //    return View(allComponents);
+        //}
+
+        [HttpPost]
+        public IActionResult ShowAllComponents(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria)
+
+        {
+            var allComponents = GetComponents(search, StorageSortingByFiveCriteria);
+
+            return View(allComponents);
         }
 
         public IActionResult ShowAllTools()
@@ -743,28 +753,34 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowWholeStorage(string search)
+        public IActionResult ShowWholeStorage(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria)
         {
 
             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
 
+            StorageSortingByFiveCriteria sorting = StorageSortingByFiveCriteria;
+
+            sws.Components = GetComponents(search, sorting);
             sws.Bought = GetBought(search);
             sws.Created = GetCreated(search);
             sws.Ware = GetWare(search);
             sws.Materials = GetMaterials(search);
-            sws.Components = GetComponents(search);
 
             return View(sws);
         }
 
-        private IEnumerable<ShowAllComponentsViewModel> GetComponents(string search)
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageSortingByFiveCriteria sortingQ)
         {
+
+            StorageSortingByFiveCriteria sorting = sortingQ;
+
+
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    Designation = c.Name,
+                    Designation = c.Designation,
                     Quantity = c.Quantity,
                     Picture = c.Picture,
                     Price = c.Price,
@@ -775,6 +791,21 @@ namespace Inko.Orders.Web.Controllers
                     BuyedTime = c.BuyedTime,
                 })
                 .AsEnumerable();
+
+            allComponents = sorting switch
+            {
+                StorageSortingByFiveCriteria.ChooseSortingType => allComponents.OrderBy(n =>
+                n.Id),
+                StorageSortingByFiveCriteria.Name => allComponents.OrderByDescending(n => 
+                n.Name),
+                StorageSortingByFiveCriteria.BuyedTime => allComponents.OrderByDescending(bt =>
+                bt.BuyedTime),
+                StorageSortingByFiveCriteria.Designation => allComponents.OrderByDescending(d => d.Designation),
+                StorageSortingByFiveCriteria.Price => allComponents.OrderByDescending(p => 
+                p.Price),
+                StorageSortingByFiveCriteria.Quantity => allComponents.OrderByDescending(q => 
+                q.Quantity)
+            };
 
             if (!string.IsNullOrEmpty(search))
             {
