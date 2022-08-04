@@ -468,9 +468,9 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllWare(string search)
+        public IActionResult ShowAllWare(string search, StorageSortingByCity sortingByCity)
         {
-            var ware = GetWare(search);
+            var ware = GetWare(search, sortingByCity);
 
             return View(ware);
         }
@@ -498,9 +498,9 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllMaterials(string search)
+        public IActionResult ShowAllMaterials(string search, StorageSortingByCity sortingByCity)
         {
-            var materials = GetMaterials(search);
+            var materials = GetMaterials(search, sortingByCity);
 
             return View(materials);
         }
@@ -639,7 +639,7 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllComponents(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
+        public IActionResult ShowAllComponents(string search, StorageComponentsSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
 
         {
             var allComponents = GetComponents(search, StorageSortingByFiveCriteria, StorageSortingByCity);
@@ -738,36 +738,36 @@ namespace Inko.Orders.Web.Controllers
 
         public IActionResult ShowWholeStorage()
         {
-            var result  = AllInOneStorage();
-            
+            var result = AllInOneStorage();
+
             return View(result);
         }
 
         [HttpPost]
-        public IActionResult ShowWholeStorage(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
+        public IActionResult ShowWholeStorage(string search, StorageComponentsSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
         {
 
             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
 
-            StorageSortingByFiveCriteria sortingByCriteria = StorageSortingByFiveCriteria;
+            StorageComponentsSortingByFiveCriteria sortingByCriteria = StorageSortingByFiveCriteria;
 
             StorageSortingByCity sortingByCity = StorageSortingByCity;
 
             sws.Components = GetComponents(search, sortingByCriteria, sortingByCity);
-            sws.Bought = GetBought(search);
-            sws.Created = GetCreated(search);
-            sws.Ware = GetWare(search);
-            sws.Materials = GetMaterials(search);
+            sws.Materials = GetMaterials(search, sortingByCity);
+            sws.Ware = GetWare(search, sortingByCity);
+            sws.Created = GetCreated(search, sortingByCity);
+            sws.Bought = GetBought(search, sortingByCity);
 
             return View(sws);
         }
 
-        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageSortingByFiveCriteria sortingByCriteria, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageComponentsSortingByFiveCriteria sortingByCriteria, StorageSortingByCity sortingByCity)
         {
 
-            StorageSortingByFiveCriteria sortingByCr = sortingByCriteria;
+            StorageComponentsSortingByFiveCriteria sortingByCr = sortingByCriteria;
 
-            StorageSortingByCity sortingByC = sortingByCity;
+            //StorageSortingByCity sortingByC = sortingByCity;
 
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
@@ -802,22 +802,22 @@ namespace Inko.Orders.Web.Controllers
 
             allComponents = sortingByCr switch
             {
-                StorageSortingByFiveCriteria.ChooseSortingType => allComponents.OrderBy(n =>
+                StorageComponentsSortingByFiveCriteria.ChooseSortingType => allComponents.OrderBy(n =>
                 n.Id),
-                StorageSortingByFiveCriteria.Name => allComponents.OrderByDescending(n => 
+                StorageComponentsSortingByFiveCriteria.Name => allComponents.OrderByDescending(n => 
                 n.Name),
-                StorageSortingByFiveCriteria.Designation => allComponents.OrderByDescending(d => d.Designation),
-                StorageSortingByFiveCriteria.BuyedTimeAscending => allComponents.OrderBy(bt =>
+                StorageComponentsSortingByFiveCriteria.Designation => allComponents.OrderByDescending(d => d.Designation),
+                StorageComponentsSortingByFiveCriteria.BuyedTimeAscending => allComponents.OrderBy(bt =>
                 bt.BuyedTime),
-                StorageSortingByFiveCriteria.BuyedTimeDescending => allComponents.OrderByDescending(bt =>
+                StorageComponentsSortingByFiveCriteria.BuyedTimeDescending => allComponents.OrderByDescending(bt =>
                 bt.BuyedTime),
-                StorageSortingByFiveCriteria.PriceAscending => allComponents.OrderBy(p => 
+                StorageComponentsSortingByFiveCriteria.PriceAscending => allComponents.OrderBy(p => 
                 p.Price),
-                StorageSortingByFiveCriteria.PriceDescending => allComponents.OrderByDescending(p =>
+                StorageComponentsSortingByFiveCriteria.PriceDescending => allComponents.OrderByDescending(p =>
                 p.Price),
-                StorageSortingByFiveCriteria.QuantityAscending => allComponents.OrderBy(q => 
+                StorageComponentsSortingByFiveCriteria.QuantityAscending => allComponents.OrderBy(q => 
                 q.Quantity),
-                StorageSortingByFiveCriteria.QuantityDescending => allComponents.OrderByDescending(q =>
+                StorageComponentsSortingByFiveCriteria.QuantityDescending => allComponents.OrderByDescending(q =>
                 q.Quantity)
             };
 
@@ -829,7 +829,7 @@ namespace Inko.Orders.Web.Controllers
             return allComponents;
         }
 
-        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search)
+        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search, StorageSortingByCity sortingByCity)
         {
             var allMaterials = data.MaterialsInInko
                 .Select(m => new ShowAllMaterialViewModel
@@ -848,6 +848,19 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .AsEnumerable();
 
+            allMaterials = sortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => allMaterials.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => allMaterials.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => allMaterials.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => allMaterials.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => allMaterials.Where(p =>
+                p.City == "Canada")
+            };
+
             if (!string.IsNullOrEmpty(search))
             {
                 allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) ||   b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -856,7 +869,7 @@ namespace Inko.Orders.Web.Controllers
             return allMaterials;
         }
 
-        private IEnumerable<ShowAllWareViewModel> GetWare(string search)
+        private IEnumerable<ShowAllWareViewModel> GetWare(string search, StorageSortingByCity sortingByCity)
         {
             var allWares = data.WaresInko
                .Select(w => new ShowAllWareViewModel
@@ -874,6 +887,19 @@ namespace Inko.Orders.Web.Controllers
                })
                .AsQueryable();
 
+            allWares = sortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => allWares.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => allWares.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => allWares.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => allWares.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => allWares.Where(p =>
+                p.City == "Canada")
+            };
+
             if (!string.IsNullOrEmpty(search))
             {
                 allWares = allWares.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -882,7 +908,7 @@ namespace Inko.Orders.Web.Controllers
             return allWares;
         }
 
-        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated(string search)
+        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated(string search, StorageSortingByCity sortingByCity)
         {
             var AllCreated = data.ToolCreatedByInko
             .Select(tc => new ShowAllCreatedToolsViewModel
@@ -900,6 +926,19 @@ namespace Inko.Orders.Web.Controllers
             })
              .AsEnumerable();
 
+            AllCreated = sortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => AllCreated.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => AllCreated.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => AllCreated.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => AllCreated.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => AllCreated.Where(p =>
+                p.City == "Canada")
+            };
+
             if (!string.IsNullOrEmpty(search))
             {
                 AllCreated = AllCreated.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -908,7 +947,7 @@ namespace Inko.Orders.Web.Controllers
             return AllCreated;
         }
 
-        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought(string search)
+        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought(string search, StorageSortingByCity sortingByCity)
         {
             var AllBought = data.TooldBoughtByInko
             .Select(tc => new ShowAllBoughtToolsViewModel
@@ -926,7 +965,20 @@ namespace Inko.Orders.Web.Controllers
                 TimeBought = tc.TimeBought,
             })
              .AsEnumerable();
-            
+
+            AllBought = sortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => AllBought.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => AllBought.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => AllBought.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => AllBought.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => AllBought.Where(p =>
+                p.City == "Canada")
+            };
+
             if (!string.IsNullOrEmpty(search))
             {
                 AllBought = AllBought.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -953,7 +1005,6 @@ namespace Inko.Orders.Web.Controllers
         {
             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
 
-
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
                 {
@@ -970,86 +1021,87 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .AsEnumerable();
 
-                sws.Components = allComponents;
-            
-                var allMaterials = data.MaterialsInInko
-                    .Select(m => new ShowAllMaterialViewModel
-                    {
-                        Id = m.Id,
-                        Name = m.Name,
-                        Quаntity = m.Quantity,
-                        Comment = m.Comment,
-                        PlaceInStorage = m.PlaceInStorage,
-                        City = m.City,
-                        Insignificant = m.Insignificant,
-                        Picture = m.Picture,
-                        Price = m.Price,
-                        TimeInInko = m.TimeInInko,
-                    })
-                    .AsEnumerable();
+            sws.Components = allComponents;
 
-               sws.Materials = allMaterials;
-            
-                var allWares = data.WaresInko
-                   .Select(w => new ShowAllWareViewModel
-                   {
-                       Id= w.Id,
-                       Name = w.Name,
-                       Designation = w.Designation,
-                       Quantity = w.Quantity,
-                       ActiveOrOld = w.ActiveOrOld,
-                       TimeActiveAndHowOld = w.TimeActiveAndHowOld,
-                       Insignificant = w.Insignificant,
-                       Comment = w.Comment,
-                       Picture = w.Picture,
-                       PlaceInStorage = w.PlaceInStorage,
-                       City = w.City,
-                   })
-                   .AsEnumerable();
-
-
-
-                sws.Ware = allWares;
-
-                var AllCreated = data.ToolCreatedByInko
-                .Select(tc => new ShowAllCreatedToolsViewModel
+            var allMaterials = data.MaterialsInInko
+                .Select(m => new ShowAllMaterialViewModel
                 {
-                    Id = tc.Id,
-                    Name = tc.Name,
-                    CreatedFrom = tc.CreatedFrom,
-                    Comment = tc.Comment,
-                    Picture = tc.Picture,
-                    Insignificant = tc.Insignificant,
-                    PlaceInStorage = tc.PlaceInStorage,
-                    City = tc.City,
-                    Quantity = tc.Quantity,
-                    TimeWhenCreated = tc.TimeWhenCreated,
+                    Id = m.Id,
+                    Name = m.Name,
+                    Quаntity = m.Quantity,
+                    Comment = m.Comment,
+                    PlaceInStorage = m.PlaceInStorage,
+                    City = m.City,
+                    Insignificant = m.Insignificant,
+                    Picture = m.Picture,
+                    Price = m.Price,
+                    TimeInInko = m.TimeInInko,
                 })
-                 .AsEnumerable();
+                .AsEnumerable();
 
-               sws.Created = AllCreated;
-            
+            sws.Materials = allMaterials;
 
-                var AllBought = data.TooldBoughtByInko
-                .Select(tc => new ShowAllBoughtToolsViewModel
-                {
-                    Id = tc.Id,
-                    Name = tc.Name,
-                    Comment = tc.Comment,
-                    Picture = tc.Picture,
-                    Insignificant = tc.Insignificant,
-                    PlaceInStorage = tc.PlaceInStorage,
-                    City = tc.City,
-                    Quantity = tc.Quantity,
-                    Bought = tc.Bought,
-                    BoughtFrom = tc.BoughtFrom,
-                    TimeBought = tc.TimeBought,
-                })
-                 .AsEnumerable();
+            var allWares = data.WaresInko
+               .Select(w => new ShowAllWareViewModel
+               {
+                   Id = w.Id,
+                   Name = w.Name,
+                   Designation = w.Designation,
+                   Quantity = w.Quantity,
+                   ActiveOrOld = w.ActiveOrOld,
+                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
+                   Insignificant = w.Insignificant,
+                   Comment = w.Comment,
+                   Picture = w.Picture,
+                   PlaceInStorage = w.PlaceInStorage,
+                   City = w.City,
+               })
+               .AsEnumerable();
 
-                sws.Bought = AllBought;
+
+
+            sws.Ware = allWares;
+
+            var AllCreated = data.ToolCreatedByInko
+            .Select(tc => new ShowAllCreatedToolsViewModel
+            {
+                Id = tc.Id,
+                Name = tc.Name,
+                CreatedFrom = tc.CreatedFrom,
+                Comment = tc.Comment,
+                Picture = tc.Picture,
+                Insignificant = tc.Insignificant,
+                PlaceInStorage = tc.PlaceInStorage,
+                City = tc.City,
+                Quantity = tc.Quantity,
+                TimeWhenCreated = tc.TimeWhenCreated,
+            })
+             .AsEnumerable();
+
+            sws.Created = AllCreated;
+
+
+            var AllBought = data.TooldBoughtByInko
+            .Select(tc => new ShowAllBoughtToolsViewModel
+            {
+                Id = tc.Id,
+                Name = tc.Name,
+                Comment = tc.Comment,
+                Picture = tc.Picture,
+                Insignificant = tc.Insignificant,
+                PlaceInStorage = tc.PlaceInStorage,
+                City = tc.City,
+                Quantity = tc.Quantity,
+                Bought = tc.Bought,
+                BoughtFrom = tc.BoughtFrom,
+                TimeBought = tc.TimeBought,
+            })
+             .AsEnumerable();
+
+            sws.Bought = AllBought;
 
             return sws;
         }
+
     }
 }

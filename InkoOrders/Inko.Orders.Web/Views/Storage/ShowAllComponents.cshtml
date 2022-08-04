@@ -1,4 +1,4 @@
-﻿@model List<ShowAllComponentsViewModel>
+﻿@model IEnumerable<ShowAllComponentsViewModel>
 
 @{
     ViewData["Title"] = "View All Components";
@@ -25,9 +25,9 @@
                 <option value="3">QuantityAscending</option>
                 <option value="4">QuantityDescending</option>
                 <option value="5">PriceAscending</option>
-                <option value="6">PriceQuantityDescending</option>
-                <option value="7">BuyedTimePriceAscending</option>
-                <option value="8">BuyedTimeQuantityDescending</option>
+                <option value="6">PriceDescending</option>
+                <option value="7">BuyedTimeAscending</option>
+                <option value="8">BuyedTimeDescending</option>
           </select><br />
 
           <label name="StorageSortingByCity"><b>Sorting By City</b></label>
@@ -41,11 +41,11 @@
    </div>
 </form><br>
 
-<table class="table table-hover">
+<table class="table table-bordered table-striped">
   <thead>
     <tr class="bg-info">
       <th scope="col">No:</th>
-      <th scope="col">Name</th>
+      <th scope="col" >Name</th>
       <th scope="col">Designation</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>

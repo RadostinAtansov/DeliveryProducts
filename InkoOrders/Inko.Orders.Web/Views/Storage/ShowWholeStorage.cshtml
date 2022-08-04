@@ -26,12 +26,19 @@
                 <option value="5">BuyedTime</option>
             </select>
    </div>
-        
+    <label name="StorageSortingByCity"><b>Sorting By City</b></label>
+        <select name="StorageSortingByCity">
+            <option value="0" selected>ChooseCity</option>
+            <option value="1">Shumen</option>
+            <option value="2">Varna</option>
+            <option value="3">Sofia</option>
+            <option value="4">Canada</option>
+        </select>
   
 </form><br>
 
 <h1>All Components</h1>
-<table class="table table-hover">
+<table class="table table-bordered table-striped">
   <thead>
     <tr class="bg-info">
       <th scope="col">No:</th>
@@ -104,7 +111,7 @@
       
 <h1>All Ware</h1>
 
-<table class="table table-hover">
+<table class="table table-bordered table-striped">
   <thead>
     <tr class="bg-info">
       <th scope="col">No:</th>
@@ -174,16 +181,16 @@
 
 
 <h1>Bought</h1>
-<table class="table table-hover">
+<table class="table table-bordered table-striped">
     <thead>
         <tr class="bg-info">
             <th class="col">No:</th>
             <th class="col">Name</th>
             <th class="col">Designation</th>
+            <th class="col">Quantity</th>
             <th class="col">Bought</th>
             <th class="col">BoughtFrom</th>
             <th class="col">TimeBought</th>
-            <th class="col">Quantity</th>
             <th class="col">Insignificant</th>
             <th class="col">PlaceInStorage</th>
             <th class="col">City</th>
@@ -200,10 +207,10 @@
                 <th scope="row">@countBought</th>
                 <td>@item.Name</td>
                 <td>@item.Designation</td>
+                <td>@item.Quantity</td>
                 <td>@item.Bought</td>
                 <td>@item.BoughtFrom</td>
                 <td>@item.TimeBought</td>
-                <td>@item.Quantity</td>
                 <td>@item.Insignificant</td>
                 <td>@item.PlaceInStorage</td>
                 <td>@item.City</td>
@@ -242,15 +249,15 @@
 </table>
 
 <h1>Created</h1>
-<table class="table table-hover">
+<table class="table table-bordered table-striped">
     <thead>
         <tr class="bg-info">
             <th class="col">No:</th>
             <th class="col">Name</th>
             <th class="col">Designation</th>
+            <th class="col">Quantity</th>
             <th class="col">Created</th>
             <th class="col">CreatedFrom</th>
-            <th class="col">Quantity</th>
             <th class="col">TimeWhenCreated</th>
             <th class="col">Insignificant</th>
             <th class="col">PlaceInStorage</th>
@@ -269,9 +276,9 @@
                 <th scope="row">@countCreated</th>
                 <td>@item.Name</td>
                 <td>@item.Designation</td>
+                <td>@item.Quantity</td>
                 <td>@item.Created</td>
                 <td>@item.CreatedFrom</td>
-                <td>@item.Quantity</td>
                 <td>@item.TimeWhenCreated</td>
                 <td>@item.Insignificant</td>
                 <td>@item.PlaceInStorage</td>
@@ -307,7 +314,7 @@
 </table>
 
 <h1>All Materials</h1>
-<table class="table table-hover">
+<table class="table table-bordered table-striped">
   <thead>
     <tr class="bg-info">
       <th scope="col">No:</th>
