@@ -6,8 +6,11 @@ namespace InkoOrders.Data.Model.Storage
         ChooseSortingType = 0,
         Name = 1,
         Designation = 2,
-        Quantity = 3,
-        Price = 4,
-        BuyedTime = 5,
+        QuantityAscending = 3,
+        QuantityDescending = 4,
+        PriceAscending = 5,
+        PriceDescending = 6,
+        BuyedTimeAscending = 7,
+        BuyedTimeDescending = 8,
     }
 }

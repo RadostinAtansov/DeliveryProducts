@@ -2,9 +2,10 @@
 {
     public enum StorageSortingByCity
     {
-        Shumen = 0,
-        Varna = 1,
-        Sofia = 2,
-        Canada = 3,
+        ChooseCity = 0,
+        Shumen = 1,
+        Varna = 2,
+        Sofia = 3,
+        Canada = 4,
     }
 }

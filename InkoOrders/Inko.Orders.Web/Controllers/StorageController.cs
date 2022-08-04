@@ -638,20 +638,11 @@ namespace Inko.Orders.Web.Controllers
             return RedirectToAction(nameof(ShowAllWare));
         }
 
-        //[HttpGet]
-        //public IActionResult ShowAllComponents(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria)
-
-        //{
-        //    var allComponents = GetComponents(search, StorageSortingByFiveCriteria);
-
-        //    return View(allComponents);
-        //}
-
         [HttpPost]
-        public IActionResult ShowAllComponents(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria)
+        public IActionResult ShowAllComponents(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
 
         {
-            var allComponents = GetComponents(search, StorageSortingByFiveCriteria);
+            var allComponents = GetComponents(search, StorageSortingByFiveCriteria, StorageSortingByCity);
 
             return View(allComponents);
         }
@@ -753,14 +744,16 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowWholeStorage(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria)
+        public IActionResult ShowWholeStorage(string search, StorageSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
         {
 
             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
 
-            StorageSortingByFiveCriteria sorting = StorageSortingByFiveCriteria;
+            StorageSortingByFiveCriteria sortingByCriteria = StorageSortingByFiveCriteria;
 
-            sws.Components = GetComponents(search, sorting);
+            StorageSortingByCity sortingByCity = StorageSortingByCity;
+
+            sws.Components = GetComponents(search, sortingByCriteria, sortingByCity);
             sws.Bought = GetBought(search);
             sws.Created = GetCreated(search);
             sws.Ware = GetWare(search);
@@ -769,11 +762,12 @@ namespace Inko.Orders.Web.Controllers
             return View(sws);
         }
 
-        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageSortingByFiveCriteria sortingQ)
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageSortingByFiveCriteria sortingByCriteria, StorageSortingByCity sortingByCity)
         {
 
-            StorageSortingByFiveCriteria sorting = sortingQ;
+            StorageSortingByFiveCriteria sortingByCr = sortingByCriteria;
 
+            StorageSortingByCity sortingByC = sortingByCity;
 
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
@@ -792,18 +786,38 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .AsEnumerable();
 
-            allComponents = sorting switch
+
+            allComponents = sortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => allComponents.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => allComponents.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => allComponents.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => allComponents.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => allComponents.Where(p =>
+                p.City == "Canada")
+            };
+
+            allComponents = sortingByCr switch
             {
                 StorageSortingByFiveCriteria.ChooseSortingType => allComponents.OrderBy(n =>
                 n.Id),
                 StorageSortingByFiveCriteria.Name => allComponents.OrderByDescending(n => 
                 n.Name),
-                StorageSortingByFiveCriteria.BuyedTime => allComponents.OrderByDescending(bt =>
-                bt.BuyedTime),
                 StorageSortingByFiveCriteria.Designation => allComponents.OrderByDescending(d => d.Designation),
-                StorageSortingByFiveCriteria.Price => allComponents.OrderByDescending(p => 
+                StorageSortingByFiveCriteria.BuyedTimeAscending => allComponents.OrderBy(bt =>
+                bt.BuyedTime),
+                StorageSortingByFiveCriteria.BuyedTimeDescending => allComponents.OrderByDescending(bt =>
+                bt.BuyedTime),
+                StorageSortingByFiveCriteria.PriceAscending => allComponents.OrderBy(p => 
                 p.Price),
-                StorageSortingByFiveCriteria.Quantity => allComponents.OrderByDescending(q => 
+                StorageSortingByFiveCriteria.PriceDescending => allComponents.OrderByDescending(p =>
+                p.Price),
+                StorageSortingByFiveCriteria.QuantityAscending => allComponents.OrderBy(q => 
+                q.Quantity),
+                StorageSortingByFiveCriteria.QuantityDescending => allComponents.OrderByDescending(q =>
                 q.Quantity)
             };
 
