@@ -639,10 +639,9 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllComponents(string search, StorageSortingWholeStorageByCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
-
+        public IActionResult ShowAllComponents(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity StorageSortingByCity)
         {
-            var allComponents = GetComponents(search, StorageSortingByFiveCriteria, StorageSortingByCity);
+            var allComponents = GetComponents(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
 
             return View(allComponents);
         }
@@ -693,12 +692,11 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllTools(string search)
+        public IActionResult ShowAllTools(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity StorageSortingByCity)
         {
             ShowAllToolsViewModel sws = new ShowAllToolsViewModel();
 
             var AllCreated = data.ToolCreatedByInko
-                .Where(c => c.Name!.ToLower() == search.ToLower() || c.Name.Contains(search))
                 .Select(tc => new ShowAllCreatedToolsViewModel
                 {
                     Name = tc.Name,
@@ -714,7 +712,6 @@ namespace Inko.Orders.Web.Controllers
                  .AsEnumerable();
 
             var AllBought = data.TooldBoughtByInko
-                .Where(c => c.Name!.ToLower() == search.ToLower() || c.Name.Contains(search))
                 .Select(tc => new ShowAllBoughtToolsViewModel
                 {
                     Name = tc.Name,
@@ -729,6 +726,74 @@ namespace Inko.Orders.Web.Controllers
                     TimeBought = tc.TimeBought,
                 })
                  .AsEnumerable();
+
+            AllBought = StorageSortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => AllBought.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => AllBought.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => AllBought.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => AllBought.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => AllBought.Where(p =>
+                p.City == "Canada")
+            };
+
+            AllBought = StorageSortingWholeStorageByCriteria switch
+            {
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => AllBought.OrderBy(n =>
+                n.Id),
+                StorageSortingWholeStorageByCriteria.Name => AllBought.OrderByDescending(n =>
+                n.Name),
+                StorageSortingWholeStorageByCriteria.TimeAscending => AllBought.OrderBy(bt =>
+                bt.TimeBought),
+                StorageSortingWholeStorageByCriteria.TimeDescending => AllBought.OrderByDescending(bt =>
+                bt.TimeBought),
+                StorageSortingWholeStorageByCriteria.QuantityAscending => AllBought.OrderBy(p =>
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => AllBought.OrderByDescending(p =>
+                p.Quantity),
+            };
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                AllBought = AllBought.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
+            }
+
+            AllCreated = StorageSortingByCity switch
+            {
+                StorageSortingByCity.ChooseCity => AllCreated.OrderBy(n =>
+                n.Id),
+                StorageSortingByCity.Shumen => AllCreated.Where(n =>
+                n.City == "Shumen"),
+                StorageSortingByCity.Varna => AllCreated.Where(bt => bt.City ==
+                "Varna"),
+                StorageSortingByCity.Sofia => AllCreated.Where(d => d.City == "Sofia"),
+                StorageSortingByCity.Canada => AllCreated.Where(p =>
+                p.City == "Canada")
+            };
+
+            AllCreated = StorageSortingWholeStorageByCriteria switch
+            {
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => AllCreated.OrderBy(n =>
+                n.Id),
+                StorageSortingWholeStorageByCriteria.Name => AllCreated.OrderByDescending(n =>
+                n.Name),
+                StorageSortingWholeStorageByCriteria.TimeAscending => AllCreated.OrderBy(bt =>
+                bt.TimeWhenCreated),
+                StorageSortingWholeStorageByCriteria.TimeDescending => AllCreated.OrderByDescending(bt =>
+                bt.TimeWhenCreated),
+                StorageSortingWholeStorageByCriteria.QuantityAscending => AllCreated.OrderBy(p =>
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => AllCreated.OrderByDescending(p =>
+                p.Quantity)
+            };
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                AllCreated = AllCreated.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
+            }
 
             sws.CreatedTools = AllCreated;
             sws.BoughtTools = AllBought;
@@ -807,7 +872,11 @@ namespace Inko.Orders.Web.Controllers
                 StorageSortingWholeStorageByCriteria.QuantityAscending => allComponents.OrderBy(p => 
                 p.Quantity),
                 StorageSortingWholeStorageByCriteria.QuantityDescending => allComponents.OrderByDescending(p =>
-                p.Quantity)
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.PriceDescending => allComponents.OrderByDescending(p =>
+                p.Price),
+                StorageSortingWholeStorageByCriteria.PriceAscending => allComponents.OrderBy(p =>
+                p.Price),
             };
 
             if (!string.IsNullOrEmpty(search))
@@ -864,7 +933,11 @@ namespace Inko.Orders.Web.Controllers
                 StorageSortingWholeStorageByCriteria.QuantityAscending => allMaterials.OrderBy(p =>
                 p.Quаntity),
                 StorageSortingWholeStorageByCriteria.QuantityDescending => allMaterials.OrderByDescending(p =>
-                p.Quаntity)
+                p.Quаntity),
+                StorageSortingWholeStorageByCriteria.PriceDescending => allMaterials.OrderByDescending(p =>
+                p.Price),
+                StorageSortingWholeStorageByCriteria.PriceAscending => allMaterials.OrderBy(p =>
+                p.Price),
             };
 
 
@@ -920,7 +993,7 @@ namespace Inko.Orders.Web.Controllers
                 StorageSortingWholeStorageByCriteria.QuantityAscending => allWares.OrderBy(p =>
                 p.Quantity),
                 StorageSortingWholeStorageByCriteria.QuantityDescending => allWares.OrderByDescending(p =>
-                p.Quantity)
+                p.Quantity),
             };
 
             if (!string.IsNullOrEmpty(search))

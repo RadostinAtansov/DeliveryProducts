@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kLR6L0x73aFQ9nAGr78HCY8toD93IWtnrt2X3oK1rVo=",
+  "Hash": "40GRTUejOyZl9HPg/Vx+ByI9B2yZ1KE4sdfBn9vlQoI=",
   "Source": "Inko.Orders.Web",
   "BasePath": "_content/Inko.Orders.Web",
   "Mode": "Default",
@@ -1001,6 +1001,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\d832834d-3ea2-4ca1-80a9-795ed0e73839-chip.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\db878657-5d20-495b-beab-8b9f9993ad5d-snimkaCV.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/db878657-5d20-495b-beab-8b9f9993ad5d-snimkaCV.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\db878657-5d20-495b-beab-8b9f9993ad5d-snimkaCV.jpg"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\download (1).jpg",
