@@ -468,9 +468,9 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllWare(string search, StorageSortingByCity sortingByCity)
+        public IActionResult ShowAllWare(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity sortingByCity)
         {
-            var ware = GetWare(search, sortingByCity);
+            var ware = GetWare(search, StorageSortingWholeStorageByCriteria, sortingByCity);
 
             return View(ware);
         }
@@ -498,9 +498,9 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllMaterials(string search, StorageSortingByCity sortingByCity)
+        public IActionResult ShowAllMaterials(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity sortingByCity)
         {
-            var materials = GetMaterials(search, sortingByCity);
+            var materials = GetMaterials(search, StorageSortingWholeStorageByCriteria, sortingByCity);
 
             return View(materials);
         }
@@ -639,7 +639,7 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowAllComponents(string search, StorageComponentsSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
+        public IActionResult ShowAllComponents(string search, StorageSortingWholeStorageByCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
 
         {
             var allComponents = GetComponents(search, StorageSortingByFiveCriteria, StorageSortingByCity);
@@ -744,30 +744,24 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowWholeStorage(string search, StorageComponentsSortingByFiveCriteria StorageSortingByFiveCriteria, StorageSortingByCity StorageSortingByCity)
+        public IActionResult ShowWholeStorage(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity StorageSortingByCity)
         {
 
             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
 
-            StorageComponentsSortingByFiveCriteria sortingByCriteria = StorageSortingByFiveCriteria;
+            sws.Components = GetComponents(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
 
-            StorageSortingByCity sortingByCity = StorageSortingByCity;
+            sws.Materials = GetMaterials(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
 
-            sws.Components = GetComponents(search, sortingByCriteria, sortingByCity);
-            sws.Materials = GetMaterials(search, sortingByCity);
-            sws.Ware = GetWare(search, sortingByCity);
-            sws.Created = GetCreated(search, sortingByCity);
-            sws.Bought = GetBought(search, sortingByCity);
+            sws.Ware = GetWare(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+            sws.Created = GetCreated(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+            sws.Bought = GetBought(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
 
             return View(sws);
         }
 
-        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageComponentsSortingByFiveCriteria sortingByCriteria, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageSortingWholeStorageByCriteria sortingByCr, StorageSortingByCity sortingByCity)
         {
-
-            StorageComponentsSortingByFiveCriteria sortingByCr = sortingByCriteria;
-
-            //StorageSortingByCity sortingByC = sortingByCity;
 
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel
@@ -802,23 +796,18 @@ namespace Inko.Orders.Web.Controllers
 
             allComponents = sortingByCr switch
             {
-                StorageComponentsSortingByFiveCriteria.ChooseSortingType => allComponents.OrderBy(n =>
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => allComponents.OrderBy(n =>
                 n.Id),
-                StorageComponentsSortingByFiveCriteria.Name => allComponents.OrderByDescending(n => 
+                StorageSortingWholeStorageByCriteria.Name => allComponents.OrderByDescending(n => 
                 n.Name),
-                StorageComponentsSortingByFiveCriteria.Designation => allComponents.OrderByDescending(d => d.Designation),
-                StorageComponentsSortingByFiveCriteria.BuyedTimeAscending => allComponents.OrderBy(bt =>
+                StorageSortingWholeStorageByCriteria.TimeAscending => allComponents.OrderBy(bt =>
                 bt.BuyedTime),
-                StorageComponentsSortingByFiveCriteria.BuyedTimeDescending => allComponents.OrderByDescending(bt =>
+                StorageSortingWholeStorageByCriteria.TimeDescending => allComponents.OrderByDescending(bt =>
                 bt.BuyedTime),
-                StorageComponentsSortingByFiveCriteria.PriceAscending => allComponents.OrderBy(p => 
-                p.Price),
-                StorageComponentsSortingByFiveCriteria.PriceDescending => allComponents.OrderByDescending(p =>
-                p.Price),
-                StorageComponentsSortingByFiveCriteria.QuantityAscending => allComponents.OrderBy(q => 
-                q.Quantity),
-                StorageComponentsSortingByFiveCriteria.QuantityDescending => allComponents.OrderByDescending(q =>
-                q.Quantity)
+                StorageSortingWholeStorageByCriteria.QuantityAscending => allComponents.OrderBy(p => 
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => allComponents.OrderByDescending(p =>
+                p.Quantity)
             };
 
             if (!string.IsNullOrEmpty(search))
@@ -829,7 +818,8 @@ namespace Inko.Orders.Web.Controllers
             return allComponents;
         }
 
-        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, 
+            StorageSortingByCity sortingByCity)
         {
             var allMaterials = data.MaterialsInInko
                 .Select(m => new ShowAllMaterialViewModel
@@ -861,6 +851,23 @@ namespace Inko.Orders.Web.Controllers
                 p.City == "Canada")
             };
 
+            allMaterials = StorageSortingWholeStorageByCriteria switch
+            {
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => allMaterials.OrderBy(n =>
+                n.Id),
+                StorageSortingWholeStorageByCriteria.Name => allMaterials.OrderByDescending(n =>
+                n.Name),
+                StorageSortingWholeStorageByCriteria.TimeAscending => allMaterials.OrderBy(bt =>
+                bt.TimeInInko),
+                StorageSortingWholeStorageByCriteria.TimeDescending => allMaterials.OrderByDescending(bt =>
+                bt.TimeInInko),
+                StorageSortingWholeStorageByCriteria.QuantityAscending => allMaterials.OrderBy(p =>
+                p.Quаntity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => allMaterials.OrderByDescending(p =>
+                p.Quаntity)
+            };
+
+
             if (!string.IsNullOrEmpty(search))
             {
                 allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) ||   b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -869,7 +876,7 @@ namespace Inko.Orders.Web.Controllers
             return allMaterials;
         }
 
-        private IEnumerable<ShowAllWareViewModel> GetWare(string search, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllWareViewModel> GetWare(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity sortingByCity)
         {
             var allWares = data.WaresInko
                .Select(w => new ShowAllWareViewModel
@@ -885,7 +892,7 @@ namespace Inko.Orders.Web.Controllers
                    PlaceInStorage = w.PlaceInStorage,
                    City = w.City,
                })
-               .AsQueryable();
+               .AsEnumerable();
 
             allWares = sortingByCity switch
             {
@@ -900,6 +907,22 @@ namespace Inko.Orders.Web.Controllers
                 p.City == "Canada")
             };
 
+            allWares = StorageSortingWholeStorageByCriteria switch
+            {
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => allWares.OrderBy(n =>
+                n.Id),
+                StorageSortingWholeStorageByCriteria.Name => allWares.OrderByDescending(n =>
+                n.Name),
+                StorageSortingWholeStorageByCriteria.TimeAscending => allWares.OrderBy(bt =>
+                bt.TimeActiveAndHowOld),
+                StorageSortingWholeStorageByCriteria.TimeDescending => allWares.OrderByDescending(bt =>
+                bt.TimeActiveAndHowOld),
+                StorageSortingWholeStorageByCriteria.QuantityAscending => allWares.OrderBy(p =>
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => allWares.OrderByDescending(p =>
+                p.Quantity)
+            };
+
             if (!string.IsNullOrEmpty(search))
             {
                 allWares = allWares.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -908,7 +931,7 @@ namespace Inko.Orders.Web.Controllers
             return allWares;
         }
 
-        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated(string search, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllCreatedToolsViewModel> GetCreated(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity sortingByCity)
         {
             var AllCreated = data.ToolCreatedByInko
             .Select(tc => new ShowAllCreatedToolsViewModel
@@ -939,6 +962,22 @@ namespace Inko.Orders.Web.Controllers
                 p.City == "Canada")
             };
 
+            AllCreated = StorageSortingWholeStorageByCriteria switch
+            {
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => AllCreated.OrderBy(n =>
+                n.Id),
+                StorageSortingWholeStorageByCriteria.Name => AllCreated.OrderByDescending(n =>
+                n.Name),
+                StorageSortingWholeStorageByCriteria.TimeAscending => AllCreated.OrderBy(bt =>
+                bt.TimeWhenCreated),
+                StorageSortingWholeStorageByCriteria.TimeDescending => AllCreated.OrderByDescending(bt =>
+                bt.TimeWhenCreated),
+                StorageSortingWholeStorageByCriteria.QuantityAscending => AllCreated.OrderBy(p =>
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => AllCreated.OrderByDescending(p =>
+                p.Quantity)
+            };
+
             if (!string.IsNullOrEmpty(search))
             {
                 AllCreated = AllCreated.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
@@ -947,7 +986,7 @@ namespace Inko.Orders.Web.Controllers
             return AllCreated;
         }
 
-        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought(string search, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllBoughtToolsViewModel> GetBought(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity sortingByCity)
         {
             var AllBought = data.TooldBoughtByInko
             .Select(tc => new ShowAllBoughtToolsViewModel
@@ -977,6 +1016,22 @@ namespace Inko.Orders.Web.Controllers
                 StorageSortingByCity.Sofia => AllBought.Where(d => d.City == "Sofia"),
                 StorageSortingByCity.Canada => AllBought.Where(p =>
                 p.City == "Canada")
+            };
+
+            AllBought = StorageSortingWholeStorageByCriteria switch
+            {
+                StorageSortingWholeStorageByCriteria.ChooseCriteria => AllBought.OrderBy(n =>
+                n.Id),
+                StorageSortingWholeStorageByCriteria.Name => AllBought.OrderByDescending(n =>
+                n.Name),
+                StorageSortingWholeStorageByCriteria.TimeAscending => AllBought.OrderBy(bt =>
+                bt.TimeBought),
+                StorageSortingWholeStorageByCriteria.TimeDescending => AllBought.OrderByDescending(bt =>
+                bt.TimeBought),
+                StorageSortingWholeStorageByCriteria.QuantityAscending => AllBought.OrderBy(p =>
+                p.Quantity),
+                StorageSortingWholeStorageByCriteria.QuantityDescending => AllBought.OrderByDescending(p =>
+                p.Quantity)
             };
 
             if (!string.IsNullOrEmpty(search))

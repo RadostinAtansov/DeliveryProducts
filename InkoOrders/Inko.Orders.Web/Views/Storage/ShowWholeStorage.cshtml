@@ -16,14 +16,15 @@
         <b>Search:</b> <input type="text" name="search"/>
         <input type="submit" value="Search" /><br />
             
-        <label asp-for="StorageSortingByFiveCriteria"><b>SortingBy</b></label>
-            <select asp-for="StorageSortingByFiveCriteria">
+        <label asp-for="StorageSortingWholeStorageByCriteria"><b>SortingBy</b></label>
+            <select asp-for="StorageSortingWholeStorageByCriteria">
                 <option value="0" selected>ChooseCriteria</option>
                 <option value="1">Name</option>
-                <option value="2">Designation</option>
-                <option value="3">Quantity</option>
-                <option value="4">Price</option>
-                <option value="5">BuyedTime</option>
+                <option value="2">TimeAscending</option>
+                <option value="3">TimeDescending</option>
+                <option value="4">QuantityAscending</option>
+                <option value="5">QuantityDescending</option>
+
             </select>
    </div>
     <label name="StorageSortingByCity"><b>Sorting By City</b></label>
