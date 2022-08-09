@@ -8,6 +8,8 @@
 
         public decimal Price { get; set; }
 
+        public string Designation { get; set; }
+
         public int? Quantity { get; set; }
 
         public DateTime BuyedTime { get; set; }

@@ -38,7 +38,7 @@ namespace InkoOrders.Data.Model.Storage
 
         [Required]
         [StringLength(StoragePlaceInStorageMaxLenght, MinimumLength = StoragePlaceInStorageMinLenght)]
-        public string PlaceInStorage { get; set; }
+        public string? PlaceInStorage { get; set; }
 
         [Required]
         [StringLength(StorageCityMaxLenght, MinimumLength = StorageCityMinLenght)]

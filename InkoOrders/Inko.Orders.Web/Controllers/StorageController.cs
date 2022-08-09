@@ -1,11 +1,9 @@
-﻿using Inko.Orders.Web.Models.Storage.Edit;
-using Inko.Orders.Web.Models.Storage.Show;
-using InkoOrders.Data;
-using InkoOrders.Data.Model.Storage;
-using InkoOrders.Services;
-using InkoOrders.Services.IStorageServices;
-using InkoOrders.Services.Model.Storage;
+﻿using InkoOrders.Data;
 using Microsoft.AspNetCore.Mvc;
+using InkoOrders.Data.Model.Storage;
+using InkoOrders.Services.Model.Storage;
+using Inko.Orders.Web.Models.Storage.Show;
+using InkoOrders.Services.IStorageServices;
 
 
 namespace Inko.Orders.Web.Controllers
@@ -129,13 +127,14 @@ namespace Inko.Orders.Web.Controllers
                     Id = c.Id,
                     Name = c.Name,
                     City = c.City,
-                    Picture = c.Picture,
                     Price = c.Price,
+                    Picture = c.Picture,
+                    Comment = c.Comment,
                     Quantity = c.Quantity,
                     BuyedTime = c.BuyedTime,
-                    Comment = c.Comment,
-                    PlaceInStorage = c.PlaceInStorage,
+                    Designation = c.Designation,
                     Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
                 })
                 .FirstOrDefault(x => x.Id == id);
 
@@ -145,6 +144,13 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult EditComponent(EditComponentServiceViewModel model)
         {
+
+
+            if (string.IsNullOrWhiteSpace(model.Designation))
+            {
+                throw new NullReferenceException("Designation can`t be null");
+            }
+
             this.component.Edit(model);
 
             return View("Views/Home/Index.cshtml");

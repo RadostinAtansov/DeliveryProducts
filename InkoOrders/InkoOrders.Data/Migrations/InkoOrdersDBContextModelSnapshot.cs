@@ -17,7 +17,7 @@ namespace InkoOrders.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -565,7 +565,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -574,7 +575,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -590,7 +592,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -604,6 +607,34 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("Components");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.HistoryStorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("InOut")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReasonTransaction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HistoryStorages");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageComponent", b =>
                 {
                     b.Property<int>("Id")
@@ -614,11 +645,13 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("BoughtCompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("ComponentId")
                         .HasColumnType("int");
@@ -629,7 +662,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Qantity")
                         .HasColumnType("int");
@@ -654,11 +688,13 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("BoughtCompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("MaterialId")
                         .HasColumnType("int");
@@ -669,7 +705,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Qantity")
                         .HasColumnType("int");
@@ -694,11 +731,13 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("BoughtCompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Picture")
                         .IsRequired()
@@ -706,7 +745,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -724,46 +764,6 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("InvoicesStorageToolBoughtByInkos");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageToolCreatedByInko", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("BoughtCompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("TimeWhenBoughtOnInvoice")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ToolCreatedByInkoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ToolCreatedByInkoId");
-
-                    b.ToTable("InvoicesStorageToolCreatedByInko");
-                });
-
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageWare", b =>
                 {
                     b.Property<int>("Id")
@@ -774,11 +774,13 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("BoughtCompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Picture")
                         .IsRequired()
@@ -786,7 +788,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Qantity")
                         .HasColumnType("int");
@@ -814,7 +817,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -823,7 +827,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -839,12 +844,14 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("Quantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TimeInInko")
@@ -868,7 +875,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("ArrivedQuantityAndProductsFromOrder")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<DateTime>("ChangeStatusChangeDatetime")
                         .HasColumnType("datetime2");
@@ -878,21 +886,25 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("Identifier")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("OrderDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("OrderedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal?>("Price")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProviderName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -922,11 +934,13 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("BoughtFrom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -935,7 +949,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -951,7 +966,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -974,7 +990,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -986,11 +1003,13 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("CreatedFrom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -1006,7 +1025,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -1032,7 +1052,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -1041,7 +1062,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("Insignificant")
                         .HasColumnType("bit");
@@ -1057,7 +1079,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -1386,17 +1409,6 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("ToolBoughtByInko");
                 });
 
-            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageToolCreatedByInko", b =>
-                {
-                    b.HasOne("InkoOrders.Data.Model.Storage.ToolCreatedByInko", "ToolCreatedByInko")
-                        .WithMany("InvoicesToolsCreatedByInko")
-                        .HasForeignKey("ToolCreatedByInkoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ToolCreatedByInko");
-                });
-
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoicesStorageWare", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.Storage.WareInko", "Ware")
@@ -1520,11 +1532,6 @@ namespace InkoOrders.Data.Migrations
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolBoughtByInko", b =>
                 {
                     b.Navigation("InvoicesToolsBoughtByInko");
-                });
-
-            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolCreatedByInko", b =>
-                {
-                    b.Navigation("InvoicesToolsCreatedByInko");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.WareInko", b =>

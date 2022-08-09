@@ -78,6 +78,11 @@ namespace InkoOrders.Services.Implementation.Storage
             var component = data.Components
                  .Find(model.Id);
 
+            if (string.IsNullOrWhiteSpace(component.Designation))
+            {
+                throw new NullReferenceException("Designation can`t be null");
+            }
+
             component.Name = model.Name;
             component.Designation = model.Designation;
             component.City = model.City;
