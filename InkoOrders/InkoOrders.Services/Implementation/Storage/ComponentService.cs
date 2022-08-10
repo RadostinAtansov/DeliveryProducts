@@ -2,6 +2,7 @@
 using InkoOrders.Data.Model.Storage;
 using InkoOrders.Services.Model.Storage;
 using InkoOrders.Services.IStorageServices;
+using System.Web.Mvc;
 
 namespace InkoOrders.Services.Implementation.Storage
 {
@@ -81,6 +82,39 @@ namespace InkoOrders.Services.Implementation.Storage
             if (string.IsNullOrWhiteSpace(component.Designation))
             {
                 throw new NullReferenceException("Designation can`t be null");
+            }
+
+            var comp = this.data.Components.Find(model.Id);
+
+            if (model.Quantity < comp.Quantity)
+            {
+                var quantit = comp.Quantity - model.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = component.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit component down with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            else if(model.Quantity > comp.Quantity)
+            {
+                var quantit = model.Quantity - comp.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = component.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit component up with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
             }
 
             component.Name = model.Name;

@@ -1,4 +1,6 @@
-﻿namespace Inko.Orders.Web.Models.Storage.Edit
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Inko.Orders.Web.Models.Storage.Edit
 {
     public class EditComponentViewModel
     {
@@ -10,6 +12,7 @@
 
         public string Designation { get; set; }
 
+        [Range(0, 100000)]
         public int? Quantity { get; set; }
 
         public DateTime BuyedTime { get; set; }

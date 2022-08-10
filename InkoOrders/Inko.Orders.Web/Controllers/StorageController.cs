@@ -145,10 +145,14 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult EditComponent(EditComponentServiceViewModel model)
         {
 
-
             if (string.IsNullOrWhiteSpace(model.Designation))
             {
                 throw new NullReferenceException("Designation can`t be null");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentOutOfRangeException("Quantity can`t be under Zero");
             }
 
             this.component.Edit(model);
@@ -297,12 +301,47 @@ namespace Inko.Orders.Web.Controllers
             return View();
         }
 
+        public IActionResult ShowAllHistory()
+        {
+            var history = this
+                .data
+                .HistoryStorages
+                .Select(cw => new ShowAllHistoryViewModel
+                {
+                    Name = cw.Name,
+                    Quantity = cw.Quantity,
+                    DateTransaction = cw.Date,
+                    ReasonTransaction = cw.ReasonTransaction,
+                })
+                .ToList();
+
+            return View(history);
+        }
+
         [HttpPost]
         public IActionResult AddComponent(AddComponentServiceViewModel model)
         {
-            string stringFile = UploadFile(model.Picture);
+            if (model.Quantity > 0)
+            {
+                var history = new HistoryStorage
+                {
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    ReasonTransaction = "Add by User Component",
+                    Date = DateTime.Now,
+                };
+                this.data.HistoryStorages.Add(history);
+                this.data.SaveChanges();
+            }
 
-            this.component.AddComponent(model, stringFile);
+            if (!ModelState.IsValid)
+            {
+
+                string stringFile = UploadFile(model.Picture);
+
+                this.component.AddComponent(model, stringFile);
+
+            }
             return View("Views/Home/Index.cshtml");
         }
 

@@ -1,4 +1,6 @@
-﻿namespace InkoOrders.Services.Model.Storage
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace InkoOrders.Services.Model.Storage
 {
     public class EditComponentServiceViewModel
     {
@@ -10,6 +12,7 @@
 
         public decimal Price { get; set; }
 
+        [Range(0, 100000000, ErrorMessage = "Quantity can`t be under zero")]
         public int? Quantity { get; set; }
 
         public DateTime BuyedTime { get; set; }
