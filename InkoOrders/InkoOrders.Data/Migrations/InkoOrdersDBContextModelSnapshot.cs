@@ -592,8 +592,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -622,7 +622,7 @@ namespace InkoOrders.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("ReasonTransaction")
@@ -843,8 +843,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -965,8 +965,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -1024,8 +1024,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -1078,8 +1078,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("PlaceInStorage")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

@@ -11,7 +11,7 @@
 
         //All comments
         public const int CommentMaxLength = 1000;
-        public const int CommentMinLength = 3;
+        public const int CommentMinLength = 5;
 
         public const int NameDeliveryLength = 80;
 
@@ -33,20 +33,20 @@
         public const int TransportToClient = 100;
 
         //Storage
-        public const int StorageNameMaxLength = 100;
         public const int StorageNameMinLength = 5;
+        public const int StorageNameMaxLength = 100;
 
-        public const int StorageDesignationMaxLenght = 1000;
         public const int StorageDesignationMinLenght = 5;
+        public const int StorageDesignationMaxLenght = 1000;
 
+        public const int StorageQuantityMinLenght = 0;
         public const int StorageQuantityMaxLenght = int.MaxValue;
-        public const int StorageQuantityMinLenght = 1;
 
-        public const int StoragePlaceInStorageMaxLenght = 10;
-        public const int StoragePlaceInStorageMinLenght = 1000;
+        public const int StoragePlaceInStorageMinLenght = 10;
+        public const int StoragePlaceInStorageMaxLenght = 1000;
 
-        public const int StorageCityMaxLenght = 100;
         public const int StorageCityMinLenght = 2;
+        public const int StorageCityMaxLenght = 100;
 
         public const int StoragePriceMinLenght = 0;
         public const int StoragePriceMaxLenght = int.MaxValue;

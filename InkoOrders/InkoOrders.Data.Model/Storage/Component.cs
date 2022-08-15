@@ -19,7 +19,7 @@ namespace InkoOrders.Data.Model.Storage
         [StringLength(StorageDesignationMaxLenght, MinimumLength = StorageDesignationMinLenght)]
         public string Designation { get; set; }
 
-        [Required(ErrorMessage ="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")]
+        [Required]
         [Range(0.0, 99.0, ErrorMessage = "Must be between this too")]
         public int? Quantity { get; set; }
 

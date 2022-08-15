@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\InkoOrders.Data.Model\InkoOrders.Data.Model.csproj" />
   </ItemGroup>
 

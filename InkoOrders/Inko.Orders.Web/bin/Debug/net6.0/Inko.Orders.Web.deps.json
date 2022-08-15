@@ -11,6 +11,7 @@
           "InkoOrders.Data": "1.0.0",
           "InkoOrders.Data.Model": "1.0.0",
           "InkoOrders.Services": "1.0.0",
+          "Microsoft.AspNet.WebPages": "3.2.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.6"
         },
         "runtime": {
@@ -2437,6 +2438,7 @@
       "InkoOrders.Data/1.0.0": {
         "dependencies": {
           "InkoOrders.Data.Model": "1.0.0",
+          "Microsoft.AspNet.WebPages": "3.2.9",
           "Microsoft.EntityFrameworkCore": "6.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.8"
         },
@@ -2446,6 +2448,7 @@
       },
       "InkoOrders.Data.Model/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNet.WebPages": "3.2.9",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
         },
@@ -2457,7 +2460,8 @@
         "dependencies": {
           "InkoOrders.Data": "1.0.0",
           "InkoOrders.Services.Model": "1.0.0",
-          "Microsoft.AspNet.Mvc": "5.2.9"
+          "Microsoft.AspNet.Mvc": "5.2.9",
+          "Microsoft.AspNet.WebPages": "3.2.9"
         },
         "runtime": {
           "InkoOrders.Services.dll": {}
@@ -2465,7 +2469,8 @@
       },
       "InkoOrders.Services.Model/1.0.0": {
         "dependencies": {
-          "InkoOrders.Data.Model": "1.0.0"
+          "InkoOrders.Data.Model": "1.0.0",
+          "Microsoft.AspNet.WebPages": "3.2.9"
         },
         "runtime": {
           "InkoOrders.Services.Model.dll": {}

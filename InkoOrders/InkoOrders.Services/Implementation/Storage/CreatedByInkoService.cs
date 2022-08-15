@@ -53,6 +53,37 @@ namespace InkoOrders.Services.Implementation.Storage
             var toolcreated = data.ToolCreatedByInko
                 .Find(model.Id);
 
+            if (model.Quantity < toolcreated.Quantity)
+            {
+                var quantit = toolcreated.Quantity - model.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = toolcreated.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit material down with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            else if (model.Quantity > toolcreated.Quantity)
+            {
+                var quantit = model.Quantity - toolcreated.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = toolcreated.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit material up with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+
             toolcreated.Name = model.Name;
             toolcreated.TimeWhenCreated = model.TimeWhenCreated;
             toolcreated.Designation = model.Designation;

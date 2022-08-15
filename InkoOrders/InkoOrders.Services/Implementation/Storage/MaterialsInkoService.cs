@@ -47,7 +47,7 @@ namespace InkoOrders.Services.Implementation
                 throw new ArgumentException("Name can`t be empty");
             }
 
-            var materialCheck = data.Components
+            var materialCheck = data.MaterialsInInko
                    .FirstOrDefault(x => x.Name == material.Name);
 
             if (materialCheck != null)
@@ -63,7 +63,7 @@ namespace InkoOrders.Services.Implementation
                 TimeInInko = DateTime.Now,
                 Picture = path,
                 Comment = material.Comment,
-                Quantity = material.Quаntity,
+                Quantity = material.Quantity,
                 Insignificant = material.Insignificant,
                 PlaceInStorage = material.PlaceInStorage,
                 City = material.City,
@@ -77,6 +77,42 @@ namespace InkoOrders.Services.Implementation
         {
             var material = data.MaterialsInInko
                  .Find(model.Id);
+
+            if (string.IsNullOrWhiteSpace(material.Designation))
+            {
+                throw new NullReferenceException("Designation can`t be null");
+            }
+
+            if (model.Quantity < material.Quantity)
+            {
+                var quantit = material.Quantity - model.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = material.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit material down with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            else if (model.Quantity > material.Quantity)
+            {
+                var quantit = model.Quantity - material.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = material.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit material up with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
 
             material.Name = model.Name;
             material.City = model.City;

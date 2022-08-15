@@ -52,6 +52,11 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddInvoiceToComponent(AddInvoiceComponentServiceViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.component.AddInvoiceComponent(model, stringFile);
@@ -67,6 +72,12 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddInvoiceToMaterial(AddInvoiceMaterialServiceViewModel model)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.material.AddInvoiceToMaterial(model, stringFile);
@@ -82,6 +93,12 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddInvoiceToWare(AddInvoiceWareServiceViewModel model)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.ware.AddInvoiceToWare(model, stringFile);
@@ -97,6 +114,12 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddInvoiceToToolBought(AddInvoiceToolBoughtServiceViewModel model)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.toolBought.AddInvoiceToToolBought(model, stringFile);
@@ -107,6 +130,25 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddMaterial(AddMaterialsServiceViewModel model)
         {
+
+            if (model.Quantity > 0)
+            {
+                var history = new HistoryStorage
+                {
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    ReasonTransaction = "Add by User Material",
+                    Date = DateTime.Now,
+                };
+                this.data.HistoryStorages.Add(history);
+                this.data.SaveChanges();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.material.AddMaterials(model, stringFile);
@@ -145,14 +187,9 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult EditComponent(EditComponentServiceViewModel model)
         {
 
-            if (string.IsNullOrWhiteSpace(model.Designation))
-            {
-                throw new NullReferenceException("Designation can`t be null");
-            }
-
             if (!ModelState.IsValid)
             {
-                throw new ArgumentOutOfRangeException("Quantity can`t be under Zero");
+                return View();
             }
 
             this.component.Edit(model);
@@ -168,6 +205,7 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new EditMaterialServiceViewModel
                 {
                     Id = c.Id,
+                    Designation = c.Designation,
                     Name = c.Name,
                     City = c.City,
                     Picture = c.Picture,
@@ -186,6 +224,11 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult EditMaterial(EditMaterialServiceViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             this.material.Edit(model);
 
             return View("Views/Home/Index.cshtml");
@@ -212,10 +255,15 @@ namespace Inko.Orders.Web.Controllers
 
             return View(editComponent);
         }
-
+        //validaciii na viewtata
         [HttpPost]
         public IActionResult EditWare(EditWareServiceViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             this.ware.Edit(model);
 
             return View("Views/Home/Index.cshtml");
@@ -246,6 +294,11 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult EditToolBought(EditToolBoughtServiceViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             this.toolBought.Edit(model);
 
             return View("Views/Home/Index.cshtml");
@@ -278,6 +331,11 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult EditToolCreated(EditToolCreatedServiceViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             this.toolCreated.Edit(model);
 
             return View("Views/Home/Index.cshtml");
@@ -291,6 +349,11 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddProviderOrder(AddProviderServiceViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             this.provider.AddProviderOrder(model);
 
             return View("Views/Home/Index.cshtml");
@@ -336,12 +399,13 @@ namespace Inko.Orders.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                return View();
+            }
 
                 string stringFile = UploadFile(model.Picture);
 
                 this.component.AddComponent(model, stringFile);
 
-            }
             return View("Views/Home/Index.cshtml");
         }
 
@@ -353,6 +417,26 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddBoughtTool(AddBoughtByInkoSeviceViewModel model)
         {
+
+
+            if (model.Quantity > 0)
+            {
+                var history = new HistoryStorage
+                {
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    ReasonTransaction = "Add by User Component",
+                    Date = DateTime.Now,
+                };
+                this.data.HistoryStorages.Add(history);
+                this.data.SaveChanges();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.toolBought.AddTool(model, stringFile);
@@ -368,6 +452,25 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddCreatedTool(AddCreatedByInkoServiceViewModel model)
         {
+
+            if (model.Quantity > 0)
+            {
+                var history = new HistoryStorage
+                {
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    ReasonTransaction = "Add by User Component",
+                    Date = DateTime.Now,
+                };
+                this.data.HistoryStorages.Add(history);
+                this.data.SaveChanges();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
 
             this.toolCreated.AddCreated(model, stringFile);
@@ -383,6 +486,25 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddWare(AddWareServiceViewModel model)
         {
+
+            if (model.Quantity > 0)
+            {
+                var history = new HistoryStorage
+                {
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    ReasonTransaction = "Add by User Ware",
+                    Date = DateTime.Now,
+                };
+                this.data.HistoryStorages.Add(history);
+                this.data.SaveChanges();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             string stringFile = UploadFile(model.Picture);
                
             this.ware.AddWare(model, stringFile);

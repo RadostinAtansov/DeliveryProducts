@@ -84,11 +84,9 @@ namespace InkoOrders.Services.Implementation.Storage
                 throw new NullReferenceException("Designation can`t be null");
             }
 
-            var comp = this.data.Components.Find(model.Id);
-
-            if (model.Quantity < comp.Quantity)
+            if (model.Quantity < component.Quantity)
             {
-                var quantit = comp.Quantity - model.Quantity;
+                var quantit = component.Quantity - model.Quantity;
 
                 var history = new HistoryStorage
                 {
@@ -101,9 +99,9 @@ namespace InkoOrders.Services.Implementation.Storage
                 this.data.HistoryStorages.Add(history);
                 data.SaveChanges();
             }
-            else if(model.Quantity > comp.Quantity)
+            else if(model.Quantity > component.Quantity)
             {
-                var quantit = model.Quantity - comp.Quantity;
+                var quantit = model.Quantity - component.Quantity;
 
                 var history = new HistoryStorage
                 {

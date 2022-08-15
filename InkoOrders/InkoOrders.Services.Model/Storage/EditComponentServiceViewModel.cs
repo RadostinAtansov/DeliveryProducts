@@ -1,30 +1,48 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InkoOrders.Data.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace InkoOrders.Services.Model.Storage
 {
+    using static DataValidation;
+
     public class EditComponentServiceViewModel
     {
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(StorageNameMaxLength, MinimumLength = StorageNameMinLength)]
         public string Name { get; set; }
 
-        public string Designation { get; set; }
-
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = $"Must be between this too 0 and 2147483647")]
         public decimal Price { get; set; }
 
-        [Range(0, 100000000, ErrorMessage = "Quantity can`t be under zero")]
+        [Required]
+        [StringLength(StorageDesignationMaxLenght, MinimumLength = StorageDesignationMinLenght)]
+        public string Designation { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = $"Must be between this too 0 and 2147483647")]
         public int? Quantity { get; set; }
 
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime BuyedTime { get; set; }
 
         public bool Insignificant { get; set; }
 
+        [Required]
         public string Picture { get; set; }
 
+        [Required]
+        [StringLength(StoragePlaceInStorageMaxLenght, MinimumLength = StoragePlaceInStorageMinLenght)]
         public string PlaceInStorage { get; set; }
 
+        [Required]
+        [StringLength(StorageCityMaxLenght, MinimumLength = StorageCityMinLenght)]
         public string City { get; set; }
 
+        [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; }
     }
 }

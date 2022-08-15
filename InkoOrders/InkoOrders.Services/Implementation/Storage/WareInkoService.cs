@@ -79,6 +79,36 @@ namespace InkoOrders.Services.Implementation.Storage
             var ware = data.WaresInko
                  .Find(model.Id);
 
+            if (model.Quantity < ware.Quantity)
+            {
+                var quantit = ware.Quantity - model.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = ware.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit Ware down with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            else if (model.Quantity > ware.Quantity)
+            {
+                var quantit = model.Quantity - ware.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Name = ware.Name,
+                    Quantity = quantit,
+                    ReasonTransaction = "Edit Ware up with",
+                    Date = DateTime.Now
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
             ware.Name = model.Name;
             ware.Designation = model.Designation;
             ware.City = model.City;
