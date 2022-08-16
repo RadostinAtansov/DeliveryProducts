@@ -398,22 +398,19 @@ namespace Inko.Orders.Web.Controllers
                 ModelState.AddModelError("", "You need to write word");
             }
 
-            //DateTime outputDateTimeValue;
-
-            //DateTime.TryParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outputDateTimeValue);
-
-            //DateTime.TryParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outputDateTimeValue);
-
-            //DateTime dateSearchFrom = Convert.ToDateTime(searchFrom);
             DateTime dateSearchFrom = Convert.ToDateTime(searchFrom);
             DateTime dateSearchTo = Convert.ToDateTime(searchTo);
 
             var history = this
                 .data
                 .HistoryStorages
-                .Where(cw => (cw.Date.Year >= dateSearchFrom.Year && cw.Date.Year <= dateSearchTo.Year) 
-                && (cw.Date.Month == dateSearchTo.Month && cw.Date.Month == dateSearchTo.Month) 
-                && (cw.Date.Date == dateSearchTo.Date && cw.Date.Date == dateSearchTo.Date))
+                .Where(cw => 
+                cw.Date.Day >= dateSearchFrom.Day 
+                && cw.Date.Day <= dateSearchTo.Day 
+                && cw.Date.Month >= dateSearchTo.Month 
+                && cw.Date.Month <= dateSearchTo.Month
+                && cw.Date.Year >= dateSearchTo.Year 
+                && cw.Date.Year <= dateSearchTo.Year)
                 .Select(cw => new ShowAllHistoryViewModel
                 {
                     Name = cw.Name,

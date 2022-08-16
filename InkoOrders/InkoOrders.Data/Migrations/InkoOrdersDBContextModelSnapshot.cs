@@ -874,8 +874,8 @@ namespace InkoOrders.Data.Migrations
 
                     b.Property<string>("ArrivedQuantityAndProductsFromOrder")
                         .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("ChangeStatusChangeDatetime")
                         .HasColumnType("datetime2");

@@ -11,6 +11,15 @@
     <div class="col-md-4">
         <form asp-action="AddProviderOrder">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status">
+                    <option value="0">Ordered</option>
+                    <option value="1">WaitingToArrive</option>
+                    <option value="2">Finished</option>
+                    <option value="3">Sent</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label asp-for="Identifier" class="control-label"></label>
                 <input asp-for="Identifier" class="form-control" />
@@ -60,11 +69,6 @@
                 <label asp-for="ArrivedQuantityAndProductsFromOrder" class="control-label"></label>
                 <input asp-for="ArrivedQuantityAndProductsFromOrder" class="form-control" />
                 <span asp-validation-for="ArrivedQuantityAndProductsFromOrder" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ChangeStatusChangeDatetime" class="control-label"></label>

@@ -2,8 +2,9 @@
 {
     public enum OrderStatusProvider
     {
-        Proces = 0,
-        Waiting = 1,
+        Ordered = 0,
+        WaitingToArrive = 1,
         Finished = 2,
+        Sent = 3,
     }
 }
