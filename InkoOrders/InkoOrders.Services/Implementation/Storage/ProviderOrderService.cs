@@ -16,10 +16,6 @@ namespace InkoOrders.Services.Implementation.Storage
 
         public void AddProviderOrder(AddProviderServiceViewModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.ProviderName))
-            {
-                throw new ArgumentException("Provider name can`t be null or white space");
-            }
 
             var order = new ProviderOrder()
             {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "belGhqqhYDwAEPY0YTCCGjWNaTJ6sv53ee/WsVxsG7U=",
+  "Hash": "exYmr3OP5IvO5UPEz2hAD+PBMWsSkiTNpk1yYYGVAbo=",
   "Source": "Inko.Orders.Web",
   "BasePath": "_content/Inko.Orders.Web",
   "Mode": "Default",
@@ -204,6 +204,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\0caf88f3-4e2f-423c-b1e1-20487e9a8dc8-helikopter.jpg"
     },
     {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\0e3c7dd1-e9d5-4de7-aa8d-825c05a430a3-Yinyang.webp",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/0e3c7dd1-e9d5-4de7-aa8d-825c05a430a3-Yinyang.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\0e3c7dd1-e9d5-4de7-aa8d-825c05a430a3-Yinyang.webp"
+    },
+    {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\0edff304-8700-4a35-aa6f-2c8aeb326b8f-snimkaCV.jpg",
       "SourceId": "Inko.Orders.Web",
       "SourceType": "Discovered",
@@ -289,6 +306,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\1435adc1-41f6-4f3f-b256-4b175c1ae5e8-snimkaCV.jpg"
     },
     {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\1774005c-a860-4e7d-bc72-28d06fc2a8c8-snimkaCV.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/1774005c-a860-4e7d-bc72-28d06fc2a8c8-snimkaCV.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\1774005c-a860-4e7d-bc72-28d06fc2a8c8-snimkaCV.jpg"
+    },
+    {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\181deffc-d84f-41ff-a5eb-2a7e8017d8c1-snimkaCV.jpg",
       "SourceId": "Inko.Orders.Web",
       "SourceType": "Discovered",
@@ -355,6 +389,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\1a16f611-d066-4e62-81ba-dedb26ff1298-snimkaCV.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\1ba34548-6d49-45ec-a421-ad8b0c9e569c-Yinyang.webp",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/1ba34548-6d49-45ec-a421-ad8b0c9e569c-Yinyang.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\1ba34548-6d49-45ec-a421-ad8b0c9e569c-Yinyang.webp"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\2021-honda-nsx-1.jpg",
@@ -901,6 +952,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\80928dba-e887-4f72-b783-202ddc2a282c-helikopter.jpg"
     },
     {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\8489f6d0-9fbf-423e-b274-3ba316555bc1-Yinyang.webp",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/8489f6d0-9fbf-423e-b274-3ba316555bc1-Yinyang.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\8489f6d0-9fbf-423e-b274-3ba316555bc1-Yinyang.webp"
+    },
+    {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\8767374b-01ba-49f9-9ed1-8ffb5db2461a-invoice-template-us-classic-white-750px.png",
       "SourceId": "Inko.Orders.Web",
       "SourceType": "Discovered",
@@ -1241,6 +1309,40 @@
       "OriginalItemSpec": "wwwroot\\Images\\b72b9eba-46bc-4564-b71d-d6eb2ce3a210-fcb74faee4c0576ceaacf82777f6bc93__1_.png"
     },
     {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\b99d13a2-6afa-48a8-9170-9ec54fb8438a-snimkaCV.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/b99d13a2-6afa-48a8-9170-9ec54fb8438a-snimkaCV.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\b99d13a2-6afa-48a8-9170-9ec54fb8438a-snimkaCV.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\bb7cadd4-ccf7-46c2-80f1-3e35a922e4e9-snimkaCV.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/bb7cadd4-ccf7-46c2-80f1-3e35a922e4e9-snimkaCV.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\bb7cadd4-ccf7-46c2-80f1-3e35a922e4e9-snimkaCV.jpg"
+    },
+    {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\c7a95f3a-8e6e-457a-a1a9-526378f17d3b-download.jpg",
       "SourceId": "Inko.Orders.Web",
       "SourceType": "Discovered",
@@ -1290,6 +1392,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\c8b893d5-394c-47f0-9314-ee7c94a346b0-chip.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\caa96ce7-bcc9-414e-af7d-f95fef9fa596-snimkaCV.jpg",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/caa96ce7-bcc9-414e-af7d-f95fef9fa596-snimkaCV.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\caa96ce7-bcc9-414e-af7d-f95fef9fa596-snimkaCV.jpg"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\chip.jpg",

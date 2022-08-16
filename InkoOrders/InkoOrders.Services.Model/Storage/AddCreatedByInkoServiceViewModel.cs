@@ -23,7 +23,7 @@ namespace InkoOrders.Services.Model.Storage
         public string CreatedFrom { get; set; }
 
         [Required]
-        [Range(StorageQuantityMaxLenght, StorageQuantityMinLenght)]
+        [Range(StorageQuantityMinLenght, StorageQuantityMaxLenght)]
         public int Quantity { get; set; }
 
         [Required]

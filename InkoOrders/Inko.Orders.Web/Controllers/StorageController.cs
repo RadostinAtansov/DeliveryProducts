@@ -52,6 +52,7 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddInvoiceToComponent(AddInvoiceComponentServiceViewModel model)
         {
+
             if (!ModelState.IsValid)
             {
                 return View();
@@ -130,6 +131,14 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddMaterial(AddMaterialsServiceViewModel model)
         {
+            var toolCheck = data.MaterialsInInko
+            .FirstOrDefault(x => x.Name == model.Name);
+
+            if (toolCheck != null)
+            {
+                ModelState.AddModelError("", "This Name already exist!");
+                return View();
+            }
 
             if (model.Quantity > 0)
             {
@@ -384,6 +393,16 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddComponent(AddComponentServiceViewModel model)
         {
+
+            var toolCheck = data.Components
+            .FirstOrDefault(x => x.Name == model.Name);
+
+            if (toolCheck != null)
+            {
+                ModelState.AddModelError("", "This Name already exist!");
+                return View();
+            }
+
             if (model.Quantity > 0)
             {
                 var history = new HistoryStorage
@@ -417,7 +436,14 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddBoughtTool(AddBoughtByInkoSeviceViewModel model)
         {
+            var toolCheck = data.TooldBoughtByInko
+            .FirstOrDefault(x => x.Name == model.Name);
 
+            if (toolCheck != null)
+            {
+                ModelState.AddModelError("", "This Name already exist!");
+                return View();
+            }
 
             if (model.Quantity > 0)
             {
@@ -425,12 +451,14 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Name = model.Name,
                     Quantity = model.Quantity,
-                    ReasonTransaction = "Add by User Component",
+                    ReasonTransaction = "Add by User Bought Tool",
                     Date = DateTime.Now,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();
             }
+
+
 
             if (!ModelState.IsValid)
             {
@@ -453,13 +481,22 @@ namespace Inko.Orders.Web.Controllers
         public IActionResult AddCreatedTool(AddCreatedByInkoServiceViewModel model)
         {
 
+            var toolCheck = data.ToolCreatedByInko
+             .FirstOrDefault(x => x.Name == model.Name);
+
+            if (toolCheck != null)
+            {
+                ModelState.AddModelError("","This Name already exist!");
+                return View();
+            }
+
             if (model.Quantity > 0)
             {
                 var history = new HistoryStorage
                 {
                     Name = model.Name,
                     Quantity = model.Quantity,
-                    ReasonTransaction = "Add by User Component",
+                    ReasonTransaction = "Add by User Creasted Tool",
                     Date = DateTime.Now,
                 };
                 this.data.HistoryStorages.Add(history);
@@ -486,6 +523,14 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult AddWare(AddWareServiceViewModel model)
         {
+            var toolCheck = data.WaresInko
+            .FirstOrDefault(x => x.Name == model.Name);
+
+            if (toolCheck != null)
+            {
+                ModelState.AddModelError("", "This Name already exist!");
+                return View();
+            }
 
             if (model.Quantity > 0)
             {

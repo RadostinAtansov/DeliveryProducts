@@ -17,19 +17,6 @@ namespace InkoOrders.Services.Implementation.Storage
 
         public void AddComponent(AddComponentServiceViewModel component, string path)
         {
-            if (string.IsNullOrEmpty(component.Name))
-            {
-                throw new ArgumentException("Name can`t be null or empty");
-            }
-
-            var componentCheck = data.Components
-                    .FirstOrDefault(x => x.Name == component.Name);
-
-            if (componentCheck != null)
-            {
-                throw new ArgumentException("Can`t add same component!");
-            }
-
             var addC = new Component()
             {
                 Name = component.Name,

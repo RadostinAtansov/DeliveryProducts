@@ -12,7 +12,6 @@ namespace Inko.Orders.Web.Models.Storage.Edit
 
         public string Designation { get; set; }
 
-        [Range(0, 100000)]
         public int? Quantity { get; set; }
 
         public DateTime BuyedTime { get; set; }

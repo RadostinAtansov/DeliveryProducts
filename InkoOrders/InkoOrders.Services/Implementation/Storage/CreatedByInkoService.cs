@@ -16,18 +16,6 @@ namespace InkoOrders.Services.Implementation.Storage
 
         public void AddCreated(AddCreatedByInkoServiceViewModel model, string path)
         {
-            if (string.IsNullOrEmpty(model.Name))
-            {
-                throw new ArgumentException("Name can`n be null or empty");
-            }
-
-            var toolCheck = data.Components
-                   .FirstOrDefault(x => x.Name == model.Name);
-
-            if (toolCheck != null)
-            {
-                throw new ArgumentException("Can`t add same tool!");
-            }
 
             var created = new ToolCreatedByInko()
             {
@@ -61,7 +49,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 {
                     Name = toolcreated.Name,
                     Quantity = quantit,
-                    ReasonTransaction = "Edit material down with",
+                    ReasonTransaction = "Edit Created Tool down with",
                     Date = DateTime.Now
                 };
 
@@ -76,7 +64,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 {
                     Name = toolcreated.Name,
                     Quantity = quantit,
-                    ReasonTransaction = "Edit material up with",
+                    ReasonTransaction = "Edit Created Tool up with",
                     Date = DateTime.Now
                 };
 

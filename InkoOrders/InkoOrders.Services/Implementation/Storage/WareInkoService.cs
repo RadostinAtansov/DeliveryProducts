@@ -43,19 +43,6 @@ namespace InkoOrders.Services.Implementation.Storage
 
         public void AddWare(AddWareServiceViewModel model, string path)
         {
-            if (string.IsNullOrEmpty(model.Name))
-            {
-                throw new ArgumentException("Name can`t be null or empty");
-            }
-
-            var wareCheck = data.Components
-                   .FirstOrDefault(x => x.Name == model.Name);
-
-            if (wareCheck != null)
-            {
-                throw new ArgumentException("Can`t add same ware!");
-            }
-
             var ware = new WareInko() 
             {
                 Name = model.Name,

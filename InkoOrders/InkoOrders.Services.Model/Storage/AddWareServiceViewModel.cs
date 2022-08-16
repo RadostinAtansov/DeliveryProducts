@@ -25,7 +25,7 @@ namespace InkoOrders.Services.Model.Storage
         public DateTime TimeActiveAndHowOld { get; set; }
 
         [Required]
-        [Range(StorageQuantityMaxLenght, StorageQuantityMinLenght)]
+        [Range(StorageQuantityMinLenght, StorageQuantityMaxLenght)]
         public int Quantity { get; set; }
 
         public bool Insignificant { get; set; }

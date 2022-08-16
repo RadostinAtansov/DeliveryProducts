@@ -41,18 +41,8 @@ namespace InkoOrders.Services.Implementation.Storage
 
         public void AddTool(AddBoughtByInkoSeviceViewModel tool, string path)
         {
-            if (string.IsNullOrEmpty(tool.Name))
-            {
-                throw new ArgumentException("Name can`t be empty");
-            }
-
             var toolCheck = data.TooldBoughtByInko
                 .FirstOrDefault(x => x.Name == tool.Name);
-
-            if (toolCheck != null)
-            {
-                throw new ArgumentException("Can`t add same tool!");
-            }
 
             var tul = new ToolBoughtByInko()
             {
@@ -86,7 +76,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 {
                     Name = toolBought.Name,
                     Quantity = quantit,
-                    ReasonTransaction = "Edit material down with",
+                    ReasonTransaction = "Edit Bought Tool down with",
                     Date = DateTime.Now
                 };
 
@@ -101,7 +91,7 @@ namespace InkoOrders.Services.Implementation.Storage
                 {
                     Name = toolBought.Name,
                     Quantity = quantit,
-                    ReasonTransaction = "Edit material up with",
+                    ReasonTransaction = "Edit Bought Tool up with",
                     Date = DateTime.Now
                 };
 

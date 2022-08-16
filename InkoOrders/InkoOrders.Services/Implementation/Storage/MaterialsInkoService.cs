@@ -42,19 +42,6 @@ namespace InkoOrders.Services.Implementation
 
         public void AddMaterials(AddMaterialsServiceViewModel material, string path)
         {
-            if (string.IsNullOrEmpty(material.Name))
-            {
-                throw new ArgumentException("Name can`t be empty");
-            }
-
-            var materialCheck = data.MaterialsInInko
-                   .FirstOrDefault(x => x.Name == material.Name);
-
-            if (materialCheck != null)
-            {
-                throw new ArgumentException("Can`t add same material!");
-            }
-
             var mtr = new MaterialsInInko()
             {
                 Name = material.Name,
@@ -78,11 +65,6 @@ namespace InkoOrders.Services.Implementation
             var material = data.MaterialsInInko
                  .Find(model.Id);
 
-            if (string.IsNullOrWhiteSpace(material.Designation))
-            {
-                throw new NullReferenceException("Designation can`t be null");
-            }
-
             if (model.Quantity < material.Quantity)
             {
                 var quantit = material.Quantity - model.Quantity;
@@ -91,7 +73,7 @@ namespace InkoOrders.Services.Implementation
                 {
                     Name = material.Name,
                     Quantity = quantit,
-                    ReasonTransaction = "Edit material down with",
+                    ReasonTransaction = "Edit Material down with",
                     Date = DateTime.Now
                 };
 
@@ -106,7 +88,7 @@ namespace InkoOrders.Services.Implementation
                 {
                     Name = material.Name,
                     Quantity = quantit,
-                    ReasonTransaction = "Edit material up with",
+                    ReasonTransaction = "Edit Material up with",
                     Date = DateTime.Now
                 };
 
