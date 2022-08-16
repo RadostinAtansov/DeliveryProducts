@@ -176,8 +176,8 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new EditComponentServiceViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
                     City = c.City,
+                    Name = c.Name,
                     Price = c.Price,
                     Picture = c.Picture,
                     Comment = c.Comment,
@@ -214,15 +214,15 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new EditMaterialServiceViewModel
                 {
                     Id = c.Id,
-                    Designation = c.Designation,
-                    Name = c.Name,
                     City = c.City,
-                    Picture = c.Picture,
+                    Name = c.Name,
                     Price = c.Price,
-                    Quantity = c.Quantity,
+                    Picture = c.Picture,
                     Comment = c.Comment,
-                    PlaceInStorage = c.PlaceInStorage,
+                    Quantity = c.Quantity,
+                    Designation = c.Designation,
                     Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
                     
                 })
                 .FirstOrDefault(x => x.Id == id);
@@ -250,14 +250,14 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new EditWareServiceViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
                     City = c.City,
-                    Designation = c.Designation,
+                    Name = c.Name,
+                    Comment = c.Comment,
                     Picture = c.Picture,
                     Quantity = c.Quantity,
-                    Comment = c.Comment,
-                    PlaceInStorage = c.PlaceInStorage,
+                    Designation = c.Designation,
                     Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
 
                 })
                 .FirstOrDefault(x => x.Id == id);
@@ -285,14 +285,14 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new EditToolBoughtServiceViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
                     City = c.City,
-                    Designation = c.Designation,
+                    Name = c.Name,
+                    Comment = c.Comment,
                     Picture = c.Picture,
                     Quantity = c.Quantity,
-                    Comment = c.Comment,
-                    PlaceInStorage = c.PlaceInStorage,
+                    Designation = c.Designation,
                     Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
 
                 })
                 .FirstOrDefault(x => x.Id == id);
@@ -320,16 +320,16 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new EditToolCreatedServiceViewModel
                 {
                     Id = c.Id,
-                    CreatedFrom = c.CreatedFrom,
-                    TimeWhenCreated = c.TimeWhenCreated,
                     Name = c.Name,
                     City = c.City,
-                    Designation = c.Designation,
                     Picture = c.Picture,
-                    Quantity = c.Quantity,
                     Comment = c.Comment,
-                    PlaceInStorage = c.PlaceInStorage,
+                    Quantity = c.Quantity,
+                    Designation = c.Designation,
+                    CreatedFrom = c.CreatedFrom,
                     Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
+                    TimeWhenCreated = c.TimeWhenCreated,
 
                 })
                 .FirstOrDefault(x => x.Id == id);
@@ -378,6 +378,42 @@ namespace Inko.Orders.Web.Controllers
             var history = this
                 .data
                 .HistoryStorages
+                .Select(cw => new ShowAllHistoryViewModel
+                {
+                    Name = cw.Name,
+                    Quantity = cw.Quantity,
+                    DateTransaction = cw.Date,
+                    ReasonTransaction = cw.ReasonTransaction,
+                })
+                .ToList();
+
+            return View(history);
+        }
+
+        [HttpPost]
+        public IActionResult ShowAllHistory(string searchFrom, string searchTo)
+        {
+            if (searchFrom == string.Empty || searchTo == string.Empty)
+            {
+                ModelState.AddModelError("", "You need to write word");
+            }
+
+            //DateTime outputDateTimeValue;
+
+            //DateTime.TryParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outputDateTimeValue);
+
+            //DateTime.TryParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out outputDateTimeValue);
+
+            //DateTime dateSearchFrom = Convert.ToDateTime(searchFrom);
+            DateTime dateSearchFrom = Convert.ToDateTime(searchFrom);
+            DateTime dateSearchTo = Convert.ToDateTime(searchTo);
+
+            var history = this
+                .data
+                .HistoryStorages
+                .Where(cw => (cw.Date.Year >= dateSearchFrom.Year && cw.Date.Year <= dateSearchTo.Year) 
+                && (cw.Date.Month == dateSearchTo.Month && cw.Date.Month == dateSearchTo.Month) 
+                && (cw.Date.Date == dateSearchTo.Date && cw.Date.Date == dateSearchTo.Date))
                 .Select(cw => new ShowAllHistoryViewModel
                 {
                     Name = cw.Name,
@@ -537,9 +573,9 @@ namespace Inko.Orders.Web.Controllers
                 var history = new HistoryStorage
                 {
                     Name = model.Name,
+                    Date = DateTime.Now,
                     Quantity = model.Quantity,
                     ReasonTransaction = "Add by User Ware",
-                    Date = DateTime.Now,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();
@@ -563,18 +599,18 @@ namespace Inko.Orders.Web.Controllers
                 .Select(o => new ShowAllOrdersViewModel
                 {
                     Id = o.Id,
-                    ProviderName = o.ProviderName,
-                    Identifier = o.Identifier,
+                    URL = o.URL,
+                    Price = o.Price,
+                    Status = o.Status,
                     Arrived = o.Arrived,
-                    ArrivedQuantityAndProductsFromOrder = o.ArrivedQuantityAndProductsFromOrder,
+                    Quantity = o.Quantity,
+                    Identifier = o.Identifier,
+                    OrderedDate = o.OrderedDate,
+                    ProviderName = o.ProviderName,
+                    OrderDescription = o.OrderDescription,
                     ChangeStatusChangeDatetime = o.ChangeStatusChangeDatetime,
                     HowManyProductsOrderedByPosition = o.HowManyProductsOrderedByPosition,
-                    OrderDescription = o.OrderDescription,
-                    OrderedDate = o.OrderedDate,
-                    Price = o.Price,
-                    Quantity = o.Quantity,
-                    Status = o.Status,
-                    URL = o.URL,
+                    ArrivedQuantityAndProductsFromOrder = o.ArrivedQuantityAndProductsFromOrder,
                 })
                 .ToList();
 
@@ -588,12 +624,12 @@ namespace Inko.Orders.Web.Controllers
                 .Select(x => new ShowAllInvoiceForComponentViewModel
                 {
                     Id = x.Id,
-                    BoughtFrom = x.BoughtCompanyName,
-                    ProductName = x.ProductName,
-                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
-                    Quantity = x.Qantity,
                     Picture = x.Picture,
-                    Comment = x.Comment
+                    Comment = x.Comment,
+                    Quantity = x.Qantity,
+                    ProductName = x.ProductName,
+                    BoughtFrom = x.BoughtCompanyName,
+                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
                 })
                 .ToList();
 
@@ -607,12 +643,12 @@ namespace Inko.Orders.Web.Controllers
                 .Select(x => new ShowAllInvoicesMaterialsViewModel
                 {
                     Id = x.Id,
-                    BoughtFrom = x.BoughtCompanyName,
-                    ProductName = x.ProductName,
-                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
-                    Quantity = x.Qantity,
                     Picture = x.Picture,
-                    Comment = x.Comment
+                    Comment = x.Comment,
+                    Quantity = x.Qantity,
+                    ProductName = x.ProductName,
+                    BoughtFrom = x.BoughtCompanyName,
+                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
                 })
                 .ToList();
 
@@ -626,12 +662,12 @@ namespace Inko.Orders.Web.Controllers
                 .Select(x => new ShowAllInvoicesWareViewModel
                 {
                     Id = x.Id,
-                    BoughtFrom = x.BoughtCompanyName,
-                    ProductName = x.ProductName,
-                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
-                    Quantity = x.Qantity,
+                    Comment = x.Comment,
                     Picture = x.Picture,
-                    Comment = x.Comment
+                    Quantity = x.Qantity,
+                    ProductName = x.ProductName,
+                    BoughtFrom = x.BoughtCompanyName,
+                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
                 })
                 .ToList();
 
@@ -645,12 +681,12 @@ namespace Inko.Orders.Web.Controllers
                 .Select(x => new ShowAllInvoicesToolBoughtViewModel
                 {
                     Id = x.Id,
-                    BoughtCompanyName = x.BoughtCompanyName,
-                    ProductName = x.ProductName,
-                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
-                    Quantity = x.Quantity,
                     Picture = x.Picture,
-                    Comment = x.Comment
+                    Comment = x.Comment,
+                    Quantity = x.Quantity,
+                    ProductName = x.ProductName,
+                    BoughtCompanyName = x.BoughtCompanyName,
+                    TimeWhenBoughtOnInvoice = x.TimeWhenBoughtOnInvoice,
                 })
                 .ToList();
 
@@ -664,15 +700,15 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = w.Id,
                     Name = w.Name,
-                    Designation = w.Designation,
-                    Quantity = w.Quantity,
-                    ActiveOrOld = w.ActiveOrOld,
-                    TimeActiveAndHowOld = w.TimeActiveAndHowOld,
-                    Insignificant = w.Insignificant,
+                    City = w.City,
                     Comment = w.Comment,
                     Picture = w.Picture,
+                    Quantity = w.Quantity,
+                    ActiveOrOld = w.ActiveOrOld,
+                    Designation = w.Designation,
+                    Insignificant = w.Insignificant,
                     PlaceInStorage = w.PlaceInStorage,
-                    City = w.City
+                    TimeActiveAndHowOld = w.TimeActiveAndHowOld,
                 })
                 .ToList();
 
@@ -694,15 +730,15 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    Designation = m.Designation,
-                    Quаntity = m.Quantity,
-                    Comment = m.Comment,
-                    PlaceInStorage = m.PlaceInStorage,
                     City = m.City,
-                    Insignificant = m.Insignificant,
-                    Picture = m.Picture,
                     Price = m.Price,
+                    Comment = m.Comment,
+                    Picture = m.Picture,
+                    Quаntity = m.Quantity,
                     TimeInInko = m.TimeInInko,
+                    Designation = m.Designation,
+                    Insignificant = m.Insignificant,
+                    PlaceInStorage = m.PlaceInStorage,
                 })
                 .ToList();
 
@@ -723,16 +759,16 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new ShowAllComponentsViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
-                    Quantity = c.Quantity,
-                    Picture = c.Picture,
-                    Designation = c.Designation,
-                    Price = c.Price,
                     City = c.City,
-                    PlaceInStorage = c.PlaceInStorage,
-                    Insignificant = c.Insignificant,
+                    Name = c.Name,
+                    Price = c.Price,
+                    Picture = c.Picture,
                     Comment = c.Comment,
+                    Quantity = c.Quantity,
                     BuyedTime = c.BuyedTime,
+                    Designation = c.Designation,
+                    Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
                 })
                 .ToList();
             return View(allComponents);
@@ -867,13 +903,13 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = tc.Id,
                     Name = tc.Name,
-                    CreatedFrom = tc.CreatedFrom,
+                    City = tc.City,
                     Comment = tc.Comment,
                     Picture = tc.Picture,
+                    Quantity = tc.Quantity,
+                    CreatedFrom = tc.CreatedFrom,
                     Insignificant = tc.Insignificant,
                     PlaceInStorage = tc.PlaceInStorage,
-                    City = tc.City,
-                    Quantity = tc.Quantity,
                     TimeWhenCreated = tc.TimeWhenCreated,
                 })
                  .AsEnumerable();
@@ -883,17 +919,17 @@ namespace Inko.Orders.Web.Controllers
             .Select(tc => new ShowAllBoughtToolsViewModel
             {
                 Id = tc.Id,
+                City = tc.City,
                 Name = tc.Name,
-                Designation = tc.Designation,
+                Bought = tc.Bought,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
-                Insignificant = tc.Insignificant,
-                PlaceInStorage = tc.PlaceInStorage,
-                City = tc.City,
                 Quantity = tc.Quantity,
-                Bought = tc.Bought,
                 BoughtFrom = tc.BoughtFrom,
                 TimeBought = tc.TimeBought,
+                Designation = tc.Designation,
+                Insignificant = tc.Insignificant,
+                PlaceInStorage = tc.PlaceInStorage,
             })
              .AsEnumerable();
 
@@ -912,13 +948,13 @@ namespace Inko.Orders.Web.Controllers
                 .Select(tc => new ShowAllCreatedToolsViewModel
                 {
                     Name = tc.Name,
-                    CreatedFrom = tc.CreatedFrom,
+                    City = tc.City,
                     Comment = tc.Comment,
                     Picture = tc.Picture,
+                    Quantity = tc.Quantity,
+                    CreatedFrom = tc.CreatedFrom,
                     Insignificant = tc.Insignificant,
                     PlaceInStorage = tc.PlaceInStorage,
-                    City = tc.City,
-                    Quantity = tc.Quantity,
                     TimeWhenCreated = tc.TimeWhenCreated,
                 })
                  .AsEnumerable();
@@ -927,15 +963,15 @@ namespace Inko.Orders.Web.Controllers
                 .Select(tc => new ShowAllBoughtToolsViewModel
                 {
                     Name = tc.Name,
+                    City = tc.City,
+                    Bought = tc.Bought,
                     Comment = tc.Comment,
                     Picture = tc.Picture,
-                    Insignificant = tc.Insignificant,
-                    PlaceInStorage = tc.PlaceInStorage,
-                    City = tc.City,
                     Quantity = tc.Quantity,
-                    Bought = tc.Bought,
                     BoughtFrom = tc.BoughtFrom,
                     TimeBought = tc.TimeBought,
+                    Insignificant = tc.Insignificant,
+                    PlaceInStorage = tc.PlaceInStorage,
                 })
                  .AsEnumerable();
 
@@ -1044,16 +1080,16 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new ShowAllComponentsViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
-                    Designation = c.Designation,
-                    Quantity = c.Quantity,
-                    Picture = c.Picture,
-                    Price = c.Price,
-                    PlaceInStorage = c.PlaceInStorage,
                     City = c.City,
-                    Insignificant = c.Insignificant,
+                    Name = c.Name,
+                    Price = c.Price,
                     Comment = c.Comment,
+                    Picture = c.Picture,
+                    Quantity = c.Quantity,
                     BuyedTime = c.BuyedTime,
+                    Designation = c.Designation,
+                    Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
                 })
                 .AsEnumerable();
 
@@ -1107,15 +1143,15 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    Designation = m.Designation,
-                    Quаntity = m.Quantity,
-                    Comment = m.Comment,
-                    PlaceInStorage = m.PlaceInStorage,
                     City = m.City,
-                    Insignificant = m.Insignificant,
-                    Picture = m.Picture,
                     Price = m.Price,
+                    Comment = m.Comment,
+                    Picture = m.Picture,
+                    Quаntity = m.Quantity,
                     TimeInInko = m.TimeInInko,
+                    Designation = m.Designation,
+                    Insignificant = m.Insignificant,
+                    PlaceInStorage = m.PlaceInStorage,
                 })
                 .AsEnumerable();
 
@@ -1167,15 +1203,15 @@ namespace Inko.Orders.Web.Controllers
                .Select(w => new ShowAllWareViewModel
                {
                    Name = w.Name,
-                   Designation = w.Designation,
-                   Quantity = w.Quantity,
-                   ActiveOrOld = w.ActiveOrOld,
-                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
-                   Insignificant = w.Insignificant,
+                   City = w.City,
                    Comment = w.Comment,
                    Picture = w.Picture,
+                   Quantity = w.Quantity,
+                   Designation = w.Designation,
+                   ActiveOrOld = w.ActiveOrOld,
+                   Insignificant = w.Insignificant,
                    PlaceInStorage = w.PlaceInStorage,
-                   City = w.City,
+                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
                })
                .AsEnumerable();
 
@@ -1222,14 +1258,14 @@ namespace Inko.Orders.Web.Controllers
             .Select(tc => new ShowAllCreatedToolsViewModel
             {
                 Name = tc.Name,
-                Designation = tc.Designation,
-                CreatedFrom = tc.CreatedFrom,
+                City = tc.City,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
+                Quantity = tc.Quantity,
+                Designation = tc.Designation,
+                CreatedFrom = tc.CreatedFrom,
                 Insignificant = tc.Insignificant,
                 PlaceInStorage = tc.PlaceInStorage,
-                City = tc.City,
-                Quantity = tc.Quantity,
                 TimeWhenCreated = tc.TimeWhenCreated,
             })
              .AsEnumerable();
@@ -1277,16 +1313,16 @@ namespace Inko.Orders.Web.Controllers
             .Select(tc => new ShowAllBoughtToolsViewModel
             {
                 Name = tc.Name,
-                Designation = tc.Designation,
+                City = tc.City,
+                Bought = tc.Bought,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
-                Insignificant = tc.Insignificant,
-                PlaceInStorage = tc.PlaceInStorage,
-                City = tc.City,
                 Quantity = tc.Quantity,
-                Bought = tc.Bought,
                 BoughtFrom = tc.BoughtFrom,
                 TimeBought = tc.TimeBought,
+                Designation = tc.Designation,
+                Insignificant = tc.Insignificant,
+                PlaceInStorage = tc.PlaceInStorage,
             })
              .AsEnumerable();
 
@@ -1349,15 +1385,15 @@ namespace Inko.Orders.Web.Controllers
                 .Select(c => new ShowAllComponentsViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
-                    Quantity = c.Quantity,
-                    Picture = c.Picture,
-                    Price = c.Price,
-                    PlaceInStorage = c.PlaceInStorage,
                     City = c.City,
-                    Insignificant = c.Insignificant,
+                    Name = c.Name,
+                    Price = c.Price,
                     Comment = c.Comment,
+                    Picture = c.Picture,
+                    Quantity = c.Quantity,
                     BuyedTime = c.BuyedTime,
+                    Insignificant = c.Insignificant,
+                    PlaceInStorage = c.PlaceInStorage,
                 })
                 .AsEnumerable();
 
@@ -1368,14 +1404,14 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    Quаntity = m.Quantity,
-                    Comment = m.Comment,
-                    PlaceInStorage = m.PlaceInStorage,
                     City = m.City,
-                    Insignificant = m.Insignificant,
-                    Picture = m.Picture,
                     Price = m.Price,
+                    Comment = m.Comment,
+                    Picture = m.Picture,
+                    Quаntity = m.Quantity,
                     TimeInInko = m.TimeInInko,
+                    Insignificant = m.Insignificant,
+                    PlaceInStorage = m.PlaceInStorage,
                 })
                 .AsEnumerable();
 
@@ -1386,15 +1422,15 @@ namespace Inko.Orders.Web.Controllers
                {
                    Id = w.Id,
                    Name = w.Name,
-                   Designation = w.Designation,
-                   Quantity = w.Quantity,
-                   ActiveOrOld = w.ActiveOrOld,
-                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
-                   Insignificant = w.Insignificant,
+                   City = w.City,
                    Comment = w.Comment,
                    Picture = w.Picture,
+                   Quantity = w.Quantity,
+                   ActiveOrOld = w.ActiveOrOld,
+                   Designation = w.Designation,
+                   Insignificant = w.Insignificant,
                    PlaceInStorage = w.PlaceInStorage,
-                   City = w.City,
+                   TimeActiveAndHowOld = w.TimeActiveAndHowOld,
                })
                .AsEnumerable();
 
@@ -1407,13 +1443,13 @@ namespace Inko.Orders.Web.Controllers
             {
                 Id = tc.Id,
                 Name = tc.Name,
-                CreatedFrom = tc.CreatedFrom,
+                City = tc.City,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
+                Quantity = tc.Quantity,
+                CreatedFrom = tc.CreatedFrom,
                 Insignificant = tc.Insignificant,
                 PlaceInStorage = tc.PlaceInStorage,
-                City = tc.City,
-                Quantity = tc.Quantity,
                 TimeWhenCreated = tc.TimeWhenCreated,
             })
              .AsEnumerable();
@@ -1426,15 +1462,15 @@ namespace Inko.Orders.Web.Controllers
             {
                 Id = tc.Id,
                 Name = tc.Name,
+                City = tc.City,
+                Bought = tc.Bought,
                 Comment = tc.Comment,
                 Picture = tc.Picture,
-                Insignificant = tc.Insignificant,
-                PlaceInStorage = tc.PlaceInStorage,
-                City = tc.City,
                 Quantity = tc.Quantity,
-                Bought = tc.Bought,
                 BoughtFrom = tc.BoughtFrom,
                 TimeBought = tc.TimeBought,
+                Insignificant = tc.Insignificant,
+                PlaceInStorage = tc.PlaceInStorage,
             })
              .AsEnumerable();
 
