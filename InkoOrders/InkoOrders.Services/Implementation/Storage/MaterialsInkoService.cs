@@ -26,12 +26,12 @@ namespace InkoOrders.Services.Implementation
 
             var invoice = new InvoicesStorageMaterial
             {
+                Qantity = model.Qantity,
+                Picture = path,
+                Comment = model.Comment,
                 ProductName = model.ProductName,
                 BoughtCompanyName = model.BoughtCompanyName,
-                Qantity = model.Qantity,
                 TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
-                Comment = model.Comment,
-                Picture = path,
             };
 
             material.Quantity += model.Qantity;
@@ -44,16 +44,16 @@ namespace InkoOrders.Services.Implementation
         {
             var mtr = new MaterialsInInko()
             {
+                Picture = path,
                 Name = material.Name,
-                Designation = material.Designation,
+                City = material.City,
                 Price = material.Price,
                 TimeInInko = DateTime.Now,
-                Picture = path,
                 Comment = material.Comment,
                 Quantity = material.Quantity,
+                Designation = material.Designation,
                 Insignificant = material.Insignificant,
                 PlaceInStorage = material.PlaceInStorage,
-                City = material.City,
             };
 
             data.MaterialsInInko.Add(mtr);
@@ -71,10 +71,10 @@ namespace InkoOrders.Services.Implementation
 
                 var history = new HistoryStorage
                 {
-                    Name = material.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = material.Name,
                     ReasonTransaction = "Edit Material down with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -86,10 +86,10 @@ namespace InkoOrders.Services.Implementation
 
                 var history = new HistoryStorage
                 {
-                    Name = material.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = material.Name,
                     ReasonTransaction = "Edit Material up with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -98,13 +98,13 @@ namespace InkoOrders.Services.Implementation
 
             material.Name = model.Name;
             material.City = model.City;
-            material.Designation = model.Designation;
-            material.PlaceInStorage = model.PlaceInStorage;
             material.Price = model.Price;
-            material.Quantity = model.Quantity;
-            material.Insignificant = model.Insignificant;
             material.Picture = model.Picture;
             material.Comment = model.Comment;
+            material.Quantity = model.Quantity;
+            material.Designation = model.Designation;
+            material.PlaceInStorage = model.PlaceInStorage;
+            material.Insignificant = model.Insignificant;
 
             data.SaveChanges();
         }

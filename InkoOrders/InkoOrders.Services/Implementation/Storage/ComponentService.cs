@@ -19,16 +19,16 @@ namespace InkoOrders.Services.Implementation.Storage
         {
             var addC = new Component()
             {
-                Name = component.Name,
-                BuyedTime = component.BuyedTime,
-                PlaceInStorage = component.PlaceInStorage,
+                Picture = path,
                 City = component.City,
+                Name = component.Name,
+                Price = component.Price,
+                Comment = component.Comment,
+                Quantity = component.Quantity,
+                BuyedTime = component.BuyedTime,
                 Designation = component.Designation,
                 Insignificant = component.Insignificant,
-                Price = component.Price,
-                Quantity = component.Quantity,
-                Picture = path,
-                Comment = component.Comment,
+                PlaceInStorage = component.PlaceInStorage,
             };
 
             data.Components.Add(addC);
@@ -46,12 +46,12 @@ namespace InkoOrders.Services.Implementation.Storage
 
             var invoice = new InvoicesStorageComponent
             {
+                Picture = path,
+                Qantity = model.Qantity,
+                Comment = model.Comment,
                 ProductName = model.ProductName,
                 BoughtCompanyName = model.BoughtCompanyName,
-                Qantity = model.Qantity,
                 TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
-                Comment = model.Comment,
-                Picture = path,
             };
 
             component.Quantity += model.Qantity;
@@ -77,10 +77,10 @@ namespace InkoOrders.Services.Implementation.Storage
 
                 var history = new HistoryStorage
                 {
-                    Name = component.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = component.Name,
                     ReasonTransaction = "Edit component down with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -92,10 +92,10 @@ namespace InkoOrders.Services.Implementation.Storage
 
                 var history = new HistoryStorage
                 {
-                    Name = component.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = component.Name,
                     ReasonTransaction = "Edit component up with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -103,15 +103,15 @@ namespace InkoOrders.Services.Implementation.Storage
             }
 
             component.Name = model.Name;
-            component.Designation = model.Designation;
             component.City = model.City;
-            component.PlaceInStorage = model.PlaceInStorage;
             component.Price = model.Price;
-            component.BuyedTime = model.BuyedTime;
-            component.Quantity = model.Quantity;
-            component.Insignificant = model.Insignificant;
             component.Picture = model.Picture;
             component.Comment = model.Comment;
+            component.Quantity = model.Quantity;
+            component.BuyedTime = model.BuyedTime;
+            component.Designation = model.Designation;
+            component.Insignificant = model.Insignificant;
+            component.PlaceInStorage = model.PlaceInStorage;
 
             data.SaveChanges();
         }

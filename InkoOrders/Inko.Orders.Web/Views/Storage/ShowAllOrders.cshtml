@@ -73,17 +73,11 @@
 
             </form>
 
-            <a asp-controller="Storage" asp-action="EditMaterial" asp-route-id="@item.Id">
+            <a asp-controller="Storage" asp-action="EditProviderOrder" asp-route-id="@item.Id">
                 <button class="btn btn-primary">Edit</button>
-            </a><br>
-        </td>
-
-        @*<td>*@
-        @*<td>
-            <a href="~/Images/@item.Picture">
-                <img src="~/Images/@item.Picture" width="80" height="80">
             </a>
-        </td>*@
+            <br>
+        </td>
       </tr>
   }
   </tbody>

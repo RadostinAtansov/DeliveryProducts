@@ -49,7 +49,7 @@ namespace InkoOrders.Services.Model.Storage
         [StringLength(1000, MinimumLength = 3)]
         public string ArrivedQuantityAndProductsFromOrder { get; set; }
 
-        public OrderStatusProvider Status { get; set; } //  <==== da se opravi
+        public OrderStatusProvider Status { get; set; }
 
         public DateTime ChangeStatusChangeDatetime { get; set; }
     }

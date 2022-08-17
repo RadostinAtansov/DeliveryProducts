@@ -169,6 +169,45 @@ namespace Inko.Orders.Web.Controllers
         //Make error Page----------------------------------------------
         //Make error Page----------------------------------------------
 
+        public IActionResult EditProviderOrder(int id)
+        {
+
+            var editComponent = data.ProviderOrders
+                .Select(c => new EditProviderOrdertServiceViewModel
+                {
+                    Id = c.Id,
+                    URL = c.URL,
+                    Price = c.Price,
+                    Status = c.Status,
+                    Arrived = c.Arrived,
+                    Quantity = c.Quantity,
+                    Identifier = c.Identifier,
+                    OrderedDate = c.OrderedDate,
+                    ProviderName = c.ProviderName,
+                    OrderDescription = c.OrderDescription,
+                    ChangeStatusChangeDatetime = c.ChangeStatusChangeDatetime,
+                    HowManyProductsOrderedByPosition = c.HowManyProductsOrderedByPosition,
+                    ArrivedQuantityAndProductsFromOrder = c.ArrivedQuantityAndProductsFromOrder,
+                })
+                .FirstOrDefault(x => x.Id == id);
+
+            return View(editComponent);
+        }
+
+        [HttpPost]
+        public IActionResult EditProviderOrder(EditProviderOrdertServiceViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            this.provider.EditOrder(model);
+
+            return View("Views/Home/Index.cshtml");
+        }
+
         public IActionResult EditComponent(int id)
         {
 

@@ -19,16 +19,16 @@ namespace InkoOrders.Services.Implementation.Storage
 
             var created = new ToolCreatedByInko()
             {
-                Name = model.Name,
-                Designation = model.Designation,
                 Created = true,
                 Picture = path,
-                PlaceInStorage = model.PlaceInStorage,
+                Name = model.Name,
                 City = model.City,
                 Comment = model.Comment,
-                CreatedFrom = model.CreatedFrom,
-                Insignificant = model.Insignificant,
                 Quantity = model.Quantity,
+                CreatedFrom = model.CreatedFrom,
+                Designation = model.Designation,
+                Insignificant = model.Insignificant,
+                PlaceInStorage = model.PlaceInStorage,
                 TimeWhenCreated = model.TimeWhenCreated,
             };
 
@@ -47,10 +47,10 @@ namespace InkoOrders.Services.Implementation.Storage
 
                 var history = new HistoryStorage
                 {
-                    Name = toolcreated.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = toolcreated.Name,
                     ReasonTransaction = "Edit Created Tool down with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -62,10 +62,10 @@ namespace InkoOrders.Services.Implementation.Storage
 
                 var history = new HistoryStorage
                 {
-                    Name = toolcreated.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = toolcreated.Name,
                     ReasonTransaction = "Edit Created Tool up with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -73,14 +73,14 @@ namespace InkoOrders.Services.Implementation.Storage
             }
 
             toolcreated.Name = model.Name;
-            toolcreated.TimeWhenCreated = model.TimeWhenCreated;
-            toolcreated.Designation = model.Designation;
             toolcreated.City = model.City;
-            toolcreated.PlaceInStorage = model.PlaceInStorage;
-            toolcreated.Quantity = model.Quantity;
-            toolcreated.Insignificant = model.Insignificant;
             toolcreated.Picture = model.Picture;
             toolcreated.Comment = model.Comment;
+            toolcreated.Quantity = model.Quantity;
+            toolcreated.Designation = model.Designation;
+            toolcreated.Insignificant = model.Insignificant;
+            toolcreated.PlaceInStorage = model.PlaceInStorage;
+            toolcreated.TimeWhenCreated = model.TimeWhenCreated;
 
             data.SaveChanges();
         }

@@ -25,12 +25,12 @@ namespace InkoOrders.Services.Implementation.Storage
 
             var invoice = new InvoicesStorageToolBoughtByInko
             {
+                Picture = path,
+                Comment = model.Comment,
+                Quantity = model.Quantity,
                 ProductName = model.ProductName,
                 BoughtCompanyName = model.BoughtCompanyName,
-                Quantity = model.Quantity,
                 TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
-                Comment = model.Comment,
-                Picture = path,
             };
 
             toolBought.Quantity += model.Quantity;
@@ -46,17 +46,17 @@ namespace InkoOrders.Services.Implementation.Storage
 
             var tul = new ToolBoughtByInko()
             {
-                Name = tool.Name,
                 Bought = true,
-                Designation = tool.Designation,
-                BoughtFrom = tool.BoughtFrom,
-                Comment = tool.Comment,
                 Picture = path,
-                PlaceInStorage = tool.PlaceInStorage,
                 City = tool.City,
-                Insignificant = tool.Insignificant,
+                Name = tool.Name,
+                Comment = tool.Comment,
                 Quantity = tool.Quantity,
-                TimeBought = tool.TimeBought
+                TimeBought = tool.TimeBought,
+                BoughtFrom = tool.BoughtFrom,
+                Designation = tool.Designation,
+                PlaceInStorage = tool.PlaceInStorage,
+                Insignificant = tool.Insignificant,
             };
 
             data.TooldBoughtByInko.Add(tul);
@@ -74,10 +74,10 @@ namespace InkoOrders.Services.Implementation.Storage
 
                 var history = new HistoryStorage
                 {
-                    Name = toolBought.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = toolBought.Name,
                     ReasonTransaction = "Edit Bought Tool down with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -89,10 +89,10 @@ namespace InkoOrders.Services.Implementation.Storage
 
                 var history = new HistoryStorage
                 {
-                    Name = toolBought.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = toolBought.Name,
                     ReasonTransaction = "Edit Bought Tool up with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -100,13 +100,13 @@ namespace InkoOrders.Services.Implementation.Storage
             }
 
             toolBought.Name = model.Name;
-            toolBought.Designation = model.Designation;
             toolBought.City = model.City;
-            toolBought.PlaceInStorage = model.PlaceInStorage;
-            toolBought.Quantity = model.Quantity;
-            toolBought.Insignificant = model.Insignificant;
             toolBought.Picture = model.Picture;
             toolBought.Comment = model.Comment;
+            toolBought.Quantity = model.Quantity;
+            toolBought.Designation = model.Designation;
+            toolBought.Insignificant = model.Insignificant;
+            toolBought.PlaceInStorage = model.PlaceInStorage;
 
             data.SaveChanges();
         }

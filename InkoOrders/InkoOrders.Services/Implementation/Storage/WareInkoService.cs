@@ -27,12 +27,12 @@ namespace InkoOrders.Services.Implementation.Storage
 
             var invoice = new InvoicesStorageWare
             {
+                Picture = path,
+                Qantity = model.Qantity,
+                Comment = model.Comment,
                 ProductName = model.ProductName,
                 BoughtCompanyName = model.BoughtCompanyName,
-                Qantity = model.Qantity,
                 TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,
-                Comment = model.Comment,
-                Picture = path,
             };
 
             ware.Quantity += model.Qantity;
@@ -45,16 +45,16 @@ namespace InkoOrders.Services.Implementation.Storage
         {
             var ware = new WareInko() 
             {
+                Picture = path,
                 Name = model.Name,
-                Designation = model.Designation,
+                City = model.City,
+                Comment = model.Comment,
                 Quantity = model.Quantity,
-                TimeActiveAndHowOld = model.TimeActiveAndHowOld,
+                Designation = model.Designation,
                 ActiveOrOld = model.ActiveOrOld,
                 Insignificant = model.Insignificant,
-                Comment = model.Comment,
-                Picture = path,
                 PlaceInStorage = model.PlaceInStorage,
-                City = model.City,
+                TimeActiveAndHowOld = model.TimeActiveAndHowOld,
             };
 
             data.WaresInko.Add(ware);
@@ -74,8 +74,8 @@ namespace InkoOrders.Services.Implementation.Storage
                 {
                     Name = ware.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
                     ReasonTransaction = "Edit Ware down with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
@@ -89,21 +89,21 @@ namespace InkoOrders.Services.Implementation.Storage
                 {
                     Name = ware.Name,
                     Quantity = quantit,
+                    Date = DateTime.Now,
                     ReasonTransaction = "Edit Ware up with",
-                    Date = DateTime.Now
                 };
 
                 this.data.HistoryStorages.Add(history);
                 data.SaveChanges();
             }
             ware.Name = model.Name;
-            ware.Designation = model.Designation;
             ware.City = model.City;
-            ware.PlaceInStorage = model.PlaceInStorage;
-            ware.Quantity = model.Quantity;
-            ware.Insignificant = model.Insignificant;
             ware.Picture = model.Picture;
             ware.Comment = model.Comment;
+            ware.Quantity = model.Quantity;
+            ware.Designation = model.Designation;
+            ware.Insignificant = model.Insignificant;
+            ware.PlaceInStorage = model.PlaceInStorage;
 
             data.SaveChanges();
         }

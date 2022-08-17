@@ -19,21 +19,71 @@ namespace InkoOrders.Services.Implementation.Storage
 
             var order = new ProviderOrder()
             {
-               ProviderName = model.ProviderName,
+               URL = model.URL,
+               Price = model.Price,
+               Status = model.Status,
                Arrived = model.Arrived,
-               ArrivedQuantityAndProductsFromOrder = model.ArrivedQuantityAndProductsFromOrder,
+               Quantity = model.Quantity,
+               Identifier = model.Identifier,
+               OrderedDate = model.OrderedDate,
+               ProviderName = model.ProviderName,
+               OrderDescription = model.OrderDescription,
                ChangeStatusChangeDatetime = model.ChangeStatusChangeDatetime,
                HowManyProductsOrderedByPosition = model.HowManyProductsOrderedByPosition,
-               Identifier = model.Identifier,
-               OrderDescription = model.OrderDescription,
-               OrderedDate = model.OrderedDate,
-               Price = model.Price,
-               Quantity = model.Quantity,
-               Status = model.Status,
-               URL = model.URL
+               ArrivedQuantityAndProductsFromOrder = model.ArrivedQuantityAndProductsFromOrder,
             };
 
             data.ProviderOrders.Add(order);
+            data.SaveChanges();
+        }
+
+        public void EditOrder(EditProviderOrdertServiceViewModel model)
+        {
+            var order = data.ProviderOrders
+                 .Find(model.Id);
+
+            if (model.Quantity < order.Quantity)
+            {
+                var quantit = order.Quantity - model.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = order.ProviderName,
+                    ReasonTransaction = "Edit Order down with",
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            else if (model.Quantity > order.Quantity)
+            {
+                var quantit = model.Quantity - order.Quantity;
+
+                var history = new HistoryStorage
+                {
+                    Quantity = quantit,
+                    Date = DateTime.Now,
+                    Name = order.ProviderName,
+                    ReasonTransaction = "Edit Order up with",
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            order.URL = model.URL;
+            order.Status = model.Status;
+            order.Arrived = model.Arrived;
+            order.Quantity = model.Quantity;
+            order.Identifier = model.Identifier;
+            order.OrderedDate = model.OrderedDate;
+            order.ProviderName = model.ProviderName;
+            order.OrderDescription = model.OrderDescription;
+            order.ChangeStatusChangeDatetime = model.ChangeStatusChangeDatetime;
+            order.HowManyProductsOrderedByPosition = model.HowManyProductsOrderedByPosition;
+            order.ArrivedQuantityAndProductsFromOrder = model.ArrivedQuantityAndProductsFromOrder;
+
             data.SaveChanges();
         }
     }
