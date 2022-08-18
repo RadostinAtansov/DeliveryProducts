@@ -806,6 +806,56 @@ namespace InkoOrders.Data.Migrations
                     b.ToTable("InvoicesStorageWares");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoiceStorageProviderOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Arrived")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Price")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ProviderOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeWhenBought")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WhenWillItBeDelivered")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProviderOrderId");
+
+                    b.ToTable("InvoiceStorageProviderOrders");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
                 {
                     b.Property<int>("Id")
@@ -1419,6 +1469,17 @@ namespace InkoOrders.Data.Migrations
                     b.Navigation("Ware");
                 });
 
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.InvoiceStorageProviderOrder", b =>
+                {
+                    b.HasOne("InkoOrders.Data.Model.Storage.ProviderOrder", "ProviderOrder")
+                        .WithMany("InvoiceStorageProviderOrder")
+                        .HasForeignKey("ProviderOrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ProviderOrder");
+                });
+
             modelBuilder.Entity("InkoOrders.Data.Model.TransportAndTransactionPayment", b =>
                 {
                     b.HasOne("InkoOrders.Data.Model.TransactionPayment", "TransactionPayment")
@@ -1526,6 +1587,11 @@ namespace InkoOrders.Data.Migrations
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.MaterialsInInko", b =>
                 {
                     b.Navigation("InvoicesMaterial");
+                });
+
+            modelBuilder.Entity("InkoOrders.Data.Model.Storage.ProviderOrder", b =>
+                {
+                    b.Navigation("InvoiceStorageProviderOrder");
                 });
 
             modelBuilder.Entity("InkoOrders.Data.Model.Storage.ToolBoughtByInko", b =>

@@ -26,9 +26,9 @@ namespace InkoOrders.Services.Implementation
 
             var invoice = new InvoicesStorageMaterial
             {
-                Qantity = model.Qantity,
                 Picture = path,
                 Comment = model.Comment,
+                Qantity = model.Qantity,
                 ProductName = model.ProductName,
                 BoughtCompanyName = model.BoughtCompanyName,
                 TimeWhenBoughtOnInvoice = model.TimeWhenBoughtOnInvoice,

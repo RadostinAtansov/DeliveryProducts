@@ -44,6 +44,27 @@ namespace Inko.Orders.Web.Controllers
             return View();
         }
 
+        public IActionResult AddInvoiceProviderOrder()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddInvoiceProviderOrder(AddInvoiceProviderOrderServiceViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            string stringFile = UploadFile(model.Picture);
+
+            this.provider.AddInvoicetoOrder(model, stringFile);
+
+            return View("Views/Home/Index.cshtml");
+        }
+
         public IActionResult AddInvoiceToComponent()
         {
             return View();
@@ -653,6 +674,28 @@ namespace Inko.Orders.Web.Controllers
             return View(allOrders);
         }
 
+
+
+        public IActionResult ShowAllInvoiceProviderOrder(int id)
+        {
+            var allInvoices = data.InvoiceStorageProviderOrders
+                .Where(x => x.ProviderOrderId == id)
+                .Select(x => new ShowAllInvoiceProviderOrderViewModel
+                {
+                    Price = x.Price,
+                    Arrived = x.Arrived,
+                    Comment = x.Comment,
+                    Picture = x.Picture,
+                    Quantity = x.Quantity,
+                    ProductName = x.ProductName,
+                    TimeWhenBought = x.TimeWhenBought,
+                    WhenWillItBeDelivered = x.WhenWillItBeDelivered,
+                })
+                .ToList();
+
+            return View(allInvoices);
+        }
+
         public IActionResult ShowAllInvoiceComponents(int id)
         {
             var allInvoices = data.InvoicesStorageComponents
@@ -820,6 +863,15 @@ namespace Inko.Orders.Web.Controllers
             return RedirectToAction(nameof(ShowAllComponents));
         }
 
+        public IActionResult DeleteInvoiceProviderOrder(int id)
+        {
+            var invoice = data.InvoiceStorageProviderOrders.Find(id);
+
+            this.data.InvoiceStorageProviderOrders.Remove(invoice);
+            data.SaveChanges();
+
+            return RedirectToAction(nameof(ShowAllOrders));
+        }
 
         public IActionResult DeleteInvoiceMaterial(int id)
         {

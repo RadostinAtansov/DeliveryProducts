@@ -43,6 +43,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRDcmVhdGVkVG9vbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceProviderOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlUHJvdmlkZXJPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/AddInvoiceToComponent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxBZGRJbnZvaWNlVG9Db21wb25lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -117,6 +121,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceMaterials.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZU1hdGVyaWFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceProviderOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93QWxsSW52b2ljZVByb3ZpZGVyT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowAllInvoiceToolBought.cshtml]

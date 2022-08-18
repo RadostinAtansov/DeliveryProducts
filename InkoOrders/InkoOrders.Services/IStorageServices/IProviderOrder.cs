@@ -6,5 +6,6 @@ namespace InkoOrders.Services.IStorageServices
     {
         void AddProviderOrder(AddProviderServiceViewModel model);
         void EditOrder(EditProviderOrdertServiceViewModel model);
+        void AddInvoicetoOrder(AddInvoiceProviderOrderServiceViewModel model, string path);
     }
 }

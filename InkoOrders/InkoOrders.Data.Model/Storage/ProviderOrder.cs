@@ -57,5 +57,7 @@ namespace InkoOrders.Data.Model.Storage
         public OrderStatusProvider Status { get; set; }
 
         public DateTime ChangeStatusChangeDatetime { get; set; }
+
+        public ICollection<InvoiceStorageProviderOrder> InvoiceStorageProviderOrder { get; set; } = new HashSet<InvoiceStorageProviderOrder>();
     }
 }

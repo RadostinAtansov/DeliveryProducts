@@ -14,6 +14,25 @@ namespace InkoOrders.Services.Implementation.Storage
             this.data = data;
         }
 
+        public void AddInvoicetoOrder(AddInvoiceProviderOrderServiceViewModel model, string path)
+        {
+            var order = data.ProviderOrders.Find(model.Id);
+
+            var orderInvoice = new InvoiceStorageProviderOrder()
+            {
+                  Picture = path,
+                  Price = model.Price,
+                  Arrived = model.Arrived,
+                  Comment = model.Comment,
+                  Quantity = model.Quantity,
+                  ProductName = model.ProductName,
+                  TimeWhenBought = model.TimeWhenBought,
+                  WhenWillItBeDelivered = model.WhenWillItBeDelivered,
+            };
+            order.InvoiceStorageProviderOrder.Add(orderInvoice);
+            data.SaveChanges();
+        }
+
         public void AddProviderOrder(AddProviderServiceViewModel model)
         {
 

@@ -34,6 +34,7 @@ namespace InkoOrders.Data
         public DbSet<InvoicesStorageMaterial> InvoicesStorageMaterials { get; set; }
         public DbSet<InvoicesStorageWare> InvoicesStorageWares { get; set; }
         public DbSet<InvoicesStorageToolBoughtByInko> InvoicesStorageToolBoughtByInkos { get; set; }
+        public DbSet<InvoiceStorageProviderOrder> InvoiceStorageProviderOrders { get; set; }
         public DbSet<HistoryStorage> HistoryStorages { get; set; }
 
         //Accounting
