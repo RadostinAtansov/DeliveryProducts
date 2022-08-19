@@ -57,7 +57,7 @@
         <td>         
             <a asp-controller="Storage" asp-action="ShowAllInvoiceProviderOrder" asp-route-id="@item.Id">Details</a><br>
 
-            <form asp-action="DeleteMaterial" asp-route-id="@item.Id">
+            <form asp-action="DeleteProvidersOrder" asp-route-id="@item.Id">
 
                 <span id="confirmDeleteSpan_@item.Id" style="display:none">
                     <span><b>Are you sure you want to delete this?</b></span>

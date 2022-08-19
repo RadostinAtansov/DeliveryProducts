@@ -682,6 +682,7 @@ namespace Inko.Orders.Web.Controllers
                 .Where(x => x.ProviderOrderId == id)
                 .Select(x => new ShowAllInvoiceProviderOrderViewModel
                 {
+                    Id = x.Id,
                     Price = x.Price,
                     Arrived = x.Arrived,
                     Comment = x.Comment,
