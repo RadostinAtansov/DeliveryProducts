@@ -4,7 +4,7 @@ using InkoOrders.Data.Model.Storage;
 using InkoOrders.Services.Model.Storage;
 using Inko.Orders.Web.Models.Storage.Show;
 using InkoOrders.Services.IStorageServices;
-
+using Inko.Orders.Web.Models;
 
 namespace Inko.Orders.Web.Controllers
 {
@@ -38,16 +38,51 @@ namespace Inko.Orders.Web.Controllers
             this.provider = provider;
         }
 
-        public IActionResult AddMaterial()
+        public IActionResult WriteOffWare(int id)
         {
+            var wo = data.WaresInko.Find(id);
+            //view model
+            //navsqkyde
 
+
+            return View(wo);
+        }
+
+        [HttpPost]
+        public IActionResult WriteOff()
+        {
             return View();
+        }
+
+
+        public IActionResult WrittenOffStock()
+        {
+            var result = AllInOneStorage();
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult WrittenOffStock(WrittenOffStockModelView model, string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity StorageSortingByCity)
+        {
+             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+
+            sws.Components = GetComponents(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+
+            sws.Materials = GetMaterials(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+
+            sws.Ware = GetWare(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+            sws.Created = GetCreated(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+            sws.Bought = GetBought(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+
+            return View(sws);
         }
 
         public IActionResult AddInvoiceProviderOrder()
         {
             return View();
         }
+
 
         [HttpPost]
         public IActionResult AddInvoiceProviderOrder(AddInvoiceProviderOrderServiceViewModel model)
@@ -633,6 +668,7 @@ namespace Inko.Orders.Web.Controllers
                     Date = DateTime.Now,
                     Quantity = model.Quantity,
                     ReasonTransaction = "Add by User Ware",
+                    Comment = model.Comment,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();

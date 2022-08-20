@@ -54,7 +54,7 @@
         <a href="">Storage</a>
         <ul>
             <li class="current">
-                <a href="">View</a>
+                <a href="">View All Available Stock</a>
                 <ul>
                     <li><a asp-controller="Storage" asp-action="ShowWholeStorage">View Whole Storage</a></li>
                     <li><a asp-controller="Storage" asp-action="ShowAllComponents">View all compoinents</a></li>
@@ -65,7 +65,7 @@
             </li>
 
             <li class="current">
-                <a href="">Add</a>
+                <a href="">Add Stock</a>
                 <ul>
                     <li><a asp-controller="Storage" asp-action="AddComponent">Add component</a></li>
                     <li><a asp-controller="Storage" asp-action="AddMaterial">Add material</a></li>
@@ -81,12 +81,10 @@
             </li>
          
             <li class="current">
-                <a href="">Stock Available</a>
+                <a href="">Written off Stock or sent to someone</a>
                 <ul>
-                    <li><a>Component</a></li>
-                    <li><a>Material</a></li>                       
-                    <li><a>Ware</a></li>
-                    <li><a>Tools</a></li>
+                    <li><a asp-controller="Storage" asp-action="WrittenOffStock">Written off Stock</a></li>
+                    <li><a href="">History</a></li>
                 </ul>
             </li>
     <li>

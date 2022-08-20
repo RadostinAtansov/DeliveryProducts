@@ -20,7 +20,7 @@ namespace InkoOrders.Data.Model.Storage
         public string Designation { get; set; }
 
         [Required]
-        [Range(0.0, 99.0, ErrorMessage = "Must be between this too")]
+        [Range(0, int.MaxValue, ErrorMessage = "Must be between this 0 and 2147483647")]
         public int? Quantity { get; set; }
 
         [Required]

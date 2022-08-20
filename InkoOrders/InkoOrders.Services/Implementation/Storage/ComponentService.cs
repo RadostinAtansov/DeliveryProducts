@@ -81,6 +81,7 @@ namespace InkoOrders.Services.Implementation.Storage
                     Date = DateTime.Now,
                     Name = component.Name,
                     ReasonTransaction = "Edit component down with",
+                    
                 };
 
                 this.data.HistoryStorages.Add(history);
