@@ -103,6 +103,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxFZGl0V2FyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/HistoryWriteOffStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxIaXN0b3J5V3JpdGVPZmZTdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/NotFoundElement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxOb3RGb3VuZEVsZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -153,6 +157,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/ShowWholeStorage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxTaG93V2hvbGVTdG9yYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/WriteOff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmFnZVxXcml0ZU9mZi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/radul/Desktop/DeliveryProducts/InkoOrders/Inko.Orders.Web/Views/Storage/WrittenOffStock.cshtml]

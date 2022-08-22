@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DF6ARme9Pih6j1ZuLYuaFcNO562KNILtwSKuR0uiAB4=",
+  "Hash": "l71VI0xveBfAL5StEo5ppRatjP8pL90e6taIdtOEA3s=",
   "Source": "Inko.Orders.Web",
   "BasePath": "_content/Inko.Orders.Web",
   "Mode": "Default",
@@ -644,6 +644,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\3b4ec6b9-bb7d-4bee-bafc-151c4566d7bc-kondenzator.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\462161eb-d8fa-4dfc-afff-66321936279d-Yinyang.webp",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/462161eb-d8fa-4dfc-afff-66321936279d-Yinyang.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\462161eb-d8fa-4dfc-afff-66321936279d-Yinyang.webp"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\4c1e2a8f-6039-4526-a7c5-fd1f5f27d173-2021-honda-nsx-1.jpg",
@@ -1358,6 +1375,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\afa7394e-96fa-43df-8de0-a29ff8c545d4-download (1).jpg"
+    },
+    {
+      "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\b2276c71-3421-4942-b3a9-b9ec8825abe6-Yinyang.webp",
+      "SourceId": "Inko.Orders.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\",
+      "BasePath": "_content/Inko.Orders.Web",
+      "RelativePath": "Images/b2276c71-3421-4942-b3a9-b9ec8825abe6-Yinyang.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\b2276c71-3421-4942-b3a9-b9ec8825abe6-Yinyang.webp"
     },
     {
       "Identity": "C:\\Users\\radul\\Desktop\\DeliveryProducts\\InkoOrders\\Inko.Orders.Web\\wwwroot\\Images\\b3bc245f-0754-495c-b190-96c29a96b015-snimkaCV.jpg",

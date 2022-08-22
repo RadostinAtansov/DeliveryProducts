@@ -5,6 +5,7 @@ using InkoOrders.Services.Model.Storage;
 using Inko.Orders.Web.Models.Storage.Show;
 using InkoOrders.Services.IStorageServices;
 using Inko.Orders.Web.Models;
+using Inko.Orders.Web.Models.Storage.Edit;
 
 namespace Inko.Orders.Web.Controllers
 {
@@ -38,20 +39,126 @@ namespace Inko.Orders.Web.Controllers
             this.provider = provider;
         }
 
-        public IActionResult WriteOffWare(int id)
+        public IActionResult HistoryWriteOffStock()
         {
-            var wo = data.WaresInko.Find(id);
-            //view model
-            //navsqkyde
+            var history = data.HistoryWrittenOffStocks
+                .Select(h => new HistoryStockWriteOffViewModel
+                {
+                    Name = h.Name,
+                    City = h.City,
+                    Price = h.Price,
+                    Picture = h.Picture,
+                    Comment = h.Comment,
+                    Quantity = h.Quantity,
+                    PlaceInStorage = h.PlaceInStorage,
+                    DateTimeWriteOff = h.DateTimeWriteOff,
+                    ReasonToWriteOff = h.ReasonToWriteOff,
+                })
+                .ToList();
 
+            return View(history);
+        }
 
-            return View(wo);
+        public IActionResult WriteOff(int id)
+        {
+            var ware = data.WaresInko
+                .Select(x => new HistoryStockWriteOffViewModel
+                {
+                    Id = x.Id,
+                    Price = 0,
+                    Name = "",
+                    City = "",
+                    Comment = "",
+                    Picture = "",
+                    Quantity = 0,
+                    ReasonToWriteOff = "",
+                    PlaceInStorage = "",
+                })
+                .FirstOrDefault(i => i.Id == id);
+
+            return View(ware);
         }
 
         [HttpPost]
-        public IActionResult WriteOff()
+        public IActionResult WriteOff(HistoryStockWriteOffViewModel model)
         {
-            return View();
+            var ware = data.WaresInko.Find(model.Id);
+
+            if (model.Quantity > ware.Quantity || model.Quantity <= 0)
+            {
+                ModelState.AddModelError("", $"Quantity: Can`t be less than 0 or more than {ware.Quantity}");
+                return View();
+            }
+
+            if (model.ReasonToWriteOff == null)
+            {
+                ModelState.AddModelError("", "ReasonToWriteOff can`t be empty");
+                return View();
+            }
+
+
+            if (model.Quantity < ware.Quantity)
+            {
+
+                var history = new HistoryStorage
+                {
+                    Name = ware.Name,
+                    Quantity = model.Quantity,
+                    Date = DateTime.Now,
+                    ReasonTransaction = "WriteOff Ware down with",
+                    Comment = model.Comment,
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+            }
+            else if (model.Quantity > ware.Quantity)
+            {
+
+                var history = new HistoryStorage
+                {
+                    Name = ware.Name,
+                    Quantity = model.Quantity,
+                    Date = DateTime.Now,
+                    ReasonTransaction = "WriteOff Ware up with",
+                    Comment = model.Comment,
+                };
+
+                this.data.HistoryStorages.Add(history);
+                data.SaveChanges();
+
+            }
+
+       
+            if (model.Quantity == ware.Quantity)
+            {
+                data.WaresInko.Remove(ware);
+                data.SaveChanges();
+            }
+            else if (model.Quantity < ware.Quantity)
+            {
+                ware.Quantity -= model.Quantity;
+                data.SaveChanges();
+            }
+
+            var historyWriteOff = new HistoryWrittenOffStock
+            {
+                Name = ware.Name,
+                City = model.City ?? ware.City,
+                Price = model.Price,
+                Picture = ware.Picture,
+                Comment = model.Comment ?? ware.Comment,
+                Quantity = model.Quantity,
+                DateTimeWriteOff = DateTime.Now,
+                PlaceInStorage = model.PlaceInStorage ?? ware.PlaceInStorage,
+                ReasonToWriteOff = model.ReasonToWriteOff,
+            };
+
+            data.HistoryWrittenOffStocks.Add(historyWriteOff);
+            data.SaveChanges();
+
+
+            return View("Views/Storage/WrittenOffStock.cshtml");
         }
 
 
@@ -359,7 +466,7 @@ namespace Inko.Orders.Web.Controllers
 
             return View(editComponent);
         }
-        //validaciii na viewtata
+
         [HttpPost]
         public IActionResult EditWare(EditWareServiceViewModel model)
         {
