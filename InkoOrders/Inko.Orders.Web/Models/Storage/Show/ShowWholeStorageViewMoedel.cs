@@ -10,7 +10,7 @@ namespace Inko.Orders.Web.Models.Storage.Show
         public IEnumerable<ShowAllWareViewModel> Ware { get; set; }
         public IEnumerable<ShowAllCreatedToolsViewModel> Created { get; set; }
         public IEnumerable<ShowAllBoughtToolsViewModel> Bought { get; set; }
-        //public IEnumerable<HistoryStockWriteOffViewModel> History { get; set; }
+        public IEnumerable<HistoryStockWriteOffViewModel> History { get; set; }
         public StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria { get; set; }
         public StorageSortingByCity StorageSortingByCity { get; set; }
     }

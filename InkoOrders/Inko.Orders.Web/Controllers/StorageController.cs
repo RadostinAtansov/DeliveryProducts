@@ -1,11 +1,11 @@
-﻿using InkoOrders.Data;
-using Microsoft.AspNetCore.Mvc;
-using InkoOrders.Data.Model.Storage;
-using InkoOrders.Services.Model.Storage;
-using Inko.Orders.Web.Models.Storage.Show;
-using InkoOrders.Services.IStorageServices;
-using Inko.Orders.Web.Models;
+﻿using Inko.Orders.Web.Models;
 using Inko.Orders.Web.Models.Storage.Edit;
+using Inko.Orders.Web.Models.Storage.Show;
+using InkoOrders.Data;
+using InkoOrders.Data.Model.Storage;
+using InkoOrders.Services.IStorageServices;
+using InkoOrders.Services.Model.Storage;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Inko.Orders.Web.Controllers
 {
@@ -20,7 +20,7 @@ namespace Inko.Orders.Web.Controllers
         private readonly InkoOrdersDBContext data;
         public IWebHostEnvironment WebHostEnvironment;
 
-        public StorageController(IComponentService component, 
+        public StorageController(IComponentService component,
             IMaterialsInkoService material,
             IBoughtByInkoService toolBought,
             ICreatedByInkoService toolCreated,
@@ -39,11 +39,70 @@ namespace Inko.Orders.Web.Controllers
             this.provider = provider;
         }
 
+        //da se napravi view-to
+
+        public IActionResult WriteoffAll()
+        {
+
+            var allToWriteOff = this.data.StockToWriteOffs.ToArray();
+
+            for (int i = 0; i < allToWriteOff.Length; i++)
+            {
+                var history = new HistoryWrittenOffStock()
+                {
+                     City = allToWriteOff[i].City,
+                     Name = allToWriteOff[i].Name,
+                     Price = allToWriteOff[i].Price,
+                     Comment = allToWriteOff[i].Comment,
+                     Picture = allToWriteOff[i].Picture,
+                     Quantity = allToWriteOff[i].Quantity,
+                     PlaceInStorage = allToWriteOff[i].PlaceInStorage,
+                     DateTimeWriteOff = allToWriteOff[i].DateTimeWriteOff,
+                     ReasonToWriteOff = allToWriteOff[i].ReasonToWriteOff,
+                     
+                };
+                if (i == allToWriteOff.Length - 1)
+                {
+                    history.Stop = "stop";
+                }
+                else
+                {
+                    history.Stop = "GO";
+
+                }
+                this.data.HistoryWrittenOffStocks.Add(history);
+            }
+
+            this.data.StockToWriteOffs.RemoveRange(allToWriteOff);
+            this.data.SaveChanges();
+
+
+            return RedirectToAction("WrittenOffStock");// or redirection
+        }
+
+        public IActionResult RemoveWareFromStockToWriteOff(int id)
+        {
+
+            var item = data.StockToWriteOffs.Find(id);
+
+            var wareItem = data.WaresInko.FirstOrDefault(x => x.Name == item.Name);
+
+            wareItem.Quantity += item.Quantity;
+
+            data.StockToWriteOffs.Remove(item);
+            data.SaveChanges();
+
+            var result = AllInOneStorage();
+
+            return View("Views/Storage/WrittenOffStock.cshtml", result);
+        }
+
         public IActionResult HistoryWriteOffStock()
         {
             var history = data.HistoryWrittenOffStocks
                 .Select(h => new HistoryStockWriteOffViewModel
                 {
+                    Id = h.Id,
                     Name = h.Name,
                     City = h.City,
                     Price = h.Price,
@@ -56,6 +115,8 @@ namespace Inko.Orders.Web.Controllers
                 })
                 .ToList();
 
+            var list = string.Join(", ", history);
+
             return View(history);
         }
 
@@ -66,7 +127,7 @@ namespace Inko.Orders.Web.Controllers
                 {
                     Id = x.Id,
                     Price = 0,
-                    Name = "",
+                    Name = x.Name,
                     City = "",
                     Comment = "",
                     Picture = "",
@@ -80,8 +141,9 @@ namespace Inko.Orders.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult WriteOff(HistoryStockWriteOffViewModel model)
+        public IActionResult WriteOff(HistoryStockWriteOffViewModel model, string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity StorageSortingByCity)
         {
+
             var ware = data.WaresInko.Find(model.Id);
 
             if (model.Quantity > ware.Quantity || model.Quantity <= 0)
@@ -129,10 +191,10 @@ namespace Inko.Orders.Web.Controllers
 
             }
 
-       
+
             if (model.Quantity == ware.Quantity)
             {
-                data.WaresInko.Remove(ware);
+                ware.Quantity -= model.Quantity;
                 data.SaveChanges();
             }
             else if (model.Quantity < ware.Quantity)
@@ -141,7 +203,7 @@ namespace Inko.Orders.Web.Controllers
                 data.SaveChanges();
             }
 
-            var historyWriteOff = new HistoryWrittenOffStock
+            var historyWriteOff = new StockToWriteOff
             {
                 Name = ware.Name,
                 City = model.City ?? ware.City,
@@ -154,11 +216,38 @@ namespace Inko.Orders.Web.Controllers
                 ReasonToWriteOff = model.ReasonToWriteOff,
             };
 
-            data.HistoryWrittenOffStocks.Add(historyWriteOff);
+            data.StockToWriteOffs.Add(historyWriteOff);
             data.SaveChanges();
 
+            ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
 
-            return View("Views/Storage/WrittenOffStock.cshtml");
+            sws.History = data.HistoryWrittenOffStocks
+                .Select(h => new HistoryStockWriteOffViewModel
+                {
+                    Id = h.Id,
+                    Stop = h.Stop,
+                    City = h.City,
+                    Name = h.Name,
+                    Price = h.Price,
+                    Comment = h.Comment,
+                    Picture = h.Picture,
+                    Quantity = h.Quantity,
+                    PlaceInStorage = h.PlaceInStorage,
+                    DateTimeWriteOff = h.DateTimeWriteOff,
+                    ReasonToWriteOff = h.ReasonToWriteOff,
+                })
+                .AsEnumerable();
+
+
+            sws.Components = GetComponents(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+
+            sws.Materials = GetMaterials(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+
+            sws.Ware = GetWare(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+            sws.Created = GetCreated(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+            sws.Bought = GetBought(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
+
+            return RedirectToAction("WrittenOffStock", sws);
         }
 
 
@@ -172,7 +261,23 @@ namespace Inko.Orders.Web.Controllers
         [HttpPost]
         public IActionResult WrittenOffStock(WrittenOffStockModelView model, string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, StorageSortingByCity StorageSortingByCity)
         {
-             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+            ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+
+            sws.History = data.StockToWriteOffs
+                .Select(h => new HistoryStockWriteOffViewModel
+                {
+                    Id = h.Id,
+                    City = h.City,
+                    Comment = h.Comment,
+                    Price = h.Price,
+                    Name = h.Name,
+                    Picture = h.Picture,
+                    DateTimeWriteOff = h.DateTimeWriteOff,
+                    PlaceInStorage = h.PlaceInStorage,
+                    Quantity = h.Quantity,
+                    ReasonToWriteOff = h.ReasonToWriteOff,
+                })
+                .AsEnumerable();
 
             sws.Components = GetComponents(search, StorageSortingWholeStorageByCriteria, StorageSortingByCity);
 
@@ -291,6 +396,11 @@ namespace Inko.Orders.Web.Controllers
             return View("Views/Home/Index.cshtml");
         }
 
+        public IActionResult AddMaterial()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddMaterial(AddMaterialsServiceViewModel model)
         {
@@ -311,6 +421,7 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = model.Quantity,
                     ReasonTransaction = "Add by User Material",
                     Date = DateTime.Now,
+                    Comment = model.Comment,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();
@@ -425,7 +536,7 @@ namespace Inko.Orders.Web.Controllers
                     Designation = c.Designation,
                     Insignificant = c.Insignificant,
                     PlaceInStorage = c.PlaceInStorage,
-                    
+
                 })
                 .FirstOrDefault(x => x.Id == id);
 
@@ -606,12 +717,12 @@ namespace Inko.Orders.Web.Controllers
             var history = this
                 .data
                 .HistoryStorages
-                .Where(cw => 
-                cw.Date.Day >= dateSearchFrom.Day 
-                && cw.Date.Day <= dateSearchTo.Day 
-                && cw.Date.Month >= dateSearchTo.Month 
+                .Where(cw =>
+                cw.Date.Day >= dateSearchFrom.Day
+                && cw.Date.Day <= dateSearchTo.Day
+                && cw.Date.Month >= dateSearchTo.Month
                 && cw.Date.Month <= dateSearchTo.Month
-                && cw.Date.Year >= dateSearchTo.Year 
+                && cw.Date.Year >= dateSearchTo.Year
                 && cw.Date.Year <= dateSearchTo.Year)
                 .Select(cw => new ShowAllHistoryViewModel
                 {
@@ -646,6 +757,7 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = model.Quantity,
                     ReasonTransaction = "Add by User Component",
                     Date = DateTime.Now,
+                    Comment = model.Comment,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();
@@ -656,18 +768,18 @@ namespace Inko.Orders.Web.Controllers
                 return View();
             }
 
-                string stringFile = UploadFile(model.Picture);
+            string stringFile = UploadFile(model.Picture);
 
-                this.component.AddComponent(model, stringFile);
+            this.component.AddComponent(model, stringFile);
 
             return View("Views/Home/Index.cshtml");
         }
 
-        public IActionResult AddBoughtTool() 
-        { 
+        public IActionResult AddBoughtTool()
+        {
             return View();
         }
- 
+
         [HttpPost]
         public IActionResult AddBoughtTool(AddBoughtByInkoSeviceViewModel model)
         {
@@ -688,6 +800,7 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = model.Quantity,
                     ReasonTransaction = "Add by User Bought Tool",
                     Date = DateTime.Now,
+                    Comment = model.Comment,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();
@@ -721,7 +834,7 @@ namespace Inko.Orders.Web.Controllers
 
             if (toolCheck != null)
             {
-                ModelState.AddModelError("","This Name already exist!");
+                ModelState.AddModelError("", "This Name already exist!");
                 return View();
             }
 
@@ -733,6 +846,7 @@ namespace Inko.Orders.Web.Controllers
                     Quantity = model.Quantity,
                     ReasonTransaction = "Add by User Creasted Tool",
                     Date = DateTime.Now,
+                    Comment = model.Comment,
                 };
                 this.data.HistoryStorages.Add(history);
                 this.data.SaveChanges();
@@ -787,7 +901,7 @@ namespace Inko.Orders.Web.Controllers
             }
 
             string stringFile = UploadFile(model.Picture);
-               
+
             this.ware.AddWare(model, stringFile);
 
             return View("Views/Home/Index.cshtml");
@@ -1305,7 +1419,7 @@ namespace Inko.Orders.Web.Controllers
             return View(sws);
         }
 
-        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery]string search, StorageSortingWholeStorageByCriteria sortingByCr, StorageSortingByCity sortingByCity)
+        private IEnumerable<ShowAllComponentsViewModel> GetComponents([FromQuery] string search, StorageSortingWholeStorageByCriteria sortingByCr, StorageSortingByCity sortingByCity)
         {
 
             var allComponents = data.Components
@@ -1343,13 +1457,13 @@ namespace Inko.Orders.Web.Controllers
             {
                 StorageSortingWholeStorageByCriteria.ChooseCriteria => allComponents.OrderBy(n =>
                 n.Id),
-                StorageSortingWholeStorageByCriteria.Name => allComponents.OrderByDescending(n => 
+                StorageSortingWholeStorageByCriteria.Name => allComponents.OrderByDescending(n =>
                 n.Name),
                 StorageSortingWholeStorageByCriteria.TimeAscending => allComponents.OrderBy(bt =>
                 bt.BuyedTime),
                 StorageSortingWholeStorageByCriteria.TimeDescending => allComponents.OrderByDescending(bt =>
                 bt.BuyedTime),
-                StorageSortingWholeStorageByCriteria.QuantityAscending => allComponents.OrderBy(p => 
+                StorageSortingWholeStorageByCriteria.QuantityAscending => allComponents.OrderBy(p =>
                 p.Quantity),
                 StorageSortingWholeStorageByCriteria.QuantityDescending => allComponents.OrderByDescending(p =>
                 p.Quantity),
@@ -1367,7 +1481,7 @@ namespace Inko.Orders.Web.Controllers
             return allComponents;
         }
 
-        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria, 
+        private IEnumerable<ShowAllMaterialViewModel> GetMaterials(string search, StorageSortingWholeStorageByCriteria StorageSortingWholeStorageByCriteria,
             StorageSortingByCity sortingByCity)
         {
             var allMaterials = data.MaterialsInInko
@@ -1423,7 +1537,7 @@ namespace Inko.Orders.Web.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) ||   b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
+                allMaterials = allMaterials.Where(b => b.Name!.ToLower().Contains(search.ToLower()) || b.Name.Contains(search) || b.Designation!.ToLower().Contains(search.ToLower()) || b.Designation.Contains(search) || b.Comment!.ToLower().Contains(search.ToLower()) || b.Comment.Contains(search));
             }
 
             return allMaterials;
@@ -1612,6 +1726,24 @@ namespace Inko.Orders.Web.Controllers
         private ShowWholeStorageViewMoedel AllInOneStorage()
         {
             ShowWholeStorageViewMoedel sws = new ShowWholeStorageViewMoedel();
+
+            var history = data.StockToWriteOffs
+                .Select(h => new HistoryStockWriteOffViewModel
+                {
+                    Id = h.Id,
+                    Name = h.Name,
+                    City = h.City,
+                    Price = h.Price,
+                    Picture = h.Picture,
+                    Comment = h.Comment,
+                    Quantity = h.Quantity,
+                    PlaceInStorage = h.PlaceInStorage,
+                    DateTimeWriteOff = h.DateTimeWriteOff,
+                    ReasonToWriteOff = h.ReasonToWriteOff,
+                })
+                .AsEnumerable();
+
+            sws.History = history;
 
             var allComponents = data.Components
                 .Select(c => new ShowAllComponentsViewModel

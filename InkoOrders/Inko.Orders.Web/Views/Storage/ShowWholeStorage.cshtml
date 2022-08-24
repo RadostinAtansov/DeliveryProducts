@@ -84,20 +84,20 @@
             <a asp-controller="Storage" asp-action="ShowAllInvoiceComponents" asp-route-id="@item.Id">
                Details
             </a><br>
+@*
+            <form asp-action="DeleteComponent" asp-route-id="@item.Id">*@
+                <a asp-controller="Storage" asp-action="DeleteComponent" asp-route-id="@item.Id">Delete</a>
+                <br>
+             @*   <span id="deleteSpan_@item.Id">
+                    <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
+                </span>*@
 
-            <form asp-action="DeleteComponent" asp-route-id="@item.Id">
-
-                <span id="confirmDeleteSpan_@item.Id" style="display:none">
+@*                <span id="confirmDeleteSpan_@item.Id" style="display:none">
+                    <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
                     <span><b>Are you sure you want to delete this?</b></span>
                     <button type="submit">Yes</button>
-                    <button href="javascript:void(0)" onclick="confirmDelete('@item.Id', false)">No</button>
-                </span>
-
-                <span id="deleteSpan_@item.Id">
-                    <a href="javascript:void(0)" onclick="confirmDelete('@item.Id', true)">Delete</a>
-                </span>
-
-            </form>
+                </span>*@
+           @* </form>*@
 
             <a asp-controller="Storage" asp-action="EditComponent" asp-route-id="@item.Id">
                 Edit
